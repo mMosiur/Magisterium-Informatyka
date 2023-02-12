@@ -1,0 +1,93 @@
+% Two-sided document
+\documentclass[12pt, twoside]{ociamthesis}
+\usepackage{helvet}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{polski}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[leftbars]{changebar}
+\hypersetup{
+	pdftitle={Detekcja choroby Alzheimera i stopnia demencji z użyciem narzędzi uczenia maszynowego w środowisku .NET},
+	pdfsubject={Praca magisterska},
+	pdfauthor={Mateusz Piotr Moruś},
+	pdfkeywords={Choroba Alzheimera, demencja, uczenie maszynowe, dotnet, CSharp}
+}
+\usepackage{graphicx}
+\input{code_format_setup}
+
+\setlength{\changebarsep}{-5em}
+
+\graphicspath{ {./Images/} }
+\AtBeginDocument{\let\textlabel\label}
+
+% Make the numbering of figures continuous
+\counterwithout{figure}{chapter}
+% Make the numbering of tables continuous
+\counterwithout{table}{chapter}
+
+\title{Detekcja choroby Alzheimera i stopnia demencji z użyciem narzędzi uczenia maszynowego w środowisku .NET}
+\engtitle{Detection of Alzheimer's disease and dementia severity using machine learning tools in .NET environment}
+\author{Mateusz Piotr Moruś}
+\albumnumber{292540}
+\university{UNIWERSYTET MARII CURIE-SKŁODOWSKIEJ W~LUBLINIE}
+\college{Wydział Matematyki, Fizyki i~Informatyki}
+\field{Informatyka}
+\speciality{-}
+\submittedtext{Praca magisterska}
+\department{Katedrze Neuroinformatyki i~Inżynierii Biomedycznej}
+\promoter{dr. hab. Grzegorza Marcina Wójcika, prof. UMCS}
+\degreedate{Lublin rok 2023}
+
+\begin{document}
+
+% This baselineskip gives sufficient line spacing for an examiner to easily markup the thesis with comments
+\baselineskip=18pt plus1pt
+
+% Set the number of sectioning levels that get number and appear in the contents
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Add a title page
+\maketitle
+% Insert a blank page after the title page
+\cleardoublepage
+
+% Add an abstract in polish
+\include{abstract-pl}
+% Add an abstract in english
+\include{abstract-en}
+
+% Start roman page numbering
+\begin{romanpages}
+	% Generate and include a table of contents
+	\tableofcontents
+	% Create a group for list of figures and list of tables to fit both on one page
+	\begingroup
+	\let\clearpage\relax
+	% Generate and include a list of figures
+	\listoffigures
+	% Generate and include a list of tables
+	\listoftables
+	\endgroup
+% End roman page numbering
+\end{romanpages}
+
+% Include the introduction
+\include{introduction}
+% Include the first chapter
+\include{chapter1}
+% Include the second chapter
+\include{chapter2}
+% Include the third chapter
+\include{chapter3}
+
+% Add the Bibliography to the contents page
+\addcontentsline{toc}{chapter}{Bibliografia}
+% Use a bibtex bibliography file refs.bib
+\bibliography{refs}
+% Use the plain bibliography style ordered by citation
+\bibliographystyle{unsrt}
+
+\end{document}
