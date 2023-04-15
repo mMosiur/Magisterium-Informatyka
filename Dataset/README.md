@@ -1,4 +1,4 @@
-# Alzheimer's Dataset ( 4 class of Images)
+# Alzheimer's Dataset (4 class of Images)
 
 [Dataset on Kaggle](https://www.kaggle.com/datasets/tourist55/alzheimers-dataset-4-class-of-images)
 
