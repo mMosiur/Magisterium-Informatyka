@@ -12,7 +12,7 @@ The data consists of MRI images. The data has four classes of images both in tra
 3. Non Demented
 4. Very Mild Demented
 
-## Original composition
+## Composition
 
 - test (1279 in summary)
 
@@ -32,16 +32,14 @@ The data consists of MRI images. The data has four classes of images both in tra
   | NonDemented      |     2560 |
   | VeryMildDemented |     1792 |
 
-## Summed composition
+- all images (6400 in summary)
 
-(6400 in summary)
-
-|     Category     |  Images  |
-| ---------------- | --------:|
-| MildDemented     |      896 |
-| ModerateDemented |       64 |
-| NonDemented      |     3200 |
-| VeryMildDemented |     2240 |
+  |     Category     |  Images  |
+  | ---------------- | --------:|
+  | MildDemented     |      896 |
+  | ModerateDemented |       64 |
+  | NonDemented      |     3200 |
+  | VeryMildDemented |     2240 |
 
 ## License
 
