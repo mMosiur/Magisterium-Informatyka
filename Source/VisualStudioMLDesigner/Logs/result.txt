@@ -1,0 +1,20 @@
+|      Trainer                             MicroAccuracy Duration    |
+|--------------------------------------------------------------------|
+|0     ImageClassificationMulti            0.6930     270.3560       |
+|--------------------------------------------------------------------|
+|                          Experiment Results                        |
+|--------------------------------------------------------------------|
+|                               Summary                              |
+|--------------------------------------------------------------------|
+|ML Task: image classification                                       |
+|Dataset: C:\Users\mmorus\Source\UMCS\Magisterium-Informatyka\Dataset|
+|Label : Label                                                       |
+|Total experiment time :   270.3560 Secs                             |
+|Total number of models explored: 1                                  |
+|--------------------------------------------------------------------|
+|                        Top 1 models explored                       |
+|--------------------------------------------------------------------|
+|      Trainer                             MicroAccuracy Duration    |
+|--------------------------------------------------------------------|
+|0     ImageClassificationMulti            0.6930     270.3560       |
+|--------------------------------------------------------------------|
