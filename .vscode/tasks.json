@@ -7,7 +7,7 @@
       "label": "Build PDF",
       "type": "shell",
       "options": {
-        "cwd": "${workspaceFolder}/Source"
+        "cwd": "${workspaceFolder}/Thesis"
       },
       "group": {
         "kind": "build",
@@ -15,7 +15,14 @@
       },
       "windows": {
         "command": "${workspaceFolder}/Scripts/build.ps1"
-      }
+      },
+      "linux": {
+        "command": "${workspaceFolder}/Scripts/build.sh"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/Scripts/build.sh"
+      },
+      "promptOnClose": true,
     }
   ]
 }
