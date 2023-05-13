@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLNetCustom", "MLNetCustom\MLNetCustom.csproj", "{B601E13D-8731-4307-A410-BE9DE44B3E8C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plot", "Plot\Plot.fsproj", "{28EA8324-2643-4BF1-A1E8-41B652E92702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlotGenerator", "PlotGenerator\PlotGenerator.csproj", "{908C396E-A813-46A3-9F3B-93DC412B13F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B601E13D-8731-4307-A410-BE9DE44B3E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B601E13D-8731-4307-A410-BE9DE44B3E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B601E13D-8731-4307-A410-BE9DE44B3E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B601E13D-8731-4307-A410-BE9DE44B3E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28EA8324-2643-4BF1-A1E8-41B652E92702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28EA8324-2643-4BF1-A1E8-41B652E92702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28EA8324-2643-4BF1-A1E8-41B652E92702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28EA8324-2643-4BF1-A1E8-41B652E92702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{908C396E-A813-46A3-9F3B-93DC412B13F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908C396E-A813-46A3-9F3B-93DC412B13F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908C396E-A813-46A3-9F3B-93DC412B13F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908C396E-A813-46A3-9F3B-93DC412B13F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
