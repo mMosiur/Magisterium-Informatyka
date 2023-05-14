@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using Microsoft.ML;
+﻿using Microsoft.ML;
+using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
 using Microsoft.ML.Vision;
 using MLNetCustom.Interfaces;
@@ -59,7 +59,7 @@ internal sealed class AlzheimerPredictionEngineTrainer
         _model = trainingPipeline.Fit(_datasetProvider.TrainSet);
     }
 
-    public void Test()
+    public MulticlassClassificationMetrics Test()
     {
         if (!_datasetProvider.IsDatasetLoaded)
         {
@@ -72,9 +72,7 @@ internal sealed class AlzheimerPredictionEngineTrainer
         }
 
         var resultSet = Model.Transform(_datasetProvider.TestSet);
-        var metrics = _context.MulticlassClassification.Evaluate(resultSet, nameof(ModelInputDefinition.LabelAsKey));
-        var serializedMetrics = JsonSerializer.Serialize(metrics);
-        Console.WriteLine(serializedMetrics);
+        return _context.MulticlassClassification.Evaluate(resultSet, nameof(ModelInputDefinition.LabelAsKey));
     }
 
     public sealed record Options

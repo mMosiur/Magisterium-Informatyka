@@ -1,4 +1,5 @@
-﻿using Microsoft.ML;
+﻿using System.Text.Json;
+using Microsoft.ML;
 using Microsoft.ML.Trainers;
 using Microsoft.ML.Vision;
 using MLNetCustom;
@@ -21,39 +22,59 @@ var engine = mlContext.CreateAlzheimerPredictionEngine(datasetProvider);
 // GenerateArchitectureComparisonData(engine);
 
 // Uncomment below to train engine
-// TrainEngineForLonger(engine);
+TrainEngineForLonger(engine);
 
 static void TrainEngineForLonger(AlzheimerPredictionEngineTrainer engine)
 {
     var plotGenerator = new PlotGenerator(new PlotGeneratorData(10));
+    const int epochCount = 200;
     engine.Train(new()
     {
-        MetricsCallback = metrics => plotGenerator.Data.Add(metrics),
-        Epoch = 800,
-        Architecture = ImageClassificationTrainer.Architecture.ResnetV250,
-        LearningRateScheduler = new LsrDecay(0.01f)
+        MetricsCallback = metrics =>
+        {
+            plotGenerator.Data.Add(metrics);
+            Console.WriteLine($"Epoch {metrics.Train.Epoch+1}/{epochCount}, dataset {metrics.Train.DatasetUsed}");
+        },
+        Epoch = epochCount,
+        Architecture = ImageClassificationTrainer.Architecture.ResnetV2101,
+        LearningRateScheduler = new ExponentialLRDecay(0.01f, 20)
     });
 
-    plotGenerator.Data.SaveToCsv("chart-metrics-log.csv");
+    plotGenerator.Data.SaveToCsv("outputs/single/chart-metrics-log.csv");
     var chart = plotGenerator.GeneratePlot();
-    chart.SavePNG("chart");
+    chart.SavePNG("outputs/single/chart");
+
+    var metrics = engine.Test();
+    var serialized = JsonSerializer.Serialize(metrics);
+    File.WriteAllText("outputs/single/test_metrics.json", serialized);
 }
 
 static void GenerateArchitectureComparisonData(AlzheimerPredictionEngineTrainer engine)
 {
-    foreach (var architecture in Enum.GetValues<ImageClassificationTrainer.Architecture>())
+    var architectures = Enum.GetValues<ImageClassificationTrainer.Architecture>();
+    foreach (var (architecture, index) in architectures.Select((a, i) => (a, i)))
     {
         var plotGenerator = new PlotGenerator(new PlotGeneratorData(10));
+        const int epochCount = 100;
         engine.Train(new()
         {
-            MetricsCallback = metrics => plotGenerator.Data.Add(metrics),
-            Epoch = 200,
-            Architecture = architecture
+            MetricsCallback = metrics =>
+            {
+                plotGenerator.Data.Add(metrics);
+                Console.WriteLine($"Arch: {architecture} ({index+1}/{architectures.Length}), epoch: {metrics.Train.Epoch+1}/{epochCount}, dataset {metrics.Train.DatasetUsed}");
+            },
+            Epoch = epochCount,
+            Architecture = architecture,
+            LearningRateScheduler = new ExponentialLRDecay(0.01f, 20)
         });
 
-        plotGenerator.Data.SaveToCsv($"chart-metrics-log-{architecture}.csv");
+        plotGenerator.Data.SaveToCsv($"outputs/comparison/chart-metrics-log-{architecture}.csv");
         var chart = plotGenerator.GeneratePlot();
-        chart.SavePNG($"chart-{architecture}-train");
+        chart.SavePNG($"outputs/comparison/chart-{architecture}-train");
         Console.WriteLine($"Charts saved for architecture '{architecture}'");
+
+        var metrics = engine.Test();
+        var serialized = JsonSerializer.Serialize(metrics);
+        File.WriteAllText($"outputs/comparison/test-{architecture}-metrics.json", serialized);
     }
 }
