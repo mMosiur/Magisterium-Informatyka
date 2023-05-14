@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace MLNetCustom;
 
@@ -57,7 +58,10 @@ public sealed class PlotGeneratorData
         if (TrainCount != ValidationCount) throw new InvalidOperationException("Train and validation count mismatch");
         using var stream = File.OpenWrite(filename);
         using var streamWriter = new StreamWriter(stream);
-        using var csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture);
+        using var csvWriter = new CsvWriter(streamWriter, new CsvConfiguration(CultureInfo.InvariantCulture)
+        {
+            NewLine = "\n",
+        });
         csvWriter.WriteRecords(GetEpochRecords());
         csvWriter.Flush();
     }
