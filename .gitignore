@@ -821,3 +821,5 @@ Thesis/out
 # Some resources are in the .pdf format and we need to keep them
 !Thesis/Images/*.pdf
 !Thesis/Images/Logo/*.pdf
+
+Thesis/detexified_chapters
