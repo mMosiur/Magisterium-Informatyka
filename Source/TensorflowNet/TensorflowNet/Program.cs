@@ -107,10 +107,6 @@ model.summary();
 var history = model.fit(
     dataset: train_ds,
     validation_data: val_ds,
-    callbacks: new()
-    {
-        new EarlyStopping(new CallbackParams { Model = model }, patience: 10, restore_best_weights: true)
-    },
     epochs: EPOCHS
 );
 
