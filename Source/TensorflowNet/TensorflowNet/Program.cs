@@ -10,7 +10,7 @@ using Tensorflow.Keras.Callbacks;
 using Tensorflow.Keras.Engine;
 
 var IMAGE_SIZE = (176, 208);
-var EPOCHS = 1;
+var EPOCHS = 100;
 var BATCH_SIZE = 16;
 
 var class_names = new[] { "MildDemented", "ModerateDemented", "NonDemented", "VeryMildDemented" };
