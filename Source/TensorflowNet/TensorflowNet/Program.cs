@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text.Json;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -6,7 +6,6 @@ using static Tensorflow.Binding;
 using static Tensorflow.KerasApi;
 using Tensorflow;
 using Tensorflow.Keras;
-using Tensorflow.Keras.Callbacks;
 using Tensorflow.Keras.Engine;
 
 var AUTOTUNE = tf.data.AUTOTUNE;
@@ -76,20 +75,20 @@ Func<Model> build_model = () =>
 
     var layers = new List<ILayer>();
     layers.Add(keras.layers.Rescaling(1.0f / 255, input_shape: (IMAGE_SIZE.Item1, IMAGE_SIZE.Item2, 3)));
-    layers.Add(keras.layers.Conv2D(8, 3, activation: "relu", padding: "same"));
+    layers.Add(keras.layers.Conv2D(16, 3, activation: "relu", padding: "same"));
     layers.Add(keras.layers.Conv2D(8, 3, activation: "relu", padding: "same"));
     layers.Add(keras.layers.MaxPooling2D());
     layers.AddRange(ConvBlock(16));
     layers.AddRange(ConvBlock(32));
+    // layers.AddRange(ConvBlock(64));
+    layers.Add(keras.layers.Dropout(0.2f));
     layers.AddRange(ConvBlock(64));
     layers.Add(keras.layers.Dropout(0.2f));
-    layers.AddRange(ConvBlock(128));
-    layers.Add(keras.layers.Dropout(0.2f));
     layers.Add(keras.layers.Flatten());
-    layers.AddRange(DenseBlock(256, 0.7f));
-    layers.AddRange(DenseBlock(64, 0.5f));
-    layers.AddRange(DenseBlock(32, 0.3f));
-    layers.Add(keras.layers.Dense(16, activation: "relu"));
+    layers.AddRange(DenseBlock(128, 0.7f));
+    layers.AddRange(DenseBlock(32, 0.5f));
+    // layers.AddRange(DenseBlock(32, 0.3f));
+    // layers.Add(keras.layers.Dense(16, activation: "relu"));
     layers.Add(keras.layers.Dense(NUM_CLASSES, activation: "softmax"));
     return keras.Sequential(layers);
 };
@@ -110,11 +109,24 @@ var history = model.fit(
     epochs: EPOCHS
 );
 
-model.save("trained-alzheimer-model.h5");
+var number = Directory
+    .EnumerateDirectories("results")
+    .Select(d => Path.GetFileName(d))
+    .Select(d => d.Replace("run", ""))
+    .Select(d => int.Parse(d) + 1)
+    .Prepend(0)
+    .Max();
 
-File.WriteAllText("training-metrics.json", JsonSerializer.Serialize(history.history));
+var dirName = $"results/run{number}";
 
-using (var stream = File.OpenWrite("training-metrics.csv"))
+Directory.CreateDirectory(dirName);
+
+model.save($"{dirName}/trained-alzheimer-model");
+model.save_weights($"{dirName}/trained-alzheimer-model/weights.h5");
+
+File.WriteAllText($"{dirName}/training-metrics.json", JsonSerializer.Serialize(history.history));
+
+using (var stream = File.OpenWrite($"{dirName}/training-metrics.csv"))
 {
     using var streamWriter = new StreamWriter(stream);
     using var csvWriter = new CsvWriter(streamWriter, new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -138,7 +150,7 @@ test_ds = test_ds.cache().prefetch(buffer_size: AUTOTUNE);
 
 var test_evaluation = model.evaluate(test_ds);
 
-File.WriteAllText("test-evaluation.json", JsonSerializer.Serialize(test_evaluation));
+File.WriteAllText($"{dirName}/test-evaluation.json", JsonSerializer.Serialize(test_evaluation));
 
 Console.WriteLine("Finished test evaluation");
 
