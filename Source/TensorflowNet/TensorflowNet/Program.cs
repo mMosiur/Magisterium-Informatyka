@@ -9,6 +9,7 @@ using Tensorflow.Keras;
 using Tensorflow.Keras.Callbacks;
 using Tensorflow.Keras.Engine;
 
+var AUTOTUNE = tf.data.AUTOTUNE;
 var IMAGE_SIZE = (176, 208);
 var EPOCHS = 100;
 var BATCH_SIZE = 16;
@@ -50,19 +51,11 @@ var one_hot_label = (Tensors tensors) =>
     return new Tensors(image, label);
 };
 
-train_ds = train_ds.map(one_hot_label);
-val_ds = val_ds.map(one_hot_label);
+train_ds = train_ds.map(one_hot_label, num_parallel_calls: AUTOTUNE);
+val_ds = val_ds.map(one_hot_label, num_parallel_calls: AUTOTUNE);
 
-train_ds = train_ds.shuffle(100).cache().prefetch();
-val_ds = val_ds.cache().prefetch();
-
-var NUM_IMAGES = new List<int>(class_names.Length);
-
-foreach (var label in class_names)
-{
-    var dir_name = @"C:\Users\mmorus\Source\UMCS\Magisterium-Informatyka\Dataset\train\" + label;
-    NUM_IMAGES.Add(Directory.EnumerateFiles(dir_name).Count());
-}
+train_ds = train_ds.shuffle(100).cache().prefetch(buffer_size: AUTOTUNE);
+val_ds = val_ds.cache().prefetch(buffer_size: AUTOTUNE);
 
 Func<Model> build_model = () =>
 {
@@ -77,7 +70,7 @@ Func<Model> build_model = () =>
     IEnumerable<ILayer> DenseBlock(int units, float dropout_rate)
     {
         yield return keras.layers.Dense(units, activation: "relu");
-        // yield return keras.layers.BatchNormalization();
+        yield return keras.layers.BatchNormalization();
         yield return keras.layers.Dropout(dropout_rate);
     }
 
@@ -98,8 +91,7 @@ Func<Model> build_model = () =>
     layers.AddRange(DenseBlock(32, 0.3f));
     layers.Add(keras.layers.Dense(16, activation: "relu"));
     layers.Add(keras.layers.Dense(NUM_CLASSES, activation: "softmax"));
-    var model = keras.Sequential(layers);
-    return model;
+    return keras.Sequential(layers);
 };
 
 var model = build_model();
@@ -107,7 +99,7 @@ var model = build_model();
 model.compile(
     loss: keras.losses.CategoricalCrossentropy(from_logits: true),
     optimizer: keras.optimizers.Adam(),
-    metrics: new[] { "acc" } // should be "auc" probably but it is missing from the library
+    metrics: new[] { "acc" } // should be "auc" ROC AUC probably but it is missing from the Tensorflow.NET library
 );
 
 model.summary();
@@ -115,6 +107,10 @@ model.summary();
 var history = model.fit(
     dataset: train_ds,
     validation_data: val_ds,
+    callbacks: new()
+    {
+        new EarlyStopping(new CallbackParams { Model = model }, patience: 10, restore_best_weights: true)
+    },
     epochs: EPOCHS
 );
 
@@ -141,6 +137,7 @@ static IEnumerable<EpochRecord> RecordsFromHistory(History history)
     {
         throw new Exception("History should have 4 values");
     }
+
     var trainAccuracy = history.history["acc"];
     var trainLoss = history.history["loss"];
     var validationAccuracy = history.history["val_acc"];
@@ -149,6 +146,7 @@ static IEnumerable<EpochRecord> RecordsFromHistory(History history)
     {
         throw new Exception("History values should have the same length");
     }
+
     for (var i = 0; i < trainAccuracy.Count; i++)
     {
         yield return new EpochRecord
