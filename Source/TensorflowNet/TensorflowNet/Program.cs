@@ -1,7 +1,12 @@
-﻿using static Tensorflow.Binding;
+﻿using System.Globalization;
+using System.Text.Json;
+using CsvHelper;
+using CsvHelper.Configuration;
+using static Tensorflow.Binding;
 using static Tensorflow.KerasApi;
 using Tensorflow;
 using Tensorflow.Keras;
+using Tensorflow.Keras.Callbacks;
 using Tensorflow.Keras.Engine;
 
 var IMAGE_SIZE = (176, 208);
@@ -113,4 +118,55 @@ var history = model.fit(
     epochs: EPOCHS
 );
 
+model.save("trained-alzhemiers-model.h5");
+
+File.WriteAllText("training-metrics.json", JsonSerializer.Serialize(history.history));
+using (var stream = File.OpenWrite("training-metrics.csv"))
+{
+    using var streamWriter = new StreamWriter(stream);
+    using var csvWriter = new CsvWriter(streamWriter, new CsvConfiguration(CultureInfo.InvariantCulture)
+    {
+        NewLine = "\n",
+    });
+    csvWriter.WriteRecords(RecordsFromHistory(history));
+    csvWriter.Flush();
+}
+
 Console.WriteLine("Finished");
+
+
+static IEnumerable<EpochRecord> RecordsFromHistory(History history)
+{
+    if (history.history.Count != 4)
+    {
+        throw new Exception("History should have 4 values");
+    }
+    var trainAccuracy = history.history["acc"];
+    var trainLoss = history.history["loss"];
+    var validationAccuracy = history.history["val_acc"];
+    var validationLoss = history.history["val_loss"];
+    if (trainAccuracy.Count != trainLoss.Count || trainAccuracy.Count != validationAccuracy.Count || trainAccuracy.Count != validationLoss.Count)
+    {
+        throw new Exception("History values should have the same length");
+    }
+    for (var i = 0; i < trainAccuracy.Count; i++)
+    {
+        yield return new EpochRecord
+        {
+            Epoch = i + 1,
+            TrainAccuracy = trainAccuracy[i],
+            TrainLoss = trainLoss[i],
+            ValidationAccuracy = validationAccuracy[i],
+            ValidationLoss = validationLoss[i],
+        };
+    }
+}
+
+public class EpochRecord
+{
+    public required int Epoch { get; init; }
+    public double? TrainAccuracy { get; init; }
+    public double? TrainLoss { get; init; }
+    public double? ValidationAccuracy { get; init; }
+    public double? ValidationLoss { get; init; }
+}
