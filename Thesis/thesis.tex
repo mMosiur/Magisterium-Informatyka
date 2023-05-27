@@ -12,7 +12,7 @@
 	pdftitle={Detekcja choroby Alzheimera i stadium demencji z użyciem narzędzi uczenia maszynowego w środowisku .NET},
 	pdfsubject={Praca magisterska},
 	pdfauthor={Mateusz Piotr Moruś},
-	pdfkeywords={Choroba Alzheimera, demencja, uczenie maszynowe, dotnet, CSharp}
+	pdfkeywords={Choroba Alzheimera, demencja, uczenie maszynowe, .NET, dotnet, CSharp}
 }
 \usepackage{graphicx}
 \input{code_format_setup}
@@ -54,10 +54,9 @@
 % Insert a blank page after the title page
 \cleardoublepage
 
-% Add an abstract in polish
-\include{abstract-pl}
-% Add an abstract in english
-\include{abstract-en}
+
+\include{chapters/streszczenie-pl}
+\include{chapters/streszczenie-en}
 
 % Start roman page numbering
 \begin{romanpages}
@@ -74,14 +73,11 @@
 % End roman page numbering
 \end{romanpages}
 
-% Include the introduction
-\include{introduction}
-% Include the first chapter
-\include{chapter1}
-% Include the second chapter
-\include{chapter2}
-% Include the third chapter
-\include{chapter3}
+\include{chapters/0-wstęp}
+\include{chapters/1-teoria}
+\include{chapters/2-metodologia}
+\include{chapters/3-badanie}
+\include{chapters/4-dyskusja}
 
 % Add the Bibliography to the contents page
 \addcontentsline{toc}{chapter}{Bibliografia}
