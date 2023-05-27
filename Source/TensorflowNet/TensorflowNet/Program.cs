@@ -114,9 +114,10 @@ var history = model.fit(
     epochs: EPOCHS
 );
 
-model.save("trained-alzhemiers-model.h5");
+model.save("trained-alzheimer-model.h5");
 
 File.WriteAllText("training-metrics.json", JsonSerializer.Serialize(history.history));
+
 using (var stream = File.OpenWrite("training-metrics.csv"))
 {
     using var streamWriter = new StreamWriter(stream);
@@ -124,24 +125,38 @@ using (var stream = File.OpenWrite("training-metrics.csv"))
     {
         NewLine = "\n",
     });
-    csvWriter.WriteRecords(RecordsFromHistory(history));
+    csvWriter.WriteRecords(RecordsFromHistory(history.history));
     csvWriter.Flush();
 }
 
-Console.WriteLine("Finished");
+Console.WriteLine("Finished training");
 
+var test_ds = keras.preprocessing.image_dataset_from_directory(
+    directory: @"C:\Users\mmorus\Source\UMCS\Magisterium-Informatyka\Dataset\test",
+    image_size: IMAGE_SIZE,
+    batch_size: BATCH_SIZE
+);
 
-static IEnumerable<EpochRecord> RecordsFromHistory(History history)
+test_ds = test_ds.map(one_hot_label, num_parallel_calls: AUTOTUNE);
+test_ds = test_ds.cache().prefetch(buffer_size: AUTOTUNE);
+
+var test_evaluation = model.evaluate(test_ds);
+
+File.WriteAllText("test-evaluation.json", JsonSerializer.Serialize(test_evaluation));
+
+Console.WriteLine("Finished test evaluation");
+
+static IEnumerable<EpochRecord> RecordsFromHistory(IReadOnlyDictionary<string, List<float>> history)
 {
-    if (history.history.Count != 4)
+    if (history.Count != 4)
     {
         throw new Exception("History should have 4 values");
     }
 
-    var trainAccuracy = history.history["acc"];
-    var trainLoss = history.history["loss"];
-    var validationAccuracy = history.history["val_acc"];
-    var validationLoss = history.history["val_loss"];
+    var trainAccuracy = history["accuracy"];
+    var trainLoss = history["loss"];
+    var validationAccuracy = history["val_accuracy"];
+    var validationLoss = history["val_loss"];
     if (trainAccuracy.Count != trainLoss.Count || trainAccuracy.Count != validationAccuracy.Count || trainAccuracy.Count != validationLoss.Count)
     {
         throw new Exception("History values should have the same length");
