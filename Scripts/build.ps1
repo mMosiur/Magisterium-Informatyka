@@ -21,8 +21,8 @@ if ($LASTEXITCODE -ne 0) {
 Copy-Item "$generatedPdfPath" "$destinationPdfPath"
 
 # Try detexifying documents using detexify.py script
-if (Get-Command python -ErrorAction SilentlyContinue) {
-    python3 $detexifyScriptPath
+if (Get-Command py -ErrorAction SilentlyContinue) {
+    py $detexifyScriptPath
     Write-Host "Documents detexified."
 } elseif (Get-Command wsl -ErrorAction SilentlyContinue) {
     Write-Host "Python 3 not found. Trying to use WSL to detexify documents..."

@@ -28,7 +28,7 @@ patterns = (
 #%% Define include fetching function
 def get_includes_from(filename: str) -> List[str]:
 	""" Gets files that are included in given file using \include{<filename>} directive """
-	f = open(filename, "r")
+	f = open(filename, "r", encoding="utf-8")
 	content = f.read()
 	f.close()
 	return re.findall(r"^\\include\{(.+)\}", content, re.MULTILINE)
