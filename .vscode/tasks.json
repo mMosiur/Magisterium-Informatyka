@@ -23,6 +23,16 @@
         "command": "${workspaceFolder}/Scripts/build.sh"
       },
       "promptOnClose": true,
-    }
+    },
+    {
+      "label": "Detexify source documents",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/Thesis"
+      },
+      "group": "none",
+      "command": "python3 ../Scripts/detexify.py",
+      "promptOnClose": true,
+    },
   ]
 }
