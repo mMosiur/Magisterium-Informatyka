@@ -31,7 +31,18 @@
         "cwd": "${workspaceFolder}/Thesis"
       },
       "group": "none",
-      "command": "python3 ../Scripts/detexify.py",
+      "windows": {
+        "command": "py"
+      },
+      "linux": {
+        "command": "python3"
+      },
+      "osx": {
+        "command": "python3"
+      },
+      "args": [
+        "../Scripts/detexify.py"
+      ],
       "promptOnClose": true,
     },
   ]
