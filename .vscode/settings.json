@@ -1,0 +1,37 @@
+{
+    "workbench.colorTheme": "Quiet Light",
+    "latex-workshop.latex.outDir": "%DIR%/out",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk with args",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=out",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "copy resulting pdf",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "cp",
+                "'%OUTDIR%/%DOCFILE%.pdf'",
+                "'%WORKSPACE_FOLDER%/Detekcja choroby Alzheimera i stadium demencji z użyciem narzędzi uczenia maszynowego w środowisku .NET.pdf'"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "custom latexmk with copy",
+            "tools": [
+                "latexmk with args",
+                "copy resulting pdf"
+            ]
+        }
+    ]
+}
