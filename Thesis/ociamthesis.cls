@@ -92,7 +92,7 @@
 % Environments
 %
 
-% This macro define an environment for front matter that is always 
+% This macro define an environment for front matter that is always
 % single column even in a double-column document.
 
 \newenvironment{alwayssingle}{%
@@ -129,8 +129,8 @@
       \cbstart
       \vspace*{0.1in}
       {Kierunek: }{{\bfseries {\@field}} \par}
-      % \vspace*{1ex}
-      % {Specjalność: }{\@speciality \par}
+      \vspace*{1ex}
+      {Specjalność: }{\@speciality \par}
       \vspace*{3ex}
       {{\bfseries {\@author}} \par}
       \vspace*{1ex}
@@ -173,7 +173,7 @@
 
 % ACKNOWLEDGEMENTS
 %
-% The acknowledgements environment puts a large, bold, centered 
+% The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page. The acknowledgements
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
 % on its own page.
@@ -188,8 +188,8 @@
 \begin{quote}}
 {\end{quote}\end{alwayssingle}}
 
-% The acknowledgementslong environment puts a large, bold, centered 
-% "Acknowledgements" label at the top of the page. The acknowledgement itself 
+% The acknowledgementslong environment puts a large, bold, centered
+% "Acknowledgements" label at the top of the page. The acknowledgement itself
 % does not appears in a quote environment so you can get more in.
 
 \newenvironment{acknowledgementslong}
@@ -203,9 +203,9 @@
 
 % STATEMENT OF ORIGINALITY (AS SUGGESTED BY GSW)
 %
-% The originality environment puts a large, bold, centered 
-% "Statement of originality" label at the top of the page. The statement 
-% of originality itself appears in a quote environment, i.e. tabbed in at 
+% The originality environment puts a large, bold, centered
+% "Statement of originality" label at the top of the page. The statement
+% of originality itself appears in a quote environment, i.e. tabbed in at
 % both sides, and on its own page.
 
 \newenvironment{originality}
@@ -218,9 +218,9 @@
 \begin{quote}}
 {\end{quote}\end{alwayssingle}}
 
-% The originalitylong environment puts a large, bold, centered 
-% "Statement of originality" label at the top of the page. The statement 
-% of originality itself does not appears in a quote environment so you can 
+% The originalitylong environment puts a large, bold, centered
+% "Statement of originality" label at the top of the page. The statement
+% of originality itself does not appears in a quote environment so you can
 % get more in.
 
 \newenvironment{originalitylong}
