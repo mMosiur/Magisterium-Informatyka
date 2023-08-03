@@ -53,6 +53,6 @@ for file in get_includes_from("thesis.tex"):
 	f.close()
 	detexified_file = "detexified_"+file+"_detexified.md"
 	os.makedirs(os.path.dirname(detexified_file), exist_ok=True)
-	f = open(detexified_file, "w")
+	f = open(detexified_file, "w", encoding="utf-8")
 	f.write(detexify(content))
 	f.close()
