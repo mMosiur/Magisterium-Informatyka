@@ -48,7 +48,7 @@ def detexify(text: str) -> str:
 #%% Detexify includes from root file
 import os
 for file in get_includes_from("thesis.tex"):
-	f = open(file+".tex", "r")
+	f = open(file+".tex", "r", encoding="utf-8")
 	content = f.read()
 	f.close()
 	detexified_file = "detexified_"+file+"_detexified.md"
