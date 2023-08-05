@@ -7,14 +7,14 @@ $detexifyScriptPath = "../Scripts/detexify.py"
 Remove-Item "$generatedPdfPath" -ErrorAction SilentlyContinue
 
 if (-not (Get-Command latexmk -ErrorAction SilentlyContinue)) {
-    Write-Error "Command 'latexmk' not found. Please install it and add it to your PATH."
+    Write-Error "Command 'latexmk' not found. Please install it and add it to your PATH." -CategoryActivity "Latex error"
     Exit 1
 }
 
 latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=out thesis.tex
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Error "Error while building the document."
+    Write-Error "Document build using 'latexmk' has failed." -CategoryActivity "Latex error"
     Exit 1
 }
 
@@ -24,15 +24,18 @@ Copy-Item "$generatedPdfPath" "$destinationPdfPath"
 if (Get-Command py -ErrorAction SilentlyContinue) {
     py $detexifyScriptPath
     Write-Host "Documents detexified."
-} elseif (Get-Command wsl -ErrorAction SilentlyContinue) {
+}
+elseif (Get-Command wsl -ErrorAction SilentlyContinue) {
     Write-Host "Python 3 not found. Trying to use WSL to detexify documents..."
     # Try detexifying documents using detexify.py script in WSL
     wsl --exec python3 $detexifyScriptPath
     if ($LASTEXITCODE -ne 0) {
         Write-Host "Couldn't detexify documents using WSL, probably because Python 3 is not installed in WSL"
-    } else {
+    }
+    else {
         Write-Host "Documents successfully detexified using WSL Python 3."
     }
-} else {
+}
+else {
     Write-Host "Neither Python 3 nor WSL were found. Skipping detexifying."
 }

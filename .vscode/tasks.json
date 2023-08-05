@@ -23,6 +23,7 @@
         "command": "${workspaceFolder}/Scripts/build.sh"
       },
       "promptOnClose": true,
+      "problemMatcher": []
     },
     {
       "label": "Detexify source documents",
@@ -43,7 +44,7 @@
       "args": [
         "../Scripts/detexify.py"
       ],
-      "promptOnClose": true,
-    },
+      "promptOnClose": true
+    }
   ]
 }
