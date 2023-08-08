@@ -8,6 +8,7 @@ patterns = (
 	(r"\r\n", "\n"),
 	(r"\\begin{abstract}", r"\\chapter*{Streszczenie}"),
 	(r"\\begin{abstract-en}", r"\\chapter*{Abstract}"),
+	(r"\\begin{figure}.+\\end{figure}", r"", re.DOTALL),
 	(r" ?\\cite\{[^{;]+\}\n?", r""),
 	(r"\\addcontentsline\{.*\}\{.*\}\{.*\}", r""),
 	(r"\\chapter\*?{(.+)}", r"# \1"),
@@ -16,7 +17,8 @@ patterns = (
 	(r"\\begin\{[^{;]+\}(\[.*\])?(\{.*\})?\n?", r""),
 	(r"\\end\{[^{;]+\}\n?", r""),
 	(r"\\item\n?", r"-"),
-	(r"\\\w+\{([^{;]*)\}\n?", r"\1"),
+	(r"\\hyperref\[[^\]]+\]{([^\\]+).*}", r"\1"),
+	(r"\\\w+\*?\{([^{;]*)\}\n?", r"\1"),
 	(r"(``)|('')", r'"'),
 	(r"~", r" "),
 	(r"--", r"–"),
@@ -24,7 +26,8 @@ patterns = (
 	(r"\n +-", r"\n-"),
 	(r"\n   +", r"\n  "),
 	(r"\n\n\n", r"\n\n"),
-	(r"\n+$", r"\n", True),
+	(r"(\S)\s+\.$", r"\1.", re.MULTILINE),
+	(r"\n+$", r"\n", re.MULTILINE),
 )
 
 #%% Define include fetching function
@@ -39,12 +42,12 @@ def get_includes_from(filename: str) -> List[str]:
 def detexify(text: str) -> str:
 	""" Returns the detexified version of provided text """
 	for pattern_replacement in patterns:
-		is_multiline = False
+		flags = 0
 		if len(pattern_replacement) == 3:
-			pattern, replacement, is_multiline = pattern_replacement
+			pattern, replacement, flags = pattern_replacement
 		else:
 			pattern, replacement = pattern_replacement
-		text = re.sub(pattern, replacement, text, flags=re.MULTILINE if is_multiline else 0)
+		text = re.sub(pattern, replacement, text, flags=flags)
 	return text
 
 #%% Detexify includes from root file
