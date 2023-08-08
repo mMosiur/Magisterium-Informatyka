@@ -186,19 +186,58 @@ Jednak sieci neuronowe są bardziej wszechstronne jeśli chodzi o przyrostowe uc
 Najbardziej obiecująca jednak była technika uczenia głębokiego, dzięki której można modelować bardzo złożone dane z dużą dokładnością.
 
 W tę właśnie stronę poszli autorzy późniejszej pracy, którzy używając obrazów rezonansu magnetycznego MRI wyszkolili głęboki model dla detekcji choroby Alzheimera \cite{ebrahimi2021deep}.
-Wykorzystali oni konwolucyjne głębokie sieci neuronowe i różne rodzaje sieci rekurencyjnych bazowanych na przedtrenowanym modelu ResNet-18.
+Wykorzystali oni konwolucyjne głębokie sieci neuronowe i różne rodzaje sieci rekurencyjnych bazowanych na wstępnie wytrenowanym modelu ResNet-18.
 Otrzymali bardzo obiecujące wyniki i model, który osiągnął maksymalną wydajność klasyfikacji z dokładnością, czułością i swoistością na poziomie około 92\%.
 
-\section{Narzędzia i techniki uczenia maszynowego}
+\section{Uczenie maszynowe i techniki klasyfikacji}
 
-\subsection{Wprowadzenie do uczenia maszynowego}
+W celu lepszego zrozumienia dlaczego i w jaki sposób uczenie maszynowe może być bardzo przydatnym narzędziem w diagnostyce choroby Alzheimera, a także całym ogólniej w obszarze medycyny i diagnostyki, warto przyjrzeć się na czym polega i jakie są jego podstawowe techniki.
+
+\subsection{Definicja i typy uczenia maszynowego}
+
+Uczenie maszynowe (często w skrócie \emph{ML}, z ang. \emph{Machine Learning}) jest pojęciem bardzo szerokim i z natury interdyscyplinarnym, natomiast w najpopularniejszym użyciu odnosi się do kategorii sztucznej inteligencji, która pozwala komputerom ``myśleć'' i uczyć się we własnym zakresie.
+Sam termin został po raz pierwszy użyty przez Arthura Samuela w 1959 roku, który to zdefiniował uczenie maszynowe jako dziedzinę studiów, która daje komputerom możliwość uczenia się bez ich bezpośredniego programowania \cite{samuel1959some}.
+
+Taka definicja uczenia maszynowego, mimo, że ogranicza się do jednej z wielu dziedzin potencjalnie zaliczanych do tej kategorii, jest bardzo ogólna i nie precyzuje dokładnie co to znaczy ``uczyć się''. ani jak takie uczenie się miałoby być manifestowane.
+Jest to zabieg celowy, ponieważ -- w przeciwieństwie do tego, co pozwalałyby sądzić najpopularniejsze obecnie metody uczenia maszynowego -- nie jest to jedynie zbiór badań nad sieciami neuronowymi i systemami ekspertowymi.
+Wspomniana definicja jednak jest zbyt ogólna, by móc powiedzieć o niej coś więcej bez bazowania na przykładowych technikach i algorytmach.
+
+Aby sformalizować pewne uniwersalne właściwości technik uczenia maszynowego, zaproponowany został podstawowy model uczenia maszynowego.
+W nim uczenie maszynowe zostało zaprezentowane jako proces składający się z czterech głównych elementów: środowiska, uczenia, repozytorium oraz wykonania \cite{wang2009brief}.
+Wygląd takiego modelu został przedstawiony na \hyperref[fig:basic-model-of-machine-learning]{rysunku \ref*{fig:basic-model-of-machine-learning}}.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{basic-model-of-machine-learning}
+  \caption[Podstawowy model uczenia maszynowego]{Podstawowy model uczenia maszynowego zaadoptowany z pracy Hua Wang, Cuiqin Ma oraz Lijuan Zhou \cite{wang2009brief}. Bloki prostokątne oznaczają systemy a bloki procesowe (przypominające strzałki) oznaczają procesy.}
+  \label{fig:basic-model-of-machine-learning}
+\end{figure}
 
 \begin{itemize}
-  \item Definicja i cele uczenia maszynowego
-  \item Przykłady zastosowań w medycynie i diagnostyce
+
+  \item W modelu tym ``środowisko'' jest zewnętrznym zbiorem danych, które dostarczane są w pewnej bliżej nieokreślonej formie, reprezentuje źródła informacji zewnętrznych.
+        Może to być na przykład zbiór obrazków przedstawiających odręcznie zapisane cyfry arabskie ręcznie oznaczonych rzeczywistą odpowiadającą im cyfrą przez człowieka.
+        Mogą to być jednak także wszelkie inne dane pochodzenia zewnętrznego względem systemu uczenia maszynowego a które służą za podstawę do dalszego jego działania i kluczowego procesu uczenia się.
+
+
+  \item Drugim czynnikiem tego modelu jest ``uczenie'', które jest procesem przetwarzającym informacje zewnętrzne na wiedzę.
+        Terminy tutaj występujące są abstrakcją i mogą oznaczać wiele różnych rzeczy, w zależności od konkretnej omawianej techniki.
+        Przykładowo w sztucznych sieciach neuronowych uczenie jest realizowane przez algorytm propagacji wstecznej błędu.
+        Niezależnie od implementacji, wiedza jako szeroko pojęty rezultat uczenia jest trafia następnie do przechowania w repozytorium.
+
+  \item Trzeci blok modelu, ``repozytorium'', jest miejscem przechowywania ogólnych zasad, które następnie kierują częścią działań wykonawczych systemu uczenia maszynowego.
+        W przypadku sztucznych sieci neuronowych takim repozytorium jest sama struktura sieci oraz wagi połączeń między neuronami.
+        Jest to szczególnie ciekawy przypadek, gdzie wiedza ta jest przechowywana w formie w zasadzie niedostępnej i niezrozumiałej dla człowieka, gdzie jej wydobycie jest bardzo trudnym zadaniem \cite{boger1997knowledge}.
+
+  \item Ostatni blok modelu to ``wykonanie'', czyli proces, w którym system uczenia maszynowego wykorzystuje zgromadzoną w repozytorium wiedzę do podejmowania decyzji w kontekście problemu, który ma rozwiązać.
+        Wynik działania procesu wykonawczego trafia później z powrotem do procesu uczenia, gdzie razem z dalszymi danymi pochodzącymi ze ``środowiska'' jest wykorzystywany do dalszego rozwoju wiedzy.
+
 \end{itemize}
 
-\subsection{Typy uczenia maszynowego}
+Cały proces zapętla się i pozwala na inkrementacyjne poprawianie wiedzy systemu uczenia maszynowego, aż do osiągnięcia pożądanej skuteczności procesu wykonawczego.
+Tak przedstawiony model jest dużą abstrakcją pozostawiającą szczegóły implementacyjne i działania poszczególnych bloków poszczególnym technikom uczenia maszynowego, ale pozwala wyciąganie wniosków całościowych na temat uczenia maszynowego w pracach natury teoretycznej.
+
+Jednak dążąc do lepszego poznania uczenia maszynowego od strony praktycznej, najlepiej jest przyjrzeć się kategoriom technik uczenia maszynowego, które są najczęściej wykorzystywane.
+
 
 \begin{itemize}
   \item Uczenie nadzorowane, nienadzorowane i wzmacniane
@@ -209,7 +248,7 @@ Otrzymali bardzo obiecujące wyniki i model, który osiągnął maksymalną wyda
 
 \begin{itemize}
   \item Regresja logistyczna: klasyfikacja binarna
-  \item K-najbliższych sąsiadów (k-NN): klasyfikacja oparta na podobieństwie
+  \item \emph{K} najbliższych sąsiadów (\emph{k-nn}): klasyfikacja oparta na podobieństwie
 \end{itemize}
 
 \subsection{Uczenie głębokie i sieci neuronowe}
@@ -219,17 +258,17 @@ Otrzymali bardzo obiecujące wyniki i model, który osiągnął maksymalną wyda
   \item Wpływ warstw neuronowych na zdolność modelu do abstrakcji
 \end{itemize}
 
-\subsection{Wykorzystanie sieci konwolucyjnych (CNN)}
+\subsection{Wykorzystanie konwolucyjnych sieci neuronowych}
 
 \begin{itemize}
   \item Struktura i działanie sieci konwolucyjnych
   \item Przykłady zastosowań w analizie obrazów i diagnostyce medycznej
 \end{itemize}
 
-\subsection{Uczenie transferowe i użycie modeli pre-trenowanych}
+\subsection{Uczenie transferowe i wstępnie wytrenowane modele sieci neuronowych}
 
 \begin{itemize}
-  \item Zalety wykorzystania pretrenowanych modeli
+  \item Zalety wykorzystania wstępnie wytrenowanych modeli
   \item Architektura przykładowego modelu
   \item Przeszkolenie i dostosowanie modelu do konkretnej analizy
 \end{itemize}
