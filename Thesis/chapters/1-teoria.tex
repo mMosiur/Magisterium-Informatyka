@@ -248,7 +248,7 @@ Kategorie te to:
 \begin{itemize}
 
   \item \emph{Uczenie nadzorowane} (ang. \emph{supervised learning}) --
-        Algorytmy tego typu opierają się na analizie (czy przyswajaniu) zbiorów danych składających się zarówno z sygnału wejściowego, jak i opisanej już informacji zwrotnej.
+        algorytmy tego typu opierają się na analizie (czy przyswajaniu) zbiorów danych składających się zarówno z sygnału wejściowego, jak i opisanej już informacji zwrotnej.
         Dane wejściowe mogą być w dowolnej postaci, tekstowej, liczbowej, obrazkowej, dźwiękowej -- cokolwiek co może zostać zakodowane w sposób, w jaki algorytm reprezentuje dane.
 
         Co wyróżnia tę kategorię wśród pozostałych to fakt, że częścią danych przekazywanych do algorytmu jest także informacja na temat oczekiwanego wyjścia, zachowania się modelu.
@@ -258,27 +258,60 @@ Kategorie te to:
         Pojawiają się jednak, ponieważ algorytmy tego typu przypominają rozumowanie indukcyjne, które polega na wyciąganiu ogólnych wniosków na podstawie konkretnych przykładów.
         Dodatkowo są szczególnie przydatne w zadaniach klasyfikacyjnych, w których radzą sobie bardzo dobrze \cite{hastie2009overview}.
 
+        Do zadań klasyfikacyjnych wymagana jest możliwość podzielenia zbioru danych wejściowych na kategorie, gdzie każdy element przynależy do jednej z nich.
+        Jednak uczenie nadzorowane także dobrze radzi sobie z problemami regresji, czyli przewidywania wartości liczbowych na podstawie danych wejściowych.
+        Wtedy wyjściem nie jest dyskretna kategoria, ale liczba rzeczywista gdzie dozwolony jest pewien margines błędu -- algorytm ma dążyć jak najbliższej prawdziwej oczekiwanej wartości, jednak nie musi jej dokładnie osiągnąć.
+        Przykładem może być system przewidywania cen nieruchomości na podstawie różnych cech mogących na nią wpływać.
+
         Systemu uczenia nadzorowanego nie potrafią jednak funkcjonować w izolacji -- potrzebują \emph{nadzoru}, zewnętrznej pomocy w postaci poprawnie opisanych lub skategoryzowanych danych wejściowych.
         W praktyce oznacza to, że uczenie nadzorowane jest zależne od człowieka, który musi dostarczyć algorytmowi dane wejściowe wraz z opisami, które często z angielskiego nazywane są \emph{labels}.
         Mimo skuteczności są więc ograniczane przez ilość danych, jaką jesteśmy w stanie dostarczyć, a także przez to, jak dobrze są one opisane.
-
-        % TODO: Dopisać coś o regresji (https://en.wikipedia.org/wiki/Machine_learning#:~:text=Types%20of%20supervised%2Dlearning%20algorithms%20include%20active%20learning%2C%20classification%20and%20regression.)
 
         Popularnymi przykładami algorytmów uczenia nadzorowanego są między innymi \emph{regresja logistyczna} oraz \emph{k-najbliższych sąsiadów}.
 
 
   \item \emph{Uczenie nienadzorowane} (ang. \emph{unsupervised learning}) --
-        coś o uczeniu nienadzorowanym
+        systemy uczenia maszynowego tego typu różnią się od uczenia nadzorowanego w głównej mierze brakiem informacji zwrotnej.
 
-  \item \emph{Uczenie wzmacniane} (ang. \emph{reinforcement learning}) --
-        coś o uczeniu wzmacnianym
+        Otrzymują również zbiór danych wejściowych w dowolnej postaci, jednak nie są one opisane, nie wiemy odgórnie jak powinien zachować się algorytm na ich podstawie.
+
+        Celem działania algorytmów uczenia nienadzorowanego jest znalezienie w nieopisanych danych wejściowych struktury i prawidłowości, na przykład ich zgrupowanie lub klasteryzacja (ang. \emph{clustering}) -- bezpośrednie wywnioskowanie bliżej nieokreślonych cech danych bez wsparcia z zewnątrz \cite{hastie2009unsupervised}.
+
+        W uczeniu maszynowym tego typu w przeciwieństwie do uczenia nadzorowanego system zamiast reagować na informacje zwrotne powstałe poprzez porównanie opisu danych z wyjściem, algorytmy uczenia nienadzorowanego identyfikują podobieństwa w danych i reagują na podstawie obecności lub braku takich podobieństw w każdym nowym fragmencie zbioru wejściowego.
+
+        Algorytmy uczenia nienadzorowanego są często wykorzystywane do analizy danych, w szczególności do wykrywania anomalii, czyli elementów zbioru danych, które wyróżniają się na tle pozostałych.
+
+        Przykładem algorytmu uczenia nienadzorowanego jest algorytm centroidów, nazywany też algorytmem \emph{k-średnich} (ang. \emph{k-means}), który mimo swoich wad jest jednym z najpopularniejszych algorytmów klasteryzacji \cite{ahmed2020k}.
+        Przez swoją nazwę jest często mylony lub błędnie utożsamiany z nadzorowanym podejściem k-najbliższych sąsiadów, jednak jest to zupełnie inny, niepowiązany algorytm.
+
+  \item \emph{Uczenie przez wzmacnianie} (ang. \emph{reinforcement learning}) --
+        podejście tego typu nieco różnią się od dwóch poprzednich, ponieważ nie są one zależne od predefiniowanego zbioru danych wejściowych, a od \emph{środowiska}, w którym algorytm się znajduje.
+        Opierają się na ``nagradzaniu'' systemu za zachowania, które są pożądane i/lub ``karaniu'' za te niepożądane.
+
+        Tym samym systemy takie są bliżej działania bazującego na modelu opartym na agentach (ang. \emph{agent-based model}, \emph{ABM}).
+        Jest to model obliczeniowy służący do symulacji działań i interakcji autonomicznych agentów w celu zrozumienia zachowania systemu i tego, co rządzi jego wynikami.
+        W omawianym kontekście oznacza to, że uczony przez wzmacnianie system jest traktowany jako ``agent'' w szeroko rozumianym środowisku, z którym wchodzi w różnego rodzaju interakcje.
+
+        Ogólne założenia uczenia przez wzmacnianie przypominają nieco proces uczenia się, który widzimy u zwierząt i ludzi.
+        Agent (system) jest umieszczany w środowisku, w którym może wykonywać pewne akcje.
+        Wykonywane przez niego akcje prowadzą do pewnych rezultatów odbieranych przez niego jako nagrody lub kary.
+        Otrzymywanie pozytywnych informacji zwrotnych -- nagród -- zachęca agenta do powtarzania akcji, które doprowadziły do ich otrzymania, a otrzymywanie negatywnych informacji zwrotnych -- kar -- zachęca do unikania prowadzących do nich czynności
+
+        Agent skonstruowany jest tak, by chcieć maksymalizować otrzymywane nagrody, a minimalizować kary.
+        Nazywane to jest funkcją nagrody (ang. \emph{reward function}).
+        Dąży do tego sposobem, który w uproszczeniu można nazwać metodami prób i błędów.
+
+        Przykładem algorytmów uczenia przez wzmacnianie jest metoda Monte Carlo.
+        Jest to metoda statystyczna, która wykorzystuje powtarzalne losowania do rozwiązywania problemów, których rozwiązanie jest trudne lub niemożliwe do znalezienia w inny sposób.
+        Agent ``próbkuje'' wykonywanie pewnej akcji i uśrednia uzyskane rezultaty -- wartości nagród/kar.
+        Następnie uśredniony rezultat osiągnięty w trakcie trwania całości ``epizodu'', czyli pewnego konkretnego zdarzenia, jest wykorzystywany do zmiany zachowania agenta w przyszłości \cite{thrun2000reinforcement}.
 
 \end{itemize}
 
-\begin{itemize}
-  \item Uczenie nadzorowane, nienadzorowane i wzmacniane
-  \item Przykłady i różnice między typami uczenia
-\end{itemize}
+W kontekście detekcji różnych jednostek chorobowych w medycynie, w tym choroby Alzheimera, najczęściej wykorzystywane są techniki uczenia nadzorowanego.
+Pomimo, że uczenie nienadzorowane również dobrze sprawdza się w niektórych przypadkach \cite{raza2021tour} oraz uczenie przez wzmacniane także znajduje swoje zastosowania \cite{zhou2021deep}, to uczenie nadzorowane nadal sprawuje się najlepiej ze względu na naturę danych i problemów jakie najczęściej się w tym obszarze pojawiają.
+
+Warto także dodać, że najnowsze popularne i bardzo obiecujące podejście -- tak zwane \emph{samo-nadzorowane uczenie maszynowe} (ang. \emph{self-supervised machine learning}) -- jest w istocie połączeniem technik uczenia nadzorowanego i nienadzorowanego i jest w stanie wykorzystać zalety obu tych podejść \cite{krishnan2022self}.
 
 \subsection{Podstawowe algorytmy klasyfikacji}
 
