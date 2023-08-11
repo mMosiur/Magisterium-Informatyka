@@ -193,7 +193,7 @@ Otrzymali bardzo obiecujące wyniki i model, który osiągnął maksymalną wyda
 
 W celu lepszego zrozumienia dlaczego i w jaki sposób uczenie maszynowe może być bardzo przydatnym narzędziem w diagnostyce choroby Alzheimera, a także całym ogólniej w obszarze medycyny i diagnostyki, warto przyjrzeć się na czym polega i jakie są jego podstawowe techniki.
 
-\subsection{Definicja i typy uczenia maszynowego}
+\subsection{Generalna definicja uczenia maszynowego}
 
 Uczenie maszynowe (często w skrócie \emph{ML}, z ang. \emph{Machine Learning}) jest pojęciem bardzo szerokim i z natury interdyscyplinarnym, natomiast w najpopularniejszym użyciu odnosi się do kategorii sztucznej inteligencji, która pozwala komputerom ``myśleć'' i uczyć się we własnym zakresie.
 Sam termin został po raz pierwszy użyty przez Arthura Samuela w 1959 roku, który to zdefiniował uczenie maszynowe jako dziedzinę studiów, która daje komputerom możliwość uczenia się bez ich bezpośredniego programowania \cite{samuel1959some}.
@@ -238,6 +238,42 @@ Tak przedstawiony model jest dużą abstrakcją pozostawiającą szczegóły imp
 
 Jednak dążąc do lepszego poznania uczenia maszynowego od strony praktycznej, najlepiej jest przyjrzeć się kategoriom technik uczenia maszynowego, które są najczęściej wykorzystywane.
 
+\subsection{Kategorie technik uczenia maszynowego}
+
+Tradycyjnie wyróżnić można trzy paradygmaty ``uczenia'', na które dzieli się szerzej pojęte uczenie maszynowe.
+Podział ten bazuje bezpośrednio na rozróżnieniu rodzajów sygnału -- danych dostarczanych do systemu uczenia maszynowego -- oraz informacji zwrotnej przekazywanej systemowi.
+Te aspekty z kolei pośrednio wpływają na to, w jaki sposób w ogóle tego typu algorytm się zachowuje i jakie są jego możliwości oraz predyspozycje.
+Kategorie te to:
+
+\begin{itemize}
+
+  \item \emph{Uczenie nadzorowane} (ang. \emph{supervised learning}) --
+        Algorytmy tego typu opierają się na analizie (czy przyswajaniu) zbiorów danych składających się zarówno z sygnału wejściowego, jak i opisanej już informacji zwrotnej.
+        Dane wejściowe mogą być w dowolnej postaci, tekstowej, liczbowej, obrazkowej, dźwiękowej -- cokolwiek co może zostać zakodowane w sposób, w jaki algorytm reprezentuje dane.
+
+        Co wyróżnia tę kategorię wśród pozostałych to fakt, że częścią danych przekazywanych do algorytmu jest także informacja na temat oczekiwanego wyjścia, zachowania się modelu.
+        Przekazujemy algorytmowi to, jak powinien na podane dane wejściowe zareagować, a proces jego uczenia polega na dopasowaniu się do tych oczekiwań.
+
+        Uczenie nadzorowane jest czasem nazywane także \emph{klasyfikacją} lub \emph{uczeniem indukcyjnym}, chociaż nie są to terminy ściśle równoważne.
+        Pojawiają się jednak, ponieważ algorytmy tego typu przypominają rozumowanie indukcyjne, które polega na wyciąganiu ogólnych wniosków na podstawie konkretnych przykładów.
+        Dodatkowo są szczególnie przydatne w zadaniach klasyfikacyjnych, w których radzą sobie bardzo dobrze \cite{hastie2009overview}.
+
+        Systemu uczenia nadzorowanego nie potrafią jednak funkcjonować w izolacji -- potrzebują \emph{nadzoru}, zewnętrznej pomocy w postaci poprawnie opisanych lub skategoryzowanych danych wejściowych.
+        W praktyce oznacza to, że uczenie nadzorowane jest zależne od człowieka, który musi dostarczyć algorytmowi dane wejściowe wraz z opisami, które często z angielskiego nazywane są \emph{labels}.
+        Mimo skuteczności są więc ograniczane przez ilość danych, jaką jesteśmy w stanie dostarczyć, a także przez to, jak dobrze są one opisane.
+
+        % TODO: Dopisać coś o regresji (https://en.wikipedia.org/wiki/Machine_learning#:~:text=Types%20of%20supervised%2Dlearning%20algorithms%20include%20active%20learning%2C%20classification%20and%20regression.)
+
+        Popularnymi przykładami algorytmów uczenia nadzorowanego są między innymi \emph{regresja logistyczna} oraz \emph{k-najbliższych sąsiadów}.
+
+
+  \item \emph{Uczenie nienadzorowane} (ang. \emph{unsupervised learning}) --
+        coś o uczeniu nienadzorowanym
+
+  \item \emph{Uczenie wzmacniane} (ang. \emph{reinforcement learning}) --
+        coś o uczeniu wzmacnianym
+
+\end{itemize}
 
 \begin{itemize}
   \item Uczenie nadzorowane, nienadzorowane i wzmacniane
@@ -248,7 +284,7 @@ Jednak dążąc do lepszego poznania uczenia maszynowego od strony praktycznej, 
 
 \begin{itemize}
   \item Regresja logistyczna: klasyfikacja binarna
-  \item \emph{K} najbliższych sąsiadów (\emph{k-nn}): klasyfikacja oparta na podobieństwie
+  \item \emph{K}-najbliższych sąsiadów (\emph{k-nn}): klasyfikacja oparta na podobieństwie
 \end{itemize}
 
 \subsection{Uczenie głębokie i sieci neuronowe}
