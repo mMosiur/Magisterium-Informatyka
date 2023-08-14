@@ -315,9 +315,43 @@ Warto także dodać, że najnowsze popularne i bardzo obiecujące podejście -- 
 
 \subsection{Podstawowe algorytmy klasyfikacji}
 
+Algorytmów wykorzystywanych do klasyfikacji jest bardzo wiele, warto jednak przyjrzeć się dwóm z prostszych i dobrze znanych.
+
 \begin{itemize}
-  \item Regresja logistyczna: klasyfikacja binarna
-  \item \emph{K}-najbliższych sąsiadów (\emph{k-nn}): klasyfikacja oparta na podobieństwie
+
+  \item \emph{Regresja logistyczna}
+
+        Jest to algorytm nadzorowanego uczenia maszynowego wykorzystywany głównie w zadaniach klasyfikacyjnych, w których celem jest przewidywanie prawdopodobieństwa przynależności  -- danych wykorzystanych jako informacje wejściowe systemu -- do danej klasy.
+        Jest ona określana jako regresja, ponieważ przyjmuje dane wyjściowe funkcji regresji liniowej jako dane wejściowe i wykorzystuje funkcję sigmoidalną do oszacowania prawdopodobieństwa dla danej klasy.
+
+        Różnica między regresją liniową a regresją logistyczną polega na tym, że wynik regresji liniowej jest wartością ciągłą, która może być dowolna, podczas gdy regresja logistyczna przewiduje prawdopodobieństwo, że instancja należy do danej klasy lub nie.
+        Wynikiem regresji liniowe jest pewna liczba rzeczywista w dowolnym przedziale i może być wykorzystywana np.we wspomnianym już zadaniu przewidywania cen nieruchomości.
+        Natomiast regresja logistyczna jako wynik zwraca wartość z zakresu 0 do 1, która może być interpretowana jako prawdopodobieństwo przynależności do danej klasy.
+
+        Z tego też powodu rodzaj klasyfikacji, do którego wykorzystywana jest regresja logistyczna nazywa się też \emph{klasyfikacją binarną}.
+        W praktyce oznacza to, że algorytmy tego typu służą do rozróżnienia dokładnie dwóch klas.
+        Mogą to być dwie klasy jednostkowe, na przykład czy dany obrazek przedstawia psa czy kota, ale bardzo często są to klasy oznaczające weryfikację ``pozytywną'' lub ``negatywną'' odnośnie posiadania pewnej cechy przez dane wejściowe lub możliwość ich przyporządkowania do jednej konkretnej klasy, na przykład czy dany pacjent jest chory czy nie (inaczej po prostu zdrowy), czy dana wiadomość e-mail jest spamem czy nie.
+
+        Przy interpretacji pojedynczego zadania regresji liniowej jako binarnego przewidywania prawdopodobieństwa przynależności do danej klasy, algorytm ten nazywany jest także \emph{dwumianową regresją logistyczną} (ang. \emph{binomial logistic regression}).
+        Algorytm ten może być rozszerzony jednak przez proste zwielokrotnienie takich klasyfikacji binarnych w celu rozróżnienia wielu klas.
+        Wtedy nazywany jest \emph{wielomianą regresją logistyczną} (ang. \emph{multinomial logistic regression}) i potrafi kategoryzować dane wejściowe do dowolnej liczby klas, np. obrazki odręcznie zapisanych cyfr arabskich na 10 klas odpowiadających cyfrom od 0 do 9 \cite{palvanov2018comparisons}.
+
+  \item \emph{K-najbliższych sąsiadów} (ang. \emph{k-nearest neighbors}, \emph{k-nn})
+
+        Jest to drugi z bardzo dobrze znanych algorytmów klasyfikacyjnych godnych omówienia.
+        Używany jest do klasyfikacji danych na podstawie podobieństwa do innych danych.
+        Głównym jego założeniem jest reprezentacja przestrzeni problemowej w postaci wielowymiarowej przestrzeni euklidesowej, w której każdy punkt reprezentuje jeden z elementów zbioru danych wejściowych.
+        Pozycja punktu jest określona na bazie jego cech przestawionych w postaci liczbowej, a każda z nich reprezentuje swój własny wymiar tejże przestrzeni.
+
+        Tak zareprezentowane dane wejściowe są następnie porównane między sobą przede wszystkim na podstawie odległości euklidesowej, czyli odległości między punktami w przestrzeni euklidesowej.
+        Odległości te następnie służą jako podstawa do wyciągnięcia wniosków na temat kategorii obiektów.
+
+        Pod uwagę brane jest dokładnie -- jak sugeruje nazwa algorytmu --  \emph{k} najbliższych sąsiadów.
+        Współczynnik \emph{k} jest parametrem algorytmu, który musi zostać określony przed jego uruchomieniem.
+        Ma ona duży wpływa skuteczność działania i poprawność klasyfikacji, dlatego też dobór odpowiedniej wartości \emph{k} jest bardzo ważny i często wykonywany wielokrotnie w celu znalezienia najlepszej wartości.
+
+        Największym problemem algorytmu \emph{k-najbliższych sąsiadów}
+
 \end{itemize}
 
 \subsection{Uczenie głębokie i sieci neuronowe}
