@@ -6,6 +6,7 @@ from typing import List
 # Pattern tuples: (pattern, replacement, is_multiline)
 patterns = (
 	(r"\r\n", "\n"),
+	(r"^%.*\n", r"", re.MULTILINE),
 	(r"\\begin{abstract}", r"\\chapter*{Streszczenie}"),
 	(r"\\begin{abstract-en}", r"\\chapter*{Abstract}"),
 	(r"\\begin{figure}.+\\end{figure}", r"", re.DOTALL),
