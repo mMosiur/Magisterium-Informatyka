@@ -589,8 +589,26 @@ Metody uczenia maszynowego nazywane są ``czarnymi skrzynkami'', ponieważ poza 
 
 \subsection{Uczenie transferowe i wstępnie wytrenowane modele sieci neuronowych}
 
-\begin{itemize}
-  \item Zalety wykorzystania wstępnie wytrenowanych modeli
-  \item Architektura przykładowego modelu
-  \item Przeszkolenie i dostosowanie modelu do konkretnej analizy
-\end{itemize}
+Uczenie transferowe to technika uczenia maszynowego, która polega na wykorzystaniu wiedzy zdobytej z jednego zadania w celu poprawienia wyników innego, pokrewnego zadania.
+To potężne podejście stosowane w sytuacjach, gdzie dane dla celowego zadania są ograniczone, a dostępne są obfite dane dla zadania źródłowego, które jest powiązane.
+
+Technika ta ma wiele zalet, przede wszystkim prędkość trenowania -- ``dotrenowanie'' modelu wykorzystujące inny, wstępnie wytrenowany model jest znacznie szybsze niż trening podobnego modelu od zera.
+Wykorzystuje on bowiem wiedzę zgromadzoną w modelu źródłowym, który został już wcześniej wytrenowany na ogromnych zbiorach danych.
+Dodatkowo efektywne wykorzystane są dane, trenowanie modelu używając uczenia transferowego wymaga znacznie mniej danych wejściowych niż trenowanie modelu od zera \cite{weiss2016survey}.
+
+Zalety te opierają się na jednej zasadniczej cesze wstępnie wytrenowanego modelu -- jest on uczony w taki sposób, aby wytworzyć reprezentacje bardzo uniwersalne, które są w stanie uchwycić wiele różnych cech w danych wejściowych określonego typu.
+Innymi słowy posiada już zgeneralizowaną wiedzę na temat ogólnej kategorii danych, dla których jest przeznaczony.
+Przykładowo model dedykowany jako baza w kategoryzacji obrazów będzie miał umiał w bardzo ogólny sposób analizować obrazy prowadząc do takiego reprezentacji, aby posiadała jak najwięcej informacji o cechach obrazu w sposób uniwersalny.
+Następnie doszkalany model bazowany na tym już wstępnie wytrenowanym wyłącznie wykorzystuje te bogate reprezentacje cech oferowane przez rdzenny model do kategoryzacji obrazów wybranego rodzaju, na przykład odróżnianie obrazów psów od kotów.
+
+Modele wstępnie wytrenowane są zazwyczaj ogromnie i mają bardzo złożoną architekturę.
+Zadanie generalizowania obszaru problemowego dla problemów, które nie są jeszcze znane jest bowiem bardzo trudne, co odzwierciedla wielkość takich sieci.
+
+Dla przykładu jedną z popularnych wykorzystywanych wstępnie wytrenowanych sieci neuronowych stosowanych w zadaniach analizy obrazu jest \emph{ResNet} (\emph{Residual Neural Network}).
+Jego architektura zaczyna się od standardowego bloku konwolucyjnego i normalizujacego, jednak następnie posiada kluczowe dla swojego działania specjalne \emph{bloki resztkowe} (inaczej \emph{rezydualne}, z ang. \emph{residual blocks}) \cite{li2016demystifying}.
+Blok resztkowy składa się z co najmniej dwóch konwolucyjnych warstw, które przetwarzają dane wejściowe, a następnie ich wynik jest dodawany do oryginalnych danych wejściowych.
+To dodanie pozwala na przekazywanie reszty (różnicy) między oryginalnymi danymi a przetworzonymi danymi przez blok resztkowy.
+Dalej składa się ponownie z klasycznie używanych bloków takich jak warstwy poolingowe czy gęste, aż do warstwy wyjściowej.
+
+Dzięki swojej blokowej budowie w zależności od potrzeb można wykorzystać różne warianty sieci ResNet, które różnią się głębokością sieci.
+Dostępne są modele \emph{ResNet-18}, \emph{ResNet-34}, \emph{ResNet-50}, \emph{ResNet-101}, \emph{ResNet-152} oraz \emph{ResNet-200}, gdzie liczba w nazwie oznacza liczbę warstw w sieci.
