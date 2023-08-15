@@ -198,7 +198,7 @@ W celu lepszego zrozumienia dlaczego i w jaki sposób uczenie maszynowe może by
 Uczenie maszynowe (często w skrócie \emph{ML}, z ang. \emph{Machine Learning}) jest pojęciem bardzo szerokim i z natury interdyscyplinarnym, natomiast w najpopularniejszym użyciu odnosi się do kategorii sztucznej inteligencji, która pozwala komputerom ``myśleć'' i uczyć się we własnym zakresie.
 Sam termin został po raz pierwszy użyty przez Arthura Samuela w 1959 roku, który to zdefiniował uczenie maszynowe jako dziedzinę studiów, która daje komputerom możliwość uczenia się bez ich bezpośredniego programowania \cite{samuel1959some}.
 
-Taka definicja uczenia maszynowego, mimo, że ogranicza się do jednej z wielu dziedzin potencjalnie zaliczanych do tej kategorii, jest bardzo ogólna i nie precyzuje dokładnie co to znaczy ``uczyć się''. ani jak takie uczenie się miałoby być manifestowane.
+Taka definicja uczenia maszynowego, mimo, że ogranicza się do jednej z wielu dziedzin potencjalnie zaliczanych do tej kategorii, jest bardzo ogólna i nie precyzuje dokładnie co to znaczy ``uczyć się'' ani jak takie uczenie się miałoby być manifestowane.
 Jest to zabieg celowy, ponieważ -- w przeciwieństwie do tego, co pozwalałyby sądzić najpopularniejsze obecnie metody uczenia maszynowego -- nie jest to jedynie zbiór badań nad sieciami neuronowymi i systemami ekspertowymi.
 Wspomniana definicja jednak jest zbyt ogólna, by móc powiedzieć o niej coś więcej bez bazowania na przykładowych technikach i algorytmach.
 
@@ -325,7 +325,7 @@ Algorytmów wykorzystywanych do klasyfikacji jest bardzo wiele, warto jednak prz
         Jest ona określana jako regresja, ponieważ przyjmuje dane wyjściowe funkcji regresji liniowej jako dane wejściowe i wykorzystuje funkcję sigmoidalną do oszacowania prawdopodobieństwa dla danej klasy.
 
         Różnica między regresją liniową a regresją logistyczną polega na tym, że wynik regresji liniowej jest wartością ciągłą, która może być dowolna, podczas gdy regresja logistyczna przewiduje prawdopodobieństwo, że instancja należy do danej klasy lub nie.
-        Wynikiem regresji liniowe jest pewna liczba rzeczywista w dowolnym przedziale i może być wykorzystywana np.we wspomnianym już zadaniu przewidywania cen nieruchomości.
+        Wynikiem regresji liniowe jest pewna liczba rzeczywista w dowolnym przedziale i może być wykorzystywana na przykład we wspomnianym już zadaniu przewidywania cen nieruchomości.
         Natomiast regresja logistyczna jako wynik zwraca wartość z zakresu 0 do 1, która może być interpretowana jako prawdopodobieństwo przynależności do danej klasy.
 
         Z tego też powodu rodzaj klasyfikacji, do którego wykorzystywana jest regresja logistyczna nazywa się też \emph{klasyfikacją binarną}.
@@ -334,7 +334,7 @@ Algorytmów wykorzystywanych do klasyfikacji jest bardzo wiele, warto jednak prz
 
         Przy interpretacji pojedynczego zadania regresji liniowej jako binarnego przewidywania prawdopodobieństwa przynależności do danej klasy, algorytm ten nazywany jest także \emph{dwumianową regresją logistyczną} (ang. \emph{binomial logistic regression}).
         Algorytm ten może być rozszerzony jednak przez proste zwielokrotnienie takich klasyfikacji binarnych w celu rozróżnienia wielu klas.
-        Wtedy nazywany jest \emph{wielomianą regresją logistyczną} (ang. \emph{multinomial logistic regression}) i potrafi kategoryzować dane wejściowe do dowolnej liczby klas, np. obrazki odręcznie zapisanych cyfr arabskich na 10 klas odpowiadających cyfrom od 0 do 9 \cite{palvanov2018comparisons}.
+        Wtedy nazywany jest \emph{wielomianą regresją logistyczną} (ang. \emph{multinomial logistic regression}) i potrafi kategoryzować dane wejściowe do dowolnej liczby klas, na przykład obrazki odręcznie zapisanych cyfr arabskich na 10 klas odpowiadających cyfrom od 0 do 9 \cite{palvanov2018comparisons}.
 
   \item \emph{K-najbliższych sąsiadów} (ang. \emph{k-nearest neighbors}, \emph{k-nn})
 
@@ -366,10 +366,141 @@ Algorytmów wykorzystywanych do klasyfikacji jest bardzo wiele, warto jednak prz
 
 \subsection{Uczenie głębokie i sieci neuronowe}
 
+\subsubsection{Podstawy sztucznych sieci neuronowych uczenia głębokiego}
+
+Bardzo duży rozgłos w ostatnich czasach zdobyły techniki uczenia maszynowego oparte na sieciach neuronowych (ang. \emph{neural networks}, \emph{NN}), w szczególności na sieciach neuronowych głębokich (ang. \emph{deep neural networks}, \emph{DNN}).
+
+Pierwotnie zaproponowany przez Warrena McCullocha and Waltera Pitts'a w 1943 roku \cite{mcculloch1943logical}, model sztucznego neuronu był w rzeczywistości funkcją przyjmującą wiele wartości binarnych na wejściu i zwracającą jedną wartość binarną na wyjściu.
+Przypominać to miało działanie prawdziwych biologicznych neuronów, gdzie każdy może być pobudzony (odpowiednik wartości $1$) lub nie (odpowiednik $0$).
+Bazując na pobudzeniach swoich sąsiadów, z którymi jest połączony, neuron sam może zostać pobudzony i przekazać sygnał dalej.
+
+Pomysł ten następnie rozwinął Frank Rosenblatt w 1957 roku, który zaproponował model \emph{perceptronu}, czyli sztucznego neuronu, który nieco odchodził od swojej biologicznej inspiracji i pozwalał na przekazywanie na wejściu wartości nie tylko binarnych, ale dowolnych rzeczywistych.
+One z kolei były wymnażane przez odpowiadające im wagi połączeń (dodatnie dla pobudzających, ujemne dla hamujących)i sumowane, a następnie porównywane do ustalonego biasu i na tej podstawie neuron zwracał wartość binarną na wyjściu \cite{rosenbaltt1957perceptron}.
+
+Pierwsze próby wykorzystania perceptronów do zadań klasyfikacyjnych miały mieszane rezultaty, ponieważ okazało się, że nie są one w stanie rozwiązać problemów, które nie są liniowo separowalne.
+Sprawdzały się znakomicie w problemach regresyjnych, natomiast w zadaniach klasyfikacyjnych, w których dane nie mogły zostać podzielone na dwie klasy za pomocą prostej linii, nie były w stanie osiągnąć zadowalających wyników.
+Próby na przykład nauczenia perceptronów rozpoznawania cyfr arabskich zapisanych odręcznie nie powiodły się.
+
+W rzeczywistości jednak problemem okazało się wykorzystanie tylko jednej \emph{warstwy} perceptronów, gdzie te same neurony otrzymywały dane wejściowe i były odpowiedzialne za zwrócenie poprawnych danych wyjściowych.
+Znacznie lepiej zaczęły sobie radzić sieci, gdzie neuronów dodano więcej i zorganizowano je w odpowiedni sposób.
+Wewnątrz takiej sztucznej sieci neuronowej neurony są uporządkowane w warstwy, czyli zbiór sztucznych neuronów ustawionych do siebie ``równolegle'', niepołączone wzajemnie między sobą, ale połączone z neuronami z warstw sąsiednich.
+I tak wszystkie wyjścia neuronów warstwy niższej są połączone z jednym wejściem każdego z neuronów warstwy wyższej.
+Warstwa wyjściowa nie posiada żadnych wyjść połączonych z następnymi neuronami, a jedynie zwraca dane wyjściowe całej sieci.
+Czasem rozróżnia się także warstwę wejściową, która nie posiada żadnych wejść, a jedynie otrzymuje dane wejściowe.
+W sieciach jednowarstwowych warstwa wejściowa jest jednocześnie warstwą wyjściową, ponieważ nie ma żadnych warstw pośrednich.
+
+Nawet sieci dwuwarstwowe -- czyli takie z jedną warstwą pośrednia, nazywaną też często \emph{warstwą ukrytą} (ang. \emph{hidden layer}) -- są w stanie rozwiązać znacznie bardziej złożone problemy \cite{huang2000classification}.
+Jak również można się spodziewać, dodanie kolejnych warstw ukrytych w dalszy sposób zwiększa możliwości sieci neuronowych.
+W szczególności zwiększa ich zdolności do generalizowania problemu, do którego rozwiązywania są szkolone \cite{thomas2017two}.
+
+Ten trend był kontynuowany gdy okazało się, że coraz głębsze sieci prowadzą do możliwości rozwiązywania coraz bardziej skomplikowanych problemów.
+Wykorzystanie takich sieci nazywa się uczeniem głębokim (ang. \emph{deep learning}), a one same są nazywane głębokimi sieciami neuronowymi (ang. \emph{deep neural networks}, \emph{DNN}).
+
+Okazuje się, że zarówno obliczanie wyjścia na bazie danych wejściowych (nazywane procesem \emph{feedforward}) może być zareprezentowane nie tylko przez śledzenia każdego neuronu z osobna, ale również przez operacje na wektorach i dwuwymiarowych macierzach (lub trójwymiarowych tensorach dla niektórych rodzajów użytych warstw neuronowych).
+Aktywacje wszystkich neuronów jednej warstwy reprezentowane są prez wektor, a wagi połączeń między neuronami dwóch warstw -- przez macierz.
+Wtedy iloczyn macierzowy wektora aktywacji warstwy wejściowej i macierzy wag połączeń między warstwą $n$ a warstwą $n+1$ daje po przepuszczeniu każdej wartości przez funkcję aktywacji wektor aktywacji neuronów warstwy $n+1$.
+
+Przedstawiając wektor aktywacji warstwy $n$ jako $a^{(n)}$, macierz wag między nią a warstwą $n+1$ jako $W^{(n+1)}$, wektor biasów warstwy $n+1$ jako $b^{(n+1)}$, wektor sum ważonych na wejściach warstwy $n+1$ jako $z^{(n+1)}$ oraz funkcję aktywacji warstwy $n+1$ zastosowaną na każdym elemencie wektora jako $f$, można zapisać pełne obliczenie dla warstwy $n+1$ jako:
+
+\[
+  \mathbf{z}^{(n+1)} = \mathbf{W}^{(n+1)} \cdot \mathbf{a}^{(n)} + \mathbf{b}^{(n+1)}
+\]
+\[
+  \mathbf{a}^{(n+1)} = f(\mathbf{z}^{(n+1)})
+\]
+
+Aby zastosować to do całej sieci neuronowej, należy zastosować to iteracyjnie zaczynając od danych wejściowych jako pseudo-aktywacji pewnych nieistniejących neuronów warstwy wejściowej.
+
+Algorytm uczenia nadzorowanego takich sieci nazywa się \emph{propagacją wsteczną błędu} (ang. \emph{backpropagation of error}).
+Po wykonaniu przywidywania bazującego na danych wejściowych, sieć neuronowa porównuje wynik z oczekiwanym wyjściem i oblicza błąd.
+Następnie błąd ten jest propagowany wstecz, od warstwy wyjściowej do warstwy wejściowej, a wagi połączeń między neuronami są aktualizowane w taki sposób, by zmniejszyć błąd.
+
+Co ważne, możliwość reprezentowania aktywacji i wag zbiorowo w postaci wektorów i macierzy oraz obliczenia bazujące na ich dodawaniu i mnożeniu pozwalają na wykorzystanie technik numerycznych do optymalizacji obliczeń.
+Wykonywanie takich obliczeń może być zrównoleglone, co znacznie przyspiesza wykonywanie obliczeń.
+
+\subsubsection{Rodzaje warstw używanych w uczeniu głębokim}
+
+Z poziomu paktycznego przy wykorzystywaniu sztucznych sieci neuronowych -- w szczególności przy uczeniu głębokim -- przeważnie operuje się na już zdefiniowanych rodzajach warstw, które mają już zaimplementowane odpowiednie zachowania, działania, funkcje aktywacji i optymalizacje do swojego zastosowania.
+
+Niektóre z najczęściej wykorzystywanych rodzajów warstw głębokich sieci neuronowych to:
+
 \begin{itemize}
-  \item Podstawy sieci neuronowych i neuronów
-  \item Wpływ warstw neuronowych na zdolność modelu do abstrakcji
+
+  \item \emph{Warstwa gęsta} (ang. \emph{Dense layer}, czasem \emph{Fully Connected Layer})
+
+        Jest to najbardziej podstawowy rodzaj warstwy w głębokich sieciach neuronowych, w dużej mierze opisany w poprzedniej sekcji.
+        Główną cechą warstwy gęstej jest to, że każdy neuron w tej warstwie jest połączony z każdym neuronem w poprzedniej warstwie.
+        Innymi słowy, wyjścia wszystkich neuronów poprzedniej warstwy są wejściami dla każdego neuronu w warstwie gęstej.
+
+        Duże warstwy są bardzo dobre w generalizacji problemu dowolnego rodzaju, ale są kosztowne obliczeniowo i mogą prowadzić do przeuczenia (ang. \emph{overfitting}) oraz problemów
+        zanikającego gradientu.
+        Mimo to stanowią trzon większości głębokich sieci neuronowych, zazwyczaj wspierane przez inne, bardziej wyspecjalizowane warstwy.
+        Pojawiają się najczęściej w strategicznych miejscach sieci, gdzie cechy wygenerowane / wyodrębnione przez inne warstwy powinny zostać w jak najlepszym stopniu wykorzystane, zamodelowane i przekazane dalej.
+
+  \item \emph{Warstwa konwolucyjna} (ang. \emph{Convolutional Layer})
+
+        Bardzo popularny rodzaj warstwy w glębokich sieciach neuronowych, szczególnie dobrze radzący sobie z ekstrahowaniem lokalnych cech danych przestrzennych, takich jak obrazy, co sprawia, że są niezastąpione w zadaniach związanych z analizą wizualną \cite{albawi2017understanding}.
+
+        Główną cechą warstwy konwolucyjnej jest operacja konwolucji, która polega na przesuwaniu tak zwanego jądra konwolucyjnego (inaczej filtru) po danych wejściowych, takich jak obraz.
+        Jądro to jest macierzą wag, która jest zdefiniowana przez projektanta modelu i jest uczona podczas procesu treningu.
+
+        Operacja konwolucji umożliwia sieciom neuronowym wykrywanie krawędzi, tekstur, wzorców geometrycznych i innych cech charakterystycznych obiektów na obrazie.
+        Ponadto, stosowanie wielu warstw konwolucyjnych o różnych rozmiarach filtrów pozwala na wykrywanie coraz bardziej złożonych i abstrakcyjnych cech.
+
+  \item \emph{Warstwa rekurencyjna} (ang. \emph{Recurrent Layer})
+
+        Rodzaj szerszej grupy warstw używanych w sieciach neuronowych do przetwarzania sekwencji danych, takich jak sekwencje tekstowe, dźwiękowe lub dane czasowe.
+        W odróżnieniu od warstw konwolucyjnych, które są doskonale przystosowane do przetwarzania danych przestrzennych, warstwy rekurencyjne mają zdolność uwzględniania kontekstu historycznego i przetwarzania danych w kontekście sekwencyjnym.
+
+        Warstwy rekurencyjne są zaprojektowane w taki sposób, aby umożliwiały przekazywanie informacji wstecz między krokami czasowymi lub elementami sekwencji.
+        Dzięki temu sieć może ``pamiętać'' informacje z poprzednich kroków i uwzględniać je przy przetwarzaniu obecnej informacji.
+
+        Ze względu na ich naturę są bardzo częstym wyborem przy zadaniach przetwarzania języka naturalnego (ang. \emph{natural language processing}, \emph{NLP}), takich jak rozpoznawanie mowy, tłumaczenie maszynowe, generowanie tekstu, czy też analiza sentymentu.
+        Używane są także w zadaniach przetwarzania danych czasowych, takich jak prognozowanie cen akcji, czy też analiza danych medycznych.
+        Jednak niespecjalnie nadają się do zastosowań w klasyfikacjach obrazów.
+
+  \item \emph{Warstwa LSTM} (\emph{Long Short-Term Memory})
+
+        Jest to konkretny implementacja z grupy warstw rekurencyjnych stosowana w sieciach neuronowych do analizy sekwencji danych.
+        Została zaprojektowana, aby radzić sobie z problemem zanikającego gradientu pojawiającego się w warstwach rekurencyjnych i umożliwiać modelom przechowywanie i wykorzystywanie informacji długoterminowej w danych sekwencyjnych.
+
+        Tak jak inne warstwy rekurencyjne, warstwa \emph{LSTM} jest skutecznym narzędziem w analizie sekwencji danych, takich jak język naturalny czy dane czasowe, ponieważ jest w stanie przechowywać informacje na dłuższe okresy i uwzględniać zależności na różnych odległościach czasowych.
+        Dzięki mechanizmom bramkowym, \emph{LSTM} może nauczyć się wybierać, które informacje są ważne i które powinny zostać pominięte w analizie sekwencji, co czyni ją jedną z kluczowych innowacji w dziedzinie rekurencyjnych sieci neuronowych.
+
+  \item \emph{Warstwa normalizacji partii} (ang. \emph{Batch Normalization Layer})
+
+        To warstwa stosowana w sieciach neuronowych, która ma na celu poprawę stabilności procesu uczenia poprzez normalizację aktywacji w warstwach pośrednich.
+        Ich wykorzystanie znacznie przyczyniło się do zwiększenia skuteczności i szybkości treningu głębokich sieci neuronowych.
+
+        Podczas treningu głębokich sieci neuronowych, wartości aktywacji w warstwach pośrednich (na przykład warstwach ukrytych) mogą zmieniać się znacząco w miarę postępu w procesie uczenia.
+        To może prowadzić do problemu zwanych "zmierającej aktywacji", co z kolei może spowolnić lub utrudnić proces uczenia się \cite{bjorck2018understanding}.
+        Warstwa normalizacji partii wprowadza normalizację aktywacji dla każdej próbki w batchu treningowym.
+
+        Może być ona stosowana w różnych typach sieci neuronowych razem z wieloma innymi warstwami, taki jak warstwy gęste lu konwolucyjne.
+        Dzięki jej zastosowaniu, trening głębokich sieci staje się bardziej stabilny i wydajny, a modele często uzyskują lepsze wyniki na zbiorze walidacyjnym i testowym.
+
+  \item \emph{Warstwa poolingowa} (ang. \emph{Pooling Layer})
+
+        Rodzaj warstwy stosowanej głównie w konwolucyjnych sieciach neuronowych (CNN) w celu zmniejszenia wymiarów map cech generowanych przez wcześniejsze warstwy konwolucyjne.
+
+        Najczęściej pojawia się bezpośrednio po warstwie konwolucyjnej, gdzie pomaga w redukcji liczby parametrów oraz obliczeń, co z kolei przyspiesza uczenie się i obliczenia w sieci.
+        Takie zmniejszenie wymiarowości możne być wykonywane na przykład poprzez wybieranie największej wartości z określonego obszaru,jak robią to warstwy \emph{max-pooling}, lub poprzez uśrednianie wartości z określonego obszaru, jak robią to warstwy \emph{average-pooling}.
+
+  \item \emph{Warstwa dropoutu}
+
+        Jej użycie to technika stosowana w sieciach neuronowych, która pomaga w zapobieganiu przeuczeniu poprzez losowe wyłączanie pewnych neuronów w trakcie treningu.
+        Jest to jeden z popularnych i skutecznych sposobów regularyzacji modelu.
+
+        Główna idea warstwy dropoutu polega na tym, że w każdej iteracji treningowej, podczas propagacji wstecznej, losowo ``upuszczane'' (ang. ``dropped out'') są niektóre neurony w danej warstwie w celu redukcji zależności między nimi.
+        Innymi słowy, neuron, który zostaje upuszczony, nie jest brany pod uwagę podczas propagacji wstecznej i aktualizacji wag.
+
+        Warto zauważyć, że warstwa dropoutu jest stosowana tylko podczas treningu, a nie podczas predykcji.
+        W jej trakcie wszystkie neurony są aktywowane, ale ich wagi są skalowane przez prawdopodobieństwo wyłączenia (dropout rate), aby zrównoważyć wpływ warstwy dropoutu na model.
+
 \end{itemize}
+
+Z wymienionych powyżej rodzajów, w zadaniach klasyfikacji i detekcji w obrazach nie zazwyczaj są wykorzystywane jedynie warstwy rekurencyjne i LSTM, które mają swoje zastosowania raczej w problemach przetwarzania języka naturalnego i danych czasowych.
+Wszystkie pozostałe są często wykorzystywane w budowaniu głębokiego modelu sieci neuronowej tak, aby zmaksymalizować skuteczność jego uczenia oraz późniejszą dokładność predykcji lub klasyfikacji.
 
 \subsection{Wykorzystanie konwolucyjnych sieci neuronowych}
 
