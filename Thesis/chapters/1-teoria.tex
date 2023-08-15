@@ -341,16 +341,26 @@ Algorytmów wykorzystywanych do klasyfikacji jest bardzo wiele, warto jednak prz
         Jest to drugi z bardzo dobrze znanych algorytmów klasyfikacyjnych godnych omówienia.
         Używany jest do klasyfikacji danych na podstawie podobieństwa do innych danych.
         Głównym jego założeniem jest reprezentacja przestrzeni problemowej w postaci wielowymiarowej przestrzeni euklidesowej, w której każdy punkt reprezentuje jeden z elementów zbioru danych wejściowych.
-        Pozycja punktu jest określona na bazie jego cech przestawionych w postaci liczbowej, a każda z nich reprezentuje swój własny wymiar tejże przestrzeni.
+        Pozycja punktu jest określona na bazie jego cech przestawionych w postaci liczbowej, a każda z nich reprezentuje swój własny wymiar tejże przestrzeni \cite{kramer2013k}.
 
         Tak zareprezentowane dane wejściowe są następnie porównane między sobą przede wszystkim na podstawie odległości euklidesowej, czyli odległości między punktami w przestrzeni euklidesowej.
         Odległości te następnie służą jako podstawa do wyciągnięcia wniosków na temat kategorii obiektów.
 
-        Pod uwagę brane jest dokładnie -- jak sugeruje nazwa algorytmu --  \emph{k} najbliższych sąsiadów.
-        Współczynnik \emph{k} jest parametrem algorytmu, który musi zostać określony przed jego uruchomieniem.
-        Ma ona duży wpływa skuteczność działania i poprawność klasyfikacji, dlatego też dobór odpowiedniej wartości \emph{k} jest bardzo ważny i często wykonywany wielokrotnie w celu znalezienia najlepszej wartości.
+        Pod uwagę brane jest dokładnie -- jak sugeruje nazwa algorytmu -- $k$ najbliższych sąsiadów.
+        Współczynnik $k$ jest parametrem algorytmu, który musi zostać określony przed jego uruchomieniem.
+        Ma ona duży wpływa skuteczność działania i poprawność klasyfikacji, dlatego też dobór odpowiedniej wartości $k$ jest bardzo ważny i często wykonywany wielokrotnie w celu znalezienia najlepszej wartości.
 
-        Największym problemem algorytmu \emph{k-najbliższych sąsiadów}
+        Największym problemem \emph{k-najbliższych sąsiadów} jest jego bardzo szybko rosnąca złożoność wraz z rosnącą trudnością zadań do wykonania.
+        Złożoność czasowa algorytmu dla pojedynczego punktu w przestrzeni wynosi $O(nd)$, gdzie $n$ to liczba wszystkich elementów zbioru danych wejściowych wykorzystywanych do uczenia systemu, a $d$ liczba wykorzystywanych cech reprezentowanych w przestrzeni problemowej, czyli inaczej liczba jej wymiarów \cite{laviale2023deep}.
+        Wynika to z faktu, że dla każdego punktu znajdującego się w przestrzeni problemowej algorytm musi obliczyć odległość między nim a każdym innym punktem w zbiorze danych.
+        Wraz ze wzrostem liczby cech lub rozmiaru zbioru danych, złożoność obliczeniowa \emph{k-nn} również znacznie wzrasta, co czyni ją kosztowną obliczeniowo i niepraktyczną w przypadku dużych zbiorów danych.
+        Dodatkowo, znalezienie optymalnej wartości $k$ metodą siłową może również zwiększyć złożoność czasową algorytmu.
+
+        Warto jednak również zaznaczyć, że sama idea stojąca za algorytmem \emph{k-nn} -- z natury dość prosta i intuicyjna -- bardzo dobrze sprawdza się w zastosowaniach nieco odbiegających od opisanego tutaj podejścia klasyfikacyjnego.
+        Istnieje wariancja algorytmu oparta na uczeniu nienadzorowanym, \emph{nienadzorowana regresja K-najbliższych sąsiadów}.
+        Zamiast próby nauczenia takiego systemu istniejących klas na bazie podanego zbioru danych wejściowych, algorytm ten próbuje samodzielnie znaleźć podobieństwa między danymi wejściowymi i grupować je w klastry, swojego rodzaju własne klasy, do których uważa, że dane powinny przynależeć.
+        Sprawdza się to bardzo dobrze w problemach ekstrakcji cech, lub analogicznie także w zadaniach obniżenia wymiarowości przestrzeni problemowej \cite{wang2015accelerating}.
+        W ten sposób nieskomplikowany algorytm \emph{k-najbliższych sąsiadów} służy jako pomoc dla algorytmów znacznie bardziej złożonych i zdolnych do rozwiązywania bardziej skomplikowanych problemów poprzez redukcję wymiarowości cech danych wejściowych.
 
 \end{itemize}
 
