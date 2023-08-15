@@ -326,7 +326,7 @@ Algorytmów wykorzystywanych do klasyfikacji jest bardzo wiele, warto jednak prz
 
         Różnica między regresją liniową a regresją logistyczną polega na tym, że wynik regresji liniowej jest wartością ciągłą, która może być dowolna, podczas gdy regresja logistyczna przewiduje prawdopodobieństwo, że instancja należy do danej klasy lub nie.
         Wynikiem regresji liniowe jest pewna liczba rzeczywista w dowolnym przedziale i może być wykorzystywana na przykład we wspomnianym już zadaniu przewidywania cen nieruchomości.
-        Natomiast regresja logistyczna jako wynik zwraca wartość z zakresu 0 do 1, która może być interpretowana jako prawdopodobieństwo przynależności do danej klasy.
+        Natomiast regresja logistyczna jako wynik zwraca wartość z zakresu $0$ do $1$, która może być interpretowana jako prawdopodobieństwo przynależności do danej klasy.
 
         Z tego też powodu rodzaj klasyfikacji, do którego wykorzystywana jest regresja logistyczna nazywa się też \emph{klasyfikacją binarną}.
         W praktyce oznacza to, że algorytmy tego typu służą do rozróżnienia dokładnie dwóch klas.
@@ -366,11 +366,12 @@ Algorytmów wykorzystywanych do klasyfikacji jest bardzo wiele, warto jednak prz
 
 \subsection{Uczenie głębokie i sieci neuronowe}
 
+Bardzo duży rozgłos w ostatnich czasach zdobyły techniki uczenia maszynowego oparte na sieciach neuronowych (ang. \emph{neural networks}, \emph{NN}), w szczególności na sieciach neuronowych głębokich (ang. \emph{deep neural networks}, \emph{DNN}).
+Są bardzo uniwersalne i potrafią rozwiązywać wiele problemów z bardzo szerokiego wachlarza obszarów i domen dziedzinowych.
+
 \subsubsection{Podstawy sztucznych sieci neuronowych uczenia głębokiego}
 
-Bardzo duży rozgłos w ostatnich czasach zdobyły techniki uczenia maszynowego oparte na sieciach neuronowych (ang. \emph{neural networks}, \emph{NN}), w szczególności na sieciach neuronowych głębokich (ang. \emph{deep neural networks}, \emph{DNN}).
-
-Pierwotnie zaproponowany przez Warrena McCullocha and Waltera Pitts'a w 1943 roku \cite{mcculloch1943logical}, model sztucznego neuronu był w rzeczywistości funkcją przyjmującą wiele wartości binarnych na wejściu i zwracającą jedną wartość binarną na wyjściu.
+Pierwotnie zaproponowany przez Warrena McCullocha and Waltera Pitts'a w 1943 roku \cite{mcculloch1943logical} model sztucznego neuronu był w rzeczywistości funkcją przyjmującą wiele wartości binarnych na wejściu i zwracającą jedną wartość binarną na wyjściu.
 Przypominać to miało działanie prawdziwych biologicznych neuronów, gdzie każdy może być pobudzony (odpowiednik wartości $1$) lub nie (odpowiednik $0$).
 Bazując na pobudzeniach swoich sąsiadów, z którymi jest połączony, neuron sam może zostać pobudzony i przekazać sygnał dalej.
 
@@ -379,7 +380,6 @@ One z kolei były wymnażane przez odpowiadające im wagi połączeń (dodatnie 
 
 Pierwsze próby wykorzystania perceptronów do zadań klasyfikacyjnych miały mieszane rezultaty, ponieważ okazało się, że nie są one w stanie rozwiązać problemów, które nie są liniowo separowalne.
 Sprawdzały się znakomicie w problemach regresyjnych, natomiast w zadaniach klasyfikacyjnych, w których dane nie mogły zostać podzielone na dwie klasy za pomocą prostej linii, nie były w stanie osiągnąć zadowalających wyników.
-Próby na przykład nauczenia perceptronów rozpoznawania cyfr arabskich zapisanych odręcznie nie powiodły się.
 
 W rzeczywistości jednak problemem okazało się wykorzystanie tylko jednej \emph{warstwy} perceptronów, gdzie te same neurony otrzymywały dane wejściowe i były odpowiedzialne za zwrócenie poprawnych danych wyjściowych.
 Znacznie lepiej zaczęły sobie radzić sieci, gdzie neuronów dodano więcej i zorganizowano je w odpowiedni sposób.
@@ -387,7 +387,7 @@ Wewnątrz takiej sztucznej sieci neuronowej neurony są uporządkowane w warstwy
 I tak wszystkie wyjścia neuronów warstwy niższej są połączone z jednym wejściem każdego z neuronów warstwy wyższej.
 Warstwa wyjściowa nie posiada żadnych wyjść połączonych z następnymi neuronami, a jedynie zwraca dane wyjściowe całej sieci.
 Czasem rozróżnia się także warstwę wejściową, która nie posiada żadnych wejść, a jedynie otrzymuje dane wejściowe.
-W sieciach jednowarstwowych warstwa wejściowa jest jednocześnie warstwą wyjściową, ponieważ nie ma żadnych warstw pośrednich.
+W sieciach jednowarstwowych warstwa wejściowa jest jednocześnie warstwą wyjściową, ponieważ nie ma żadnych warstw pośrednich \cite{bishop1994neural}.
 
 Nawet sieci dwuwarstwowe -- czyli takie z jedną warstwą pośrednia, nazywaną też często \emph{warstwą ukrytą} (ang. \emph{hidden layer}) -- są w stanie rozwiązać znacznie bardziej złożone problemy \cite{huang2000classification}.
 Jak również można się spodziewać, dodanie kolejnych warstw ukrytych w dalszy sposób zwiększa możliwości sieci neuronowych.
@@ -413,7 +413,7 @@ Aby zastosować to do całej sieci neuronowej, należy zastosować to iteracyjni
 
 Algorytm uczenia nadzorowanego takich sieci nazywa się \emph{propagacją wsteczną błędu} (ang. \emph{backpropagation of error}).
 Po wykonaniu przywidywania bazującego na danych wejściowych, sieć neuronowa porównuje wynik z oczekiwanym wyjściem i oblicza błąd.
-Następnie błąd ten jest propagowany wstecz, od warstwy wyjściowej do warstwy wejściowej, a wagi połączeń między neuronami są aktualizowane w taki sposób, by zmniejszyć błąd.
+Następnie błąd ten jest propagowany wstecz, od warstwy wyjściowej do warstwy wejściowej, a wagi połączeń między neuronami są aktualizowane w taki sposób, by zmniejszyć błąd \cite{rojas1996backpropagation}.
 
 Co ważne, możliwość reprezentowania aktywacji i wag zbiorowo w postaci wektorów i macierzy oraz obliczenia bazujące na ich dodawaniu i mnożeniu pozwalają na wykorzystanie technik numerycznych do optymalizacji obliczeń.
 Wykonywanie takich obliczeń może być zrównoleglone, co znacznie przyspiesza wykonywanie obliczeń.
@@ -435,7 +435,7 @@ Niektóre z najczęściej wykorzystywanych rodzajów warstw głębokich sieci ne
         Duże warstwy są bardzo dobre w generalizacji problemu dowolnego rodzaju, ale są kosztowne obliczeniowo i mogą prowadzić do przeuczenia (ang. \emph{overfitting}) oraz problemów
         zanikającego gradientu.
         Mimo to stanowią trzon większości głębokich sieci neuronowych, zazwyczaj wspierane przez inne, bardziej wyspecjalizowane warstwy.
-        Pojawiają się najczęściej w strategicznych miejscach sieci, gdzie cechy wygenerowane / wyodrębnione przez inne warstwy powinny zostać w jak najlepszym stopniu wykorzystane, zamodelowane i przekazane dalej.
+        Pojawiają się najczęściej w strategicznych miejscach sieci, gdzie cechy wygenerowane / wyodrębnione przez inne warstwy powinny zostać w jak najlepszym stopniu wykorzystane, zamodelowane i przekazane dalej \cite{josephine2021impact}.
 
   \item \emph{Warstwa konwolucyjna} (ang. \emph{Convolutional Layer})
 
@@ -465,7 +465,7 @@ Niektóre z najczęściej wykorzystywanych rodzajów warstw głębokich sieci ne
         Została zaprojektowana, aby radzić sobie z problemem zanikającego gradientu pojawiającego się w warstwach rekurencyjnych i umożliwiać modelom przechowywanie i wykorzystywanie informacji długoterminowej w danych sekwencyjnych.
 
         Tak jak inne warstwy rekurencyjne, warstwa \emph{LSTM} jest skutecznym narzędziem w analizie sekwencji danych, takich jak język naturalny czy dane czasowe, ponieważ jest w stanie przechowywać informacje na dłuższe okresy i uwzględniać zależności na różnych odległościach czasowych.
-        Dzięki mechanizmom bramkowym, \emph{LSTM} może nauczyć się wybierać, które informacje są ważne i które powinny zostać pominięte w analizie sekwencji, co czyni ją jedną z kluczowych innowacji w dziedzinie rekurencyjnych sieci neuronowych.
+        Dzięki mechanizmom bramkowym, \emph{LSTM} może nauczyć się wybierać, które informacje są ważne i które powinny zostać pominięte w analizie sekwencji, co czyni ją jedną z kluczowych innowacji w dziedzinie rekurencyjnych sieci neuronowych \cite{staudemeyer2019understanding}.
 
   \item \emph{Warstwa normalizacji partii} (ang. \emph{Batch Normalization Layer})
 
@@ -492,10 +492,10 @@ Niektóre z najczęściej wykorzystywanych rodzajów warstw głębokich sieci ne
         Jest to jeden z popularnych i skutecznych sposobów regularyzacji modelu.
 
         Główna idea warstwy dropoutu polega na tym, że w każdej iteracji treningowej, podczas propagacji wstecznej, losowo ``upuszczane'' (ang. ``dropped out'') są niektóre neurony w danej warstwie w celu redukcji zależności między nimi.
-        Innymi słowy, neuron, który zostaje upuszczony, nie jest brany pod uwagę podczas propagacji wstecznej i aktualizacji wag.
+        Innymi słowy, neuron, który zostaje upuszczony, nie jest brany pod uwagę podczas propagacji wstecznej i aktualizacji wag \cite{srivastava2014dropout}.
 
         Warto zauważyć, że warstwa dropoutu jest stosowana tylko podczas treningu, a nie podczas predykcji.
-        W jej trakcie wszystkie neurony są aktywowane, ale ich wagi są skalowane przez prawdopodobieństwo wyłączenia (dropout rate), aby zrównoważyć wpływ warstwy dropoutu na model.
+        W jej trakcie wszystkie neurony są aktywowane, ale ich wagi są skalowane przez prawdopodobieństwo wyłączenia (ang. dropout rate), aby zrównoważyć wpływ warstwy dropoutu na model.
 
 \end{itemize}
 
@@ -504,10 +504,88 @@ Wszystkie pozostałe są często wykorzystywane w budowaniu głębokiego modelu 
 
 \subsection{Wykorzystanie konwolucyjnych sieci neuronowych}
 
-\begin{itemize}
-  \item Struktura i działanie sieci konwolucyjnych
-  \item Przykłady zastosowań w analizie obrazów i diagnostyce medycznej
-\end{itemize}
+Do zadań analizy obrazów, w tym detekcji i ich klasyfikacji, najczęściej wykorzystywane są głębokie konwolucyjne sieci neuronowe.
+
+\subsubsection{Podstawy konwolucyjnych sieci neuronowych}
+
+\emph{Konwolucyjne sieci neuronowe} (ang. \emph{Convolutional Neural Networks}, \emph{CNNs}) są specjalnie zaprojektowanymi rodzajami sieci neuronowych, które doskonale sprawdzają się w analizie danych przestrzennych, takich jak obrazy czy dane wideo.
+
+Ich głównym celem jest wykrywanie oraz ekstrahowanie cech o różnym stopniu złożoności w danych wejściowych.
+Są to w rzeczywistości po prostu głębokie sieci neuronowe, które posiadają w swojej architekturze warstwy konwolucyjne.
+Jednak ich obecność niesie ze sobą także kilka dodatkowych zmian, między innymi dużą potrzebę dodania warstw poolingowych oraz strategiczne umiejscowienie warstw gęstych tak, aby mogły wykorzystać cechy wygenerowane przez warstwy konwolucyjne.
+
+Same warstwy konwolucyjne operują na zestawie filtrów (jąder) konwolucyjnych.
+Są to małe macierze, na przykład wielkości 5 x 5 lub 3 x 3, które są przesuwane po danych wejściowych, takich jak obraz, w celu wykrycia pewnych cech.
+Każdy z tych filtrów ma swoje wagi, które są trenowane podczas procesu uczenia i każdy będzie miał je inne, a co za tym idzie będzie izolował inne cechy obrazu źródłowego, takie jak krawędzie czy określone kształty.
+
+Proces konwolucji zaczyna się od przesuwania filtra po danych wejściowych.
+W każdym kroku przesunięcia, elementy macierzy filtra mnożone są przez odpowiadające im elementy obszaru danych, na którym jest stosowany filtr.
+W wyniku operacji konwolucji otrzymujemy pojedynczą wartość dla każdego przesunięcia filtra na danych wejściowych.
+Te wartości są następnie organizowane w tzw. mapę cech (ang. feature map), która reprezentuje wykryte cechy w określonym regionie danych wejściowych.
+Jeśli dane wejściowe były dwuwymiarowe, pojawia się dodatkowy wymiar, który reprezentuje wykryte cechy w danych wejściowych.
+Dla obrazów, które reprezentowane są jako macierz dwuwymiarowa, na wyjściu warstwy konwolucyjnej pojawia się więc tensor trójwymiarowy, gdzie trzeci długość trzeciego wymiaru odpowiada liczbie filtrów konwolucyjnych użytych w warstwie.
+Jeśli jednak wejściem jest tensor trójwymiarowy, na przykład obraz kolorowy z wartości RGB tworzącymi trzeci wymiar, to proces konwolucji jest wykonywany osobno dla każdego z kanałów, a wyniki są sumowane, tworząc pojedynczy trójwymiarowy tensor wyjściowy.
+
+Ważną cechą warstw konwolucyjnych jest to, że wagi filtrów są współdzielone -- te same wagi jednego filtra są używane do analizy różnych obszarów danych obrazu źródłowego.
+Ta właściwość umożliwia sieciom konwolucyjnym efektywne wykrywanie tych samych wzorców czy cech w różnych częściach danych wejściowych.
+
+\subsubsection{Przykładowa architektura konwolucyjnej sieci neuronowej}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{convolutional-neural-network-architecture}
+  \caption[Przykładowa architektura konwolucyjnej sieci neuronowej]{Przykładowa architektura konwolucyjnej sieci neuronowej zaadoptowana z artykułu Sumita Saha na portalu \url{saturncloud.io} \cite{saha2018comprehensive}.}
+  \label{fig:convolutional-neural-network-architecture}
+\end{figure}
+
+Na \hyperref[fig:convolutional-neural-network-architecture]{rysunku \ref*{fig:convolutional-neural-network-architecture}} przedstawiona jest przykładowa architektura konwolucyjnej sieci neuronowej zaadoptowana z artykułu na portalu \url{saturncloud.io} \cite{saha2018comprehensive}.
+Sieć prezentuje system klasyfikacji obrazów ręcznie pisanych cyfr arabskich ze zbioru danych MNIST \cite{mnist}.
+
+W niej dane wejściowe obrazu o wymiarach $28 \times 28 \times 1$ (czyli traktując macierz o wymiarach $28 \times 28$ jako tensor) przekazywane są najpierw do warstwy konwolucyjnej z $n1$ filtrami o rozmiarze $5 \times 5$.
+Każdy filtr generuje swoją wynikową macierz o wymiarach $24 \times 24 \times 1$, a przez fakt, że użyto $n1$ filtrów, otrzymujemy tensor o wymiarach $24 \times 24 \times n1$.
+
+Następna warstwa sieci to warstwa poolingowa, a dokładniej typu \emph{max-pooling}, która zmniejsza wymiary danych wejściowych.
+Posiada ona \emph{okno poolingu} o wymiarach $2 \times 2$, które przesuwane jest po danych wejściowych z krokiem $2$ (tak, aby okna na siebie nie nachodziły).
+Z każdego okna wybierana jest największa wartość, która jest następnie zapisywana w macierzy wyjściowej.
+W ten sposób z danych wejściowych o wymiarach $24 \times 24 \times n1$ otrzymujemy macierz o wymiarach $12 \times 12 \times n1$.
+
+Kolejna warstwa jest ponownie warstwą konwolucyjną o $n2$ filtrach o rozmiarze $5 \times 5$.
+Każdy z $n1$ kanałów danych wejściowych (trzeci wymiar tensora) jest przetwarzany osobno przez każdy z filtrów i dla każdego generowany jest wyjściowy tensor o wymiarach $8 \times 8 \times n2$.
+Następnie wszystkie $n1$ tensory są sumowane, tworząc pojedynczy tensor o wymiarach $8 \times 8 \times n2$ jako wyjście tej warstwy konwolucyjnej.
+
+Kolejna warstwa to znów warstwa \emph{max-pooling} o wymiarach okna $2 \times 2$, która zmniejsza wymiary danych wejściowych z $8 \times 8 \times n2$ do $4 \times 4 \times n2$.
+
+Później następuje spłaszczenie danych wejściowych do wektora o długości $4 \times 4 \times n2 = 16n2$ i przekazanie go do warstwy gęstej o $n3$ neuronach.
+Połączenie między warstwą spłaszczoną a gęstą również jest w pełni połączone -- każdy z neuronów warstwy gęstej jest połączony z każdym z neuronów warstwy spłaszczonej.
+
+Ostatnia warstwa gęsta ma $10$ neuronów, co odpowiada liczbie klas, na które ma być dokonywana klasyfikacja i jest jednocześnie warstwą wyjściową sieci.
+
+\subsubsection{Przykłady zastosowań w analizie obrazów i diagnostyce medycznej}
+
+Ne względu na swoją uniwersalność i skuteczność, głębokie uczenie maszynowe znalazło zastosowanie w wielu dziedzinach, w tym w analizie obrazów i diagnostyce medycznej.
+Część algorytmów regresyjnych wykorzystywana jest do detekcji anomalii w sekwencjach danych różnego typu jak rytmu bicia serca, w tym także rekurencyjne sieci neuronowe i LSTM \cite{fernando2021deep}.
+Jednak głębokie konwolucyjne sieci neuronowe są najczęściej wykorzystywane do analizy obrazów i diagnostyki medycznej lub detekcji nieprawidłowości bazującej na danych obrazowych.
+Takie zastosowania również są często wykorzystywane i aktywnie rozwijane, a już na te chwilę osiągają bardzo dobre wyniki i pomagajają w diagnozowaniu wielu chorób \cite{liu2017survey}.
+
+Zakres zastosowań w medycynie, do których wykorzystywane są głębokie konwolucyjne sieci neuronowe jest bardzo szeroki.
+Jest to przede wszystkim diagnostyka bazująca na obrazach rezonansu magnetyczne, tomografii komputerowej, czy też obrazach rentgenowskich.
+
+Jednym z takich konkretnych zastosowań jest wykrywanie raka piersi na podstawie obrazów mammograficznych.
+Badacze wykorzystali piramidową reprezentację Gaussa nazywaną też piramidową konwolucyjną siecią neuronową (ang. \emph{Pyramid-CNN}), wariant sieci CNN zbudowanej z coraz to mniejszych warstw konwolucyjnych przypominających strukturalnie piramidę \cite{bakkouri2019multi}.
+Najszerszy poziom to warstwa wejściowa, a każda kolejna warstwa jest coraz węższa, aż do kategoryzujące warstwy wyjściowej.
+Osiągnięte wyniki były bardzo obiecujące, gdzie system osiągnął średnią dokładność 96,84\%, czułość 92,12\%, swoistość 98,02\%, precyzję 92,15\%.
+
+Innym przykładem zastosowań również z obszaru diagnostyki onkologicznej jest wykorzystnaie głębokich konwolucyjnych sieci neuronowych do detekcji raka trzustki na podstawie obrazów tomografii komputerowej \cite{sekaran2020deep}.
+Przestawione tam również było porównanie różnych metod uczenia maszynowego do tego samego zadania i na tych samych danych, gdzie najlepiej ze wszystkich uwzględnionych algorytmów wypadło głębokie konwolucyjne uczenie maszynowe.
+
+Kolejnym przykładem jest wykorzystanie głębokich konwolucyjnych sieci neuronowych w zbudowaniu endoskopowej bazy wiedzy, która może być używana w podejściu opartym na zapytaniach \cite{petscharnig2018binary}.
+Godne zauważenia tutaj jest, że system był uczony na materiałach wideo i na takich również miał za zadanie operować.
+Wykorzystując bazę nagrań endoskopowych gromadzonych w trakcie operacji przez chirurgów badaczom udało się zbudować system, który potrafił poprawnie odpowiadać na dobrze skonstruowane zapytania.
+Pokazali również, że cechy zbudowanego przez nich modelu CNN są kompaktowymi, ale wydajnymi deskryptorami obrazu do wyszukiwania w domenie obrazowania endoskopowego.
+Są one w stanie utrzymać najnowocześniejszą wydajność, zapewniając jednocześnie korzyści w postaci niskiego zapotrzebowania na miejsce do przechowywania, a tym samym zapewniają najlepszy kompromis.
+
+Pomimo wielu pozytywów warto jednak również zauważyć, że medycyna jest dziedziną z niesamowicie małym marginesem błędu oraz gdzie nawet skuteczne rozwiązania nie będące w pełni przetestowane pod względem ich bezpieczeństwa i skuteczności są odrzucane.
+Między innymi to jest powodem, dla którego wdrożenie rozwiązań głębokiego uczenia maszynowego jest tak czasochłonne i często budzi również kontrowersje.
+Metody uczenia maszynowego nazywane są ``czarnymi skrzynkami'', ponieważ poza wyjaśnieniem doboru architektury, procesu uczenia sieci i algorytmu za nim stającym nie jest możliwe wyjaśnienie, dlaczego sieć dokonuje takich, a nie innych predykcji, co jest problematyczne w obszarze opierającym się na pełnej pewności bezpieczeństwa używanych rozwiązań \cite{pouyanfar2018survey}.
 
 \subsection{Uczenie transferowe i wstępnie wytrenowane modele sieci neuronowych}
 
