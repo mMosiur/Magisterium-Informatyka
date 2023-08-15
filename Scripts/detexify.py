@@ -26,6 +26,9 @@ patterns = (
 	(r"\n +-", r"\n-"),
 	(r"\n   +", r"\n  "),
 	(r"\n\n\n", r"\n\n"),
+	(r"\$([^\$]+)\$", r"`\1`"),
+	(r"^\\[\[\]P]$", r"```", re.MULTILINE),
+	(r"```\n```\n", r""),
 	(r"(\S)\s+\.$", r"\1.", re.MULTILINE),
 	(r"\n+$", r"\n", re.MULTILINE),
 )
