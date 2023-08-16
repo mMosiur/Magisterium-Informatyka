@@ -1,20 +1,38 @@
 $title = 'Detekcja choroby Alzheimera i stadium demencji z użyciem narzędzi uczenia maszynowego w środowisku .NET'
 $pdfFilename = "$title.pdf"
+# Paths are relative to the Thesis directory since that is where the `latex` command should be executed
 $generatedPdfPath = "./out/thesis.pdf"
 $destinationPdfPath = "../$pdfFilename"
 $detexifyScriptPath = "../Scripts/detexify.py"
 
+$originalLocation = Get-Location
+
+if (-not (Test-Path "thesis.tex")) {
+    if (Test-Path "./Thesis" -PathType Container) {
+        Set-Location "./Thesis"
+    }
+    elseif (Test-Path "../Thesis" -PathType Container) {
+        Set-Location "../Thesis"
+    }
+    else {
+        Write-Error "The build script should only be run from the root repository directory, Thesis directory or Scripts directory." -CategoryActivity "Error"
+        Exit 1
+    }
+}
+
 Remove-Item "$generatedPdfPath" -ErrorAction SilentlyContinue
 
 if (-not (Get-Command latexmk -ErrorAction SilentlyContinue)) {
-    Write-Error "Command 'latexmk' not found. Please install it and add it to your PATH." -CategoryActivity "Latex error"
+    Write-Error "Command 'latexmk' not found. Please install it and add it to your PATH." -CategoryActivity "Error"
+    Set-Location $originalLocation
     Exit 1
 }
 
 latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=out thesis.tex
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Error "Document build using 'latexmk' has failed." -CategoryActivity "Latex error"
+    Write-Error "Document build using 'latexmk' has failed." -CategoryActivity "Error"
+    Set-Location $originalLocation
     Exit 1
 }
 
@@ -39,3 +57,5 @@ elseif (Get-Command wsl -ErrorAction SilentlyContinue) {
 else {
     Write-Host "Neither Python 3 nor WSL were found. Skipping detexifying."
 }
+
+Set-Location $originalLocation
