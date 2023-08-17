@@ -5995,8 +5995,8 @@ install runtime successfully
 [Source=AutoMLExperiment-ChildContext, Kind=Trace] [Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel disposed
 Generate code behind files
 Copying generated code to project...
-Copying MLModel.consumption.cs to folder: C:\Users\mmorus\Source\UMCS\VisualStudioMLDesigner\SampleConsoleApp
-Copying MLModel.training.cs to folder: C:\Users\mmorus\Source\UMCS\VisualStudioMLDesigner\SampleConsoleApp
+Copying MLModel.consumption.cs to folder: C:\Users\mmorus\Source\UMCS\VisualStudioModelBuilder\SampleConsoleApp
+Copying MLModel.training.cs to folder: C:\Users\mmorus\Source\UMCS\VisualStudioModelBuilder\SampleConsoleApp
 COMPLETED
 Updating nuget dependencies...
 Starting update NuGet dependencies async.
