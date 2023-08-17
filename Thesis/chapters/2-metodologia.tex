@@ -1,27 +1,87 @@
 \chapter{Metodologia i narzędzia uczenia maszynowego środowiska .NET}
 
-Metodologia i narzędzia uczenia maszynowego środowiska .NET
+Celem tej pracy jest wykorzystanie technologii uczenia maszynowego w środowisku .NET w celu detekcji choroby Alzheimera.
+W tym rozdziale więc zostaną przedstawione narzędzia, które pomogą w osiągnięciu tego celu, w tym technologie uczenia maszynowego oraz sama platforma .NET.
+
+\section{Technologie głębokiego uczenia maszynowego}
+
+Teoretyczne zagadnienia związanie z technologiami głębokiego uczenia maszynowego, w szczególności głębokich konwolucyjnych sieci neuronowych zostały już omówione w sekcji \ref{sec:deep-learning}.
+W tym rozdziale zostanie przedstawione w jaki sposób obiecująca teoria jest przekładana na wykorzystanie w praktyce.
+
+\subsection{Symulator SNNS}
+
+Tematykę oprogramowania służącego do tworzenia i trenowania sieci neuronowych warto zacząć omówienia przestarzałego już programu \emph{SNNS} (ang. Stuttgart Neural Network Simulator).
+Pozwala on na tworzenie i trenowanie sieci neuronowych, a także -- co ważne przy jego zastosowaniach -- na ich wizualizację.
+
+SNNS to program okienkowy napisany w języku C, przeznaczony głównie dla systemów Unixowych.
+W ramach jego działania można zamodelować sieć neuronową po jednym neuronie, łącząc je z dużą dozą swobody w dowolne struktury oraz parametryzując je w dowolny sposób.
+Następnie można zdefiniować zbiór danych uczących, a także zbiór danych testowych, na których można przeprowadzić proces uczenia sieci.
+
+Całe tworzenie sieci jest czynnością bardzo czasochłonną i złożoną ze względu na manualną naturę definiowania jej struktury.
+Daje za to bardzo dużo możliwości modyfikacji, w tym zmianę na przykład funkcji aktywacji pojedynczego neuronu, zachowania się konkretnego połączenia oraz wielu innych właściwości, które posiadają wszystkie obiekty możliwe do edycji w programie.
+
+Najważniejszą cechą SNNS jest wizualny sposób budowy sieci neuronowej oraz manualny proces jej konfiguracji.
+Nie jest ona może wtedy wystarczająco wydajna do jakichkolwiek problemów, z którymi potrafią radzić sobie nowoczesne sieci neuronowe, ale pozwala na zrozumienie ich działania oraz nauczenie się podstawowych zasad ich budowy.
+Dlatego też mimo, iż sam program jest już przestarzały i wycofany z użytku a sami jego autorzy polecają użycie nowoczesnych bibliotek uczenia maszynowego takich jak TensorFlow czy PyTorch \cite{snns}, to nadal jest bardzo często wykorzystywany w celach edukacyjnych.
+
+Pomimo, iż znane są metody znacznie przyspieszające działanie i uczenie sieci neuronowych przez reprezentacje wag i aktywacji jako macierzy i wektorów i ich późniejsze mnożenie przy pomocy zrównoleglonych obliczeń na kartach graficznych i dedykowanych urządzeniach, to założenia podstaw działania sztucznych sieci neuronowych pozostają niezmienne i programy typu SNNS pozwalają na znacznie prostsze ich poznanie i zrozumienie.
+
+\subsection{Azure Machine Learning Studio}
+
+\emph{Microsoft Azure Machine Learning Studio} (w skrócie \emph{AML Studio}) to kompleksowa platforma, która wykorzystywana jest do implementacji i zarządzania procesami uczenia maszynowego.
+AML Studio oferuje zaawansowane narzędzia do tworzenia, wdrażania oraz monitorowania modeli uczenia maszynowego, integrując różnorodne etapy tego procesu w jednym środowisku.
+
+Jest to platforma oparta na chmurze i posiadająca interfejs graficzny w postaci intuicyjnej strony internetowej, na której modelowanie przetwarzania danych i procesu uczenia odbywa się przy użyciu przeciągania i upuszczania elementów blokowych oraz łączenia ich w odpowiedni sposób.
+Pozwala na tworzenie tak zwanych \emph{eksperymentów}, które składają się z kolejnych kroków w analizie danych i tworzeniu modeli.
+Dzięki temu możliwe jest systematyczne badanie różnych podejść i łatwe porównywanie ich wyników.
+Graficzny sposób reprezentacji wykorzystanych modułów w eksperymencie a także przepływu danych między nimi pozwala na uproszczenie wyszukiwania potencjalnych błędów lub problemów pojawiających się w całym procesie.
+Możliwe jest również analizowanie w czasie rzeczywistym działania modelu i analizę przez niego danych w całym eksperymencie.
+
+Bardzo istotną cechą AML Studio jest fakt, że platforma integruje się z innymi usługami chmurowymi dostarczanymi przez Microsoft Azure, co umożliwia tworzenie spójnych rozwiązań opartych na chmurze.
+Pozwala na dynamiczne wczytywanie danych z innych źródeł znajdujących się w chmurze, a także na wdrażanie modeli uczenia maszynowego w postaci usług sieci Web, które mogą być wykorzystywane przez inne aplikacje.
+
+Wykorzystanie Azure Machine Learning Studio dzięki swoim cechom pozwala na szybki trening modelu uczenia maszynowego oraz jego wdrożenie bez konieczności pisania kodu czy głębszej znajomości tematyki uczenia maszynowego \cite{mukunthu2019practical}, w szczególności gdy z założenia wdrożony model ma działać w chmurze i integrować się z innymi systemami w niej obecnymi.
+Jednak w zastosowaniach, które nie czerpią korzyści z połączenia z chmurą i dają swobodę czasową na własnoręczne zaimplementowanie modelu, wykorzystanie AML Studio może być nieopłacalne ze względu na koszty związane z jego wykorzystaniem w większych ilościach.
+Warto wtedy rozważyć inne rozwiązania, które dają swobodę konstruowania i trenowania modelu od podstawi i dostrojenie go do bardziej złożonych zadań, maksymalizując tym samym osiągane możliwości i dokładność -- a są to zazwyczaj biblioteki uczenia maszynowego w językach programowania.
+
+\subsection{Tensorflow i Keras}
+
+Jedną z najpopularniejszych bibliotek uczenia maszynowego, która jest wykorzystywana do tworzenia i trenowania sieci neuronowych jest \emph{Tensorflow}.
+Jest to otwartoźródłowa platforma do obliczeń numerycznych i implementacji modeli uczenia maszynowego.
+Jego fundamentem jest reprezentacja danych w postaci tensorów, co umożliwia wykonywanie skomplikowanych operacji matematycznych na dużych zbiorach danych \cite{shukla2018machine}.
+
+Tensorflow jest bilbioteką niskopoziomową napisaną głównie w języku C++ i implementującą często używane algorytmy uczenia maszynowego i sieci neuronowych i wystawiającą je jako interfejs programistyczny w językach wyższego poziomu takich jak Python czy JavaScript.
+Napisany został pierwotnie przez zespół badawczy Google Brain.
+
+Jednak ze względu swoje dążenie do umożliwienia jak największej elastyczności i kontroli nad procesem uczenia sieci neuronowych, Tensorflow w swojej czystej postaci wymaga od programisty dużo pracy i wiedzy, aby zaimplementować nawet najprostszy model sieci neuronowej.
+
+W celu uproszczenia z korzystania z Tensorflow powstały ``frontendy'' dla różnych języków programowania pozwalające na wykorzystanie jego możliwości w bardziej przyjazny sposób.
+Jednym z nich jest \emph{Keras}, który jest wysokopoziomowym interfejsem programistycznym dla Tensorflow w języku Python.
+Jest to jeden z najpopularniejszych interfejsów programistycznych dla Tensorflow ze względu na swoją prostotę i intuicyjność.
+
+Dla uproszczenia wystawia API sekwencyjne (ang. Sequential API), które przez wykorzystanie istniejących klas i ``sekwencyjne'' tworzenie obiektów symbolizujących określone rodzaje warstw ze zdefiniowanymi odpowiednio parametrami pozwala na proste w śledzeniu i zrozumieniu stworzenie struktury sieci neuronowych.
+Operacje takie jak \emph{skompilowanie} (czyli utworzenie z definicji warstw sieci zoptymalizowanego do uruchomienia i uczenia wstępnego modelu) definicji modelu używając odpowiednich parametrów czy uruchomienie trenowania (ang. \emph{fit}) w odpowiedniej konfiguracji wykonuje się wywołaniem tylko  jednej metody.
+
+Mimo swojej prostoty, Keras pozwala na również na podejścia bardziej eksperckie.
+W nich oprócz definiowania sekwencyjnego struktury sieci można również tworzyć własne klasy reprezentujące niestandardowe warstwy lub całe bloki odpowiednio ustrukturyzowane i zparametryzowane.
+
+Uczenie sieci neuronowej w Keras zachowuje również zbiór metryk, które pozwalają na prześledzenie postępów w procesie uczenia i wykorzystanie ich do analizy lub optymalizacji modelu albo całego schematu programu.
+
+Sukces Tensorflow oraz Keras wynika głównie z połączenia ich wydajności, elastyczności i prostoty użycia, które w dużej mierze są zasługą również wykorzystanego języka programowania Python, najpopularniejszego do zastosowań w uczeniu maszynownym.
+Jednak ze względu na to, że obie te biblioteki mają swoje źródła dostępne na bazie licencji Apache 2.0 w publicznie dostępnym repozytorium serwisu GitHub \cite{tensorflow}.
+Pozwala to społeczności na własne próby rozszerzenia zasięgu platformy do innych języków programowania, na przykład jak zostanie opisane w rozdziale \ref{sec:tensorflownet} -- do języka C\#.
 
 \section{Platforma .NET}
 
 Platforma .NET
 
-\section{Technologie głębokiego uczenia maszynowego}
+\section{Framework uczenia maszynowego ML.NET}
 
-Technologie głębokiego uczenia maszynowego
+\subsection{ML.NET Model Builder}
 
-\section{ML.NET}
+\subsection{Ręczne tworzenie modelu z użyciem ML.NET}
 
-Projekt ML.NET
-
-\subsection{AutoML}
-
-AutoML
-
-\subsection{Model Builder}
-
-Model Builder
-
-\section{Tensorflow.NET}
+\label{sec:tensorflownet}
+\section{Biblioteka Tensorflow.NET}
 
 Tensorflow.NET
