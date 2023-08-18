@@ -5,7 +5,7 @@ W tym rozdziale więc zostaną przedstawione narzędzia, które pomogą w osiąg
 
 \section{Technologie głębokiego uczenia maszynowego}
 
-Teoretyczne zagadnienia związanie z technologiami głębokiego uczenia maszynowego, w szczególności głębokich konwolucyjnych sieci neuronowych zostały już omówione w sekcji \ref{sec:deep-learning}.
+Teoretyczne zagadnienia związanie z technologiami głębokiego uczenia maszynowego, w szczególności głębokich konwolucyjnych sieci neuronowych zostały już omówione w \hyperref[sec:deep-learning]{sekcji \ref*{sec:deep-learning}}.
 W tym rozdziale zostanie przedstawione w jaki sposób obiecująca teoria jest przekładana na wykorzystanie w praktyce.
 
 \subsection{Symulator SNNS}
@@ -69,19 +69,114 @@ Uczenie sieci neuronowej w Keras zachowuje również zbiór metryk, które pozwa
 
 Sukces Tensorflow oraz Keras wynika głównie z połączenia ich wydajności, elastyczności i prostoty użycia, które w dużej mierze są zasługą również wykorzystanego języka programowania Python, najpopularniejszego do zastosowań w uczeniu maszynownym.
 Jednak ze względu na to, że obie te biblioteki mają swoje źródła dostępne na bazie licencji Apache 2.0 w publicznie dostępnym repozytorium serwisu GitHub \cite{tensorflow}.
-Pozwala to społeczności na własne próby rozszerzenia zasięgu platformy do innych języków programowania, na przykład jak zostanie opisane w rozdziale \ref{sec:tensorflownet} -- do języka C\#.
+Pozwala to społeczności na własne próby rozszerzenia zasięgu platformy do innych języków programowania, na przykład jak zostanie opisane w rozdziale \hyperref[sec:tensorflownet]{rozdziale \ref*{sec:tensorflownet}} -- do języka C\#.
 
 \section{Platforma .NET}
 
-Platforma .NET
+Platforma .NET jest kompleksowym środowiskiem programistycznym opracowanym przez pierwotnie firmę Microsoft, a obecnie rozwijanym przez niezależną organizację non-profit \emph{.NET Foundation} oraz społeczność programistów.
+
+W celu lepszego zrozumienia aktualnego stanu platformy warto przyjrzeć się jej historii i poprzednikowi, którym jest \emph{.NET Framework}.
+Jest to starsza wersja, która była szeroko wykorzystywana przed pojawieniem się \emph{.NET Core} (i nadal jest w wielu przestarzałych bazach kodu określanych jako \emph{legacy code}).
+Działała ona wyłącznie na systemach operacyjnych Windows i była bardzo ściśle z nimi związana.
+Miał bardzo szerokie zastosowania, pozwalał na pisanie aplikacji okienkowych, konsolowych, usług systemowych czy aplikacji sieciowych z użyciem różnych języków programowania -- głównie najpopularniejszego obiektowego języka C\#, ale także Visual Basic czy funkcjonalnego F\#.
+\emph{.NET Framework} został wypuszczony w 2002 jako konkurent dla platformy Java i jej maszyny wirtualnej JVM, która również pozwala na pisanie aplikacji w wielu językach programowania i jest niezależna od systemu operacyjnego.
+Podobnie jak ona kod kompilowany jest do kodu pośredniego, który jest wykonywany przez maszynę wirtualną \emph{Common Language Runtime} (CLR) -- odpowiednika JVM w Javie.
+Kod ten nazywa się \emph{IL} (ang. \emph{Intermediate Language}, odpowiednik \emph{Java bytecode}) i jest zapisywany w plikach o rozszerzeniu \emph{.dll} (ang. \emph{Dynamic Link Library}) lub \emph{.exe} (ang. \emph{Executable})
+Tak skompilowany kod jest później uruchamiany przez interpreter CLR, podobnie jak ma to miejsce w przypadku JVM (\emph{Java Virtual Machine}).
+
+W 2014 roku Microsoft ogłosił, że rozpoczyna prace nad nową wersją platformy .NET, którego rozwój ma odbywać się pod nadzorem nowej, niezależnej organizacji non-profit \emph{.NET Foundation}.
+Wersja stabilna 1.0 nowego tworu nazwanego \emph{.NET Core} została wydana w 2016 roku jako platforma w pełni otwartoźródłowa, międzyplatformowa i modułowa.
+Oznacza to, że jest ona dostępna na systemach operacyjnych Windows, Linux i macOS, a także że jej komponenty są dostępne jako osobne pakiety, które można wykorzystywać w zależności od potrzeb.
+Od tamtego czasu nowa wersja platformy poza jednym wyjątkiem była wypuszczana co roku.
+W 2020 roku, po poprzednim wydaniu .NET Core 3.1 ogłoszono, że pominięta zostanie wersja 4 ze względu na możliwe mylenie jej z działającą wtedy jeszcze w wielu miejscach wersją 4.8 starszego \emph{.NET Framework}.
+Dodatkowo celu unifikacji nazewnictwa oraz sprostowanie, że .NET Core nie jest okrojoną wersją ale pełnoprawną platformą, która jako jedyna będzie dalej rozwijana, zdecydowano się na pomięcie członu \emph{Core} i od wersji 5.0 platforma nazywa się po prostu \emph{.NET 5}.
+
+\subsection{Język C\#}
+
+Język programowania C\# jest jednym z najpopularniejszych języków programowania na platformie .NET.
+
+Jest to język obiektowy, który został zaprojektowany przez Microsoft w 2000 roku jako główny język platformy .NET.
+Od tego czasu jest stale rozwijany i wraz z nowymi wersjami platformy .NET pojawiają się nowe wersje języka C\#, z najnowszą na moment pisania niniejszej pracy wersją \emph{C\# 11} wypuszczoną razem z \emph{.NET 7} w 2022 roku.
+
+Kilka cech języka:
+
+\begin{itemize}
+
+  \item Bezpieczeństwo typów: C\# jest językiem silnie typowanym, co oznacza, że typy zmiennych są sprawdzane podczas kompilacji, co pomaga uniknąć wielu błędów w czasie działania programu.
+
+  \item Automatyczne zarządzanie pamięcią:Automatyczne zarządzanie pamięcią: Dzięki mechanizmom takim jak Garbage Collection (zbieranie nieużywanej pamięci) C\# pozwala programistom uniknąć wielu problemów związanych z wyciekami pamięci.
+
+  \item Asynchroniczność: C\# oferuje obszerną obsługę operacji asynchronicznych, co jest szczególnie ważne w aplikacjach wielowątkowych i sieciowych.
+
+\end{itemize}
+
+Dodatkowo język ten jest bardzo elastyczny i pozwala na wykorzystanie wielu paradygmatów programowania, w tym obiektowego, imperatywnego, funkcyjnego czy generycznego.
+W szczególności ostatni rozwój języka brnie w kierunku paradygmatu funkcyjnego inspirowany językami takimi jak F\# -- również z rodziny \emph{.NET} -- czy Haskell.
+Jednym z przykładów jest rosnąca popularność użycia ``fluent interfejsów'', czyli pisania metod w taki sposób, by pozwalały na ich łańcuchowe wywoływanie, co pozwala na pisanie kodu w sposób bardzo czytelny.
+
+Przykładowo poniższy fragment kodu z projektu \lstinline{MLModel_ConsoleApp} napisanego w dodatku do tej pracy pozwala na zbudowanie potoku przetwarzania danych, który składa się z trzech kroków poprzez proste wywoływanie metod po sobie na własnych zwracanych obiektach.
+
+\begin{lstlisting}[language={[Sharp]C}]
+public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
+{
+    // Data process configuration with pipeline data transformations
+    var pipeline = mlContext.Transforms.Conversion.MapValueToKey(/*...*/)
+        .Append(mlContext.MulticlassClassification.Trainers.ImageClassification(/*...*/))
+        .Append(mlContext.Transforms.Conversion.MapKeyToValue(/*...*/));
+
+    return pipeline;
+}
+\end{lstlisting}
+
+W ten sposób kod jest czytelny i łatwy do zrozumienia, a dodatkowo pozwala na łatwe dodawanie kolejnych kroków do potoku bez konieczności dużej zmiany istniejącego kodu.
+Jest to szczególnie przydatne do implementacji wzorców projektowych takich jak \emph{Builder} czy \emph{Decorator}, które w C\# są wykorzystywane bardzo często.
+
+\subsection{Język F\#}
+
+F\# jest językiem funkcyjnym, co oznacza, że skupia się na programowaniu funkcyjnym, w którym funkcje są traktowane jako podstawowe jednostki programu
+Funkcje w F\# są traktowane jak wartości, co umożliwia bardziej zdeklarowane i modularne podejście do programowania.
+
+Najważniejsze cechy języka:
+
+\begin{itemize}
+
+  \item Kompaktowość: Funkcyjny styl programowania często pozwala na bardziej zwięzły kod w porównaniu do tradycyjnych języków.
+
+  \item Bezpieczeństwo typów: F\# jest językiem silnie typowanym, co pomaga w unikaniu błędów podczas kompilacji i działania programu.
+
+  \item Współbieżność: Dzięki naturze funkcyjnej, F\# ma wbudowane mechanizmy ułatwiające programowanie współbieżne i równoległe.
+
+  \item Pattern matching: Jest to potężna technika w F\#, która pozwala na efektywne przetwarzanie i rozpoznawanie różnych wzorców w danych.
+
+\end{itemize}
+
+F\# przynależy on do rodziny języków \emph{.NET}, przez co jest w pełni kompatybilny z pozostałymi językami i kompilowany jest do tego samego kodu \emph{IL} i można go wykorzystywać w taki sam sposób jak inne języki z tej rodziny, a paczki napisane w F\# mogą być wykorzystywane przez inne języki i na odwrót.
+Dla przykładu w projekcie \lstinline{MLNetCustom} napisanym do tej pracy napisałem bibliotekę \lstinline{Plot} w języku F\#, ponieważ sekwencyjne tworzenie wykresów bardzo pasowało do funkcyjnego paradygmatu programowania.
+Następnie bibliotekę tę wykorzystałem w głównym projekcie napisanym w języku C\# bez żadnych problemów z kompatybilnością.
 
 \section{Framework uczenia maszynowego ML.NET}
+
+\emph{ML.NET} to otwartoźródłowy i międzyplatformowy framework uczenia maszynowego dla platformy .NET.
+Umożliwia programistom tworzenie modeli uczenia maszynowego w języku C\# lub F\# bez konieczności głębokiego zrozumienia matematyki lub statystyki.
+Jest to narzędzie skierowane do programistów platformy .NET chcących wykorzystać uczenie maszynowe w swoich projektach bez potrzeby nauki innych języków programowania lub korzystania z zewnętrznych narzędzi.
+
+ML.NET dostarcza zestaw gotowych algorytmów uczenia maszynowego, takich jak klasyfikacja, regresja, klasteryzacja, przetwarzanie języka naturalnego i wiele innych.
+Można wybrać odpowiedni algorytm do swojego zadania bez konieczności implementowania go od zera.
+Ważne spostrzeżenie tutaj to fakt, że ten zestaw daje odgórny podział na kategoria zadań do wykonania.
+Nie pozwala na przykład zbudować warstwa po warstwie modelu głębokiej sieci neuronowej.
+Zamiast tego wystawia klasy takie jak \lstinline{MulticlassClassification} dającą dostęp do zbioru już zaimplementowanych narzędzi i algorytmów klasyfikacji wieloklasowej, lub \lstinline{ImageClassificationTrainer} pozwalający na trenowanie modelu klasyfikacji obrazów.
+Konfiguracja tego drugiego opiera się wyłącznie na zdefiniowaniu informacji dotyczących danych i hiperparametrów uczenia, takich jak wielkość paczki danych (ang. batch size), liczba epok (ang. epochs), czy współczynnik uczenia (ang. learning rate).
+Dodatkowo można ustawić w jaki sposób wpółczynnik uczenia ma się zmieniać z czasem (ang. learning rate scheduler lub learning rate decay), czy testowanie powinno odbywać się także na zbiorze uczącym, kryteria zatrzymania uczenia (ang. early stopping criteria) czy metodę callbackową (ang. callback method), która zostanie wywołana po każdej epoce uczenia.
+
+Jedna z istotniejszych opcji konfiguracji obiektu \lstinline{ImageClassificationTrainer} to wybór architektury, na której bazie będzie przeprowadzane uczenie.
+Jest tak dlatego, ponieważ klasyfikacja obrazów ML.NET działa na podstawie uczenia transferowego omówionego od strony teoretycznej w sekcji \hyperref[sec:transfer-learning]{sekcji \ref*{sec:transfer-learning}}.
+Dostępne do wybrania architektury to \emph{InceptionV3}, \emph{MobilenetV2}, \emph{ResnetV250} oraz domyślna \emph{ResnetV2101}.
 
 \subsection{ML.NET Model Builder}
 
 \subsection{Ręczne tworzenie modelu z użyciem ML.NET}
 
-\label{sec:tensorflownet}
 \section{Biblioteka Tensorflow.NET}
+\label{sec:tensorflownet}
 
 Tensorflow.NET
