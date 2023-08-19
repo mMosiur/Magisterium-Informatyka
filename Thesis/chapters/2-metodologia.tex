@@ -160,23 +160,103 @@ Następnie bibliotekę tę wykorzystałem w głównym projekcie napisanym w jęz
 Umożliwia programistom tworzenie modeli uczenia maszynowego w języku C\# lub F\# bez konieczności głębokiego zrozumienia matematyki lub statystyki.
 Jest to narzędzie skierowane do programistów platformy .NET chcących wykorzystać uczenie maszynowe w swoich projektach bez potrzeby nauki innych języków programowania lub korzystania z zewnętrznych narzędzi.
 
+Ważnym aspektem, który warto podkreślić, jest integracja ML.NET z istniejącą infrastrukturą .NET.
+Pozwala to wykorzystać dostępne w .NET narzędzia i biblioteki do wczytywania danych, przetwarzania, wizualizacji i zarządzania modelem.
+To sprawia, że praca z danymi i modelami jest bardziej spójna i efektywna.
+
 ML.NET dostarcza zestaw gotowych algorytmów uczenia maszynowego, takich jak klasyfikacja, regresja, klasteryzacja, przetwarzanie języka naturalnego i wiele innych.
 Można wybrać odpowiedni algorytm do swojego zadania bez konieczności implementowania go od zera.
 Ważne spostrzeżenie tutaj to fakt, że ten zestaw daje odgórny podział na kategoria zadań do wykonania.
 Nie pozwala na przykład zbudować warstwa po warstwie modelu głębokiej sieci neuronowej.
 Zamiast tego wystawia klasy takie jak \lstinline{MulticlassClassification} dającą dostęp do zbioru już zaimplementowanych narzędzi i algorytmów klasyfikacji wieloklasowej, lub \lstinline{ImageClassificationTrainer} pozwalający na trenowanie modelu klasyfikacji obrazów.
 Konfiguracja tego drugiego opiera się wyłącznie na zdefiniowaniu informacji dotyczących danych i hiperparametrów uczenia, takich jak wielkość paczki danych (ang. batch size), liczba epok (ang. epochs), czy współczynnik uczenia (ang. learning rate).
-Dodatkowo można ustawić w jaki sposób wpółczynnik uczenia ma się zmieniać z czasem (ang. learning rate scheduler lub learning rate decay), czy testowanie powinno odbywać się także na zbiorze uczącym, kryteria zatrzymania uczenia (ang. early stopping criteria) czy metodę callbackową (ang. callback method), która zostanie wywołana po każdej epoce uczenia.
+Dodatkowo można ustawić w jaki sposób współczynnik uczenia ma się zmieniać z czasem (ang. learning rate scheduler lub learning rate decay), czy testowanie powinno odbywać się także na zbiorze uczącym, kryteria zatrzymania uczenia (ang. early stopping criteria) czy metodę callbackową (ang. callback method), która zostanie wywołana po każdej epoce uczenia.
 
 Jedna z istotniejszych opcji konfiguracji obiektu \lstinline{ImageClassificationTrainer} to wybór architektury, na której bazie będzie przeprowadzane uczenie.
 Jest tak dlatego, ponieważ klasyfikacja obrazów ML.NET działa na podstawie uczenia transferowego omówionego od strony teoretycznej w sekcji \hyperref[sec:transfer-learning]{sekcji \ref*{sec:transfer-learning}}.
 Dostępne do wybrania architektury to \emph{InceptionV3}, \emph{MobilenetV2}, \emph{ResnetV250} oraz domyślna \emph{ResnetV2101}.
+Takie podejście pozwala na szybkie zbudowanie modelu uczenia maszynowego bez konieczności głębokiego zrozumienia jego działania, skupiając się wyłącznie na oczekiwanym celu.
+
+W ramach mojego badania jeden z projektów jest oparty o czy ML.NET budowany kodowo -- solucja \lstinline{MLNetCustom}.
+Jednak ML.NET można wykorzystać także bez bezpośredniego pisania kodu dotyczącego modelu i uczenia z użyciem rozszerzenia do Visual Studio \emph{ML.NET Model Builder}.
 
 \subsection{ML.NET Model Builder}
 
-\subsection{Ręczne tworzenie modelu z użyciem ML.NET}
+\emph{ML.NET Model Builder} to darmowe rozszerzenie do środowiska programistycznego Visual Studio, które pozwala na tworzenie modeli uczenia maszynowego bez konieczności pisania kodu.
+Jest całkowicie oparte na wizualnym, okienkowym wybraniu odpowiednich opcji, danych czy scenariusza.
+
+Używając instalatora Visual Studio użytkownik może zmodyfikować instalację wybierając dodatkowo komponent o nazwie \emph{ML.NET Model Builder}.
+Pozwoli on da dodanie do projektu nowego elementu \emph{Machine Learning Model (ML.NET)}.
+Element taki jest plikiem o rozszerzeniu \emph{.mbconfig} i pozwala na zdefiniowanie konfiguracji uczenia maszynowegodo przeprowadzenia.
+
+Następnie tak stworzony plik otworzony w karcie programu Visual Studio wyświetla wizualną reprezentację konfiguracji uczenia maszynowego i pozwala na wybieranie jej opcji krok po kroku.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{ml-net-model-builder-1-scenario}
+  \caption{Zrzut ekranu ze środowiska Visual Studio pokazujący wybór scenariusza uczenia maszynowe w \emph{ML.NET Model Builder}}
+  \label{fig:ml-net-model-builder-1-scenario}
+\end{figure}
+
+Takim pierwszym krokiem jest wybranie scenariusza uczenia maszynowego, które chcemy przeprowadzić w dla którego modelu chcemy wytrenować.
+Wygląd takiego okna przedstawia \hyperref[fig:ml-net-model-builder-1-scenario]{rysunek \ref*{fig:ml-net-model-builder-1-scenario}}.
+Do wyboru jest 7 scenariuszy z 3 większych kategorii dedykowanych pod różne zadania:
+
+\begin{itemize}
+
+  \item Kategoria \emph{Tabular data} -- dane tabelaryczne, czyli dane numeryczne lub tekstowe przedstawione w postaci tabeli, najczęściej w formacie CSV.
+        Scenariusze w tej kategorii:
+
+        \begin{itemize}
+
+          \item \emph{Data classification} -- Klasyfikacja danych, służy do podziału danych na kategorie.
+                Może to być klasyfikacja binarna lub wieloklasowa.
+                Przykładowo klasyfikacja danych z popularnego zbioru o irysach, który na podstawie długości i szerokości płatka i działki kwiatu klasyfikuje obiekt jako jeden z trzech gatunków irysa.
+
+          \item \emph{Value prediction} -- Przewidywanie wartości, wchodzi w zakres zadania regresji.
+                Służy do przewidywania przyszłych wartości liczbowych na podstawie danych historycznych.
+                Przykładowo przewidywanie ceny mieszkania na podstawie jego powierzchni i lokalizacji.
+
+          \item \emph{Recommendation} -- Rekomendacja, przewiduje listę sugerowanych elementów dla konkretnej jednostki, w oparciu o to, jak podobne są jej upodobania do upodobań innych jednostek.
+          Scenariusza rekomendacji można użyć, gdy masz zestaw  (użytkowników) i zestaw ``produktów'', takich jak przedmioty do zakupu, filmy, książki lub programy telewizyjne, wraz z zestawem ``ocen'' użytkowników tych produktów.
+
+          \item \emph{Forecasting} -- Prognozowanie, wykorzystuje dane historyczne z szeregiem czasowym lub składnikiem sezonowym w celu na przykład przewidywania popytu lub sprzedaży produktu.
+
+        \end{itemize}
+
+  \item Kategoria \emph{Computer Vision} -- widzenie komputerowe, czyli przetwarzanie obrazów i wideo.
+        Scenariusze w tej kategorii:
+        \begin{itemize}
+
+          \item \emph{Image classification} -- Klasyfikacja obrazów, służy do identyfikacji obrazów różnych kategorii.
+                Na przykład różnych typów terenu, zwierząt lub wad produkcyjnych.
+                Scenariusza klasyfikacji obrazów można użyć, jeśli masz zestaw obrazów i chcesz zaklasyfikować obrazy do różnych kategorii.
+
+          \item \emph{Object detection} -- Wykrywanie obiektów służy do lokalizowania i kategoryzowania podmiotów na obrazach.
+          Na przykład lokalizowanie i identyfikowanie samochodów i osób na obrazie.
+          Wykrywania obiektów można używać, gdy obrazy zawierają wiele obiektów różnych typów.
+
+        \end{itemize}
+
+  \item Kategoria \emph{Natural Language Processing} -- przetwarzanie języka naturalnego, czyli analiza i generowanie tekstu.
+        Scenariusze w tej kategorii:
+
+        \begin{itemize}
+
+          \item \emph{Text classification} -- Klasyfikacja tekstu, kategoryzuje surowy tekst wejściowy.
+          Scenariusza klasyfikacji tekstu można użyć, jeśli masz zestaw dokumentów lub komentarzy i chcesz sklasyfikować je w różnych kategoriach.
+
+        \end{itemize}
+
+\end{itemize}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{ml-net-model-builder-2-training-data}
+  \caption{Zrzut ekranu ze środowiska Visual Studio pokazujący wybór danych uczących w \emph{ML.NET Model Builder}}
+  \label{fig:ml-net-model-builder-2-training-data}
+\end{figure}
 
 \section{Biblioteka Tensorflow.NET}
 \label{sec:tensorflownet}
 
 Tensorflow.NET
+
