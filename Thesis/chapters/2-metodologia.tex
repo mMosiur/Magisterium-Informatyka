@@ -44,20 +44,21 @@ Wykorzystanie Azure Machine Learning Studio dzięki swoim cechom pozwala na szyb
 Jednak w zastosowaniach, które nie czerpią korzyści z połączenia z chmurą i dają swobodę czasową na własnoręczne zaimplementowanie modelu, wykorzystanie AML Studio może być nieopłacalne ze względu na koszty związane z jego wykorzystaniem w większych ilościach.
 Warto wtedy rozważyć inne rozwiązania, które dają swobodę konstruowania i trenowania modelu od podstawi i dostrojenie go do bardziej złożonych zadań, maksymalizując tym samym osiągane możliwości i dokładność -- a są to zazwyczaj biblioteki uczenia maszynowego w językach programowania.
 
-\subsection{Tensorflow i Keras}
+\subsection{TensorFlow i Keras}
+\label{sec:tensorflow-and-keras}
 
-Jedną z najpopularniejszych bibliotek uczenia maszynowego, która jest wykorzystywana do tworzenia i trenowania sieci neuronowych jest \emph{Tensorflow}.
+Jedną z najpopularniejszych bibliotek uczenia maszynowego, która jest wykorzystywana do tworzenia i trenowania sieci neuronowych jest \emph{TensorFlow}.
 Jest to otwartoźródłowa platforma do obliczeń numerycznych i implementacji modeli uczenia maszynowego.
 Jego fundamentem jest reprezentacja danych w postaci tensorów, co umożliwia wykonywanie skomplikowanych operacji matematycznych na dużych zbiorach danych \cite{shukla2018machine}.
 
-Tensorflow jest bilbioteką niskopoziomową napisaną głównie w języku C++ i implementującą często używane algorytmy uczenia maszynowego i sieci neuronowych i wystawiającą je jako interfejs programistyczny w językach wyższego poziomu takich jak Python czy JavaScript.
+TensorFlow jest bilbioteką niskopoziomową napisaną głównie w języku C++ i implementującą często używane algorytmy uczenia maszynowego i sieci neuronowych i wystawiającą je jako interfejs programistyczny w językach wyższego poziomu takich jak Python czy JavaScript.
 Napisany został pierwotnie przez zespół badawczy Google Brain.
 
-Jednak ze względu swoje dążenie do umożliwienia jak największej elastyczności i kontroli nad procesem uczenia sieci neuronowych, Tensorflow w swojej czystej postaci wymaga od programisty dużo pracy i wiedzy, aby zaimplementować nawet najprostszy model sieci neuronowej.
+Jednak ze względu swoje dążenie do umożliwienia jak największej elastyczności i kontroli nad procesem uczenia sieci neuronowych, TensorFlow w swojej czystej postaci wymaga od programisty dużo pracy i wiedzy, aby zaimplementować nawet najprostszy model sieci neuronowej.
 
-W celu uproszczenia z korzystania z Tensorflow powstały ``frontendy'' dla różnych języków programowania pozwalające na wykorzystanie jego możliwości w bardziej przyjazny sposób.
-Jednym z nich jest \emph{Keras}, który jest wysokopoziomowym interfejsem programistycznym dla Tensorflow w języku Python.
-Jest to jeden z najpopularniejszych interfejsów programistycznych dla Tensorflow ze względu na swoją prostotę i intuicyjność.
+W celu uproszczenia z korzystania z TensorFlow powstały ``frontendy'' dla różnych języków programowania pozwalające na wykorzystanie jego możliwości w bardziej przyjazny sposób.
+Jednym z nich jest \emph{Keras}, który jest wysokopoziomowym interfejsem programistycznym dla TensorFlow w języku Python.
+Jest to jeden z najpopularniejszych interfejsów programistycznych dla TensorFlow ze względu na swoją prostotę i intuicyjność.
 
 Dla uproszczenia wystawia API sekwencyjne (ang. Sequential API), które przez wykorzystanie istniejących klas i ``sekwencyjne'' tworzenie obiektów symbolizujących określone rodzaje warstw ze zdefiniowanymi odpowiednio parametrami pozwala na proste w śledzeniu i zrozumieniu stworzenie struktury sieci neuronowych.
 Operacje takie jak \emph{skompilowanie} (czyli utworzenie z definicji warstw sieci zoptymalizowanego do uruchomienia i uczenia wstępnego modelu) definicji modelu używając odpowiednich parametrów czy uruchomienie trenowania (ang. \emph{fit}) w odpowiedniej konfiguracji wykonuje się wywołaniem tylko  jednej metody.
@@ -67,7 +68,7 @@ W nich oprócz definiowania sekwencyjnego struktury sieci można również tworz
 
 Uczenie sieci neuronowej w Keras zachowuje również zbiór metryk, które pozwalają na prześledzenie postępów w procesie uczenia i wykorzystanie ich do analizy lub optymalizacji modelu albo całego schematu programu.
 
-Sukces Tensorflow oraz Keras wynika głównie z połączenia ich wydajności, elastyczności i prostoty użycia, które w dużej mierze są zasługą również wykorzystanego języka programowania Python, najpopularniejszego do zastosowań w uczeniu maszynownym.
+Sukces TensorFlow oraz Keras wynika głównie z połączenia ich wydajności, elastyczności i prostoty użycia, które w dużej mierze są zasługą również wykorzystanego języka programowania Python, najpopularniejszego do zastosowań w uczeniu maszynownym.
 Jednak ze względu na to, że obie te biblioteki mają swoje źródła dostępne na bazie licencji Apache 2.0 w publicznie dostępnym repozytorium serwisu GitHub \cite{tensorflow}.
 Pozwala to społeczności na własne próby rozszerzenia zasięgu platformy do innych języków programowania, na przykład jak zostanie opisane w rozdziale \hyperref[sec:tensorflownet]{rozdziale \ref*{sec:tensorflownet}} -- do języka C\#.
 
@@ -87,6 +88,7 @@ Tak skompilowany kod jest później uruchamiany przez interpreter CLR, podobnie 
 W 2014 roku Microsoft ogłosił, że rozpoczyna prace nad nową wersją platformy .NET, którego rozwój ma odbywać się pod nadzorem nowej, niezależnej organizacji non-profit \emph{.NET Foundation}.
 Wersja stabilna 1.0 nowego tworu nazwanego \emph{.NET Core} została wydana w 2016 roku jako platforma w pełni otwartoźródłowa, międzyplatformowa i modułowa.
 Oznacza to, że jest ona dostępna na systemach operacyjnych Windows, Linux i macOS, a także że jej komponenty są dostępne jako osobne pakiety, które można wykorzystywać w zależności od potrzeb.
+Cały kod źródłowy jest dostępny już na portalu GitHub, upubliczniony z bardzo liberalną licencją MIT \cite{dotnet-sdk-repo, dotnet-runtime-repo}, wraz ze wszystkimi bibliotekami wbudowanymi służącymi do tworzenia różnych rodzajów oprogramowania, a nawet repozytorium służące do rozwijania składni języka wraz z wkładem od społeczności.
 Od tamtego czasu nowa wersja platformy poza jednym wyjątkiem była wypuszczana co roku.
 W 2020 roku, po poprzednim wydaniu .NET Core 3.1 ogłoszono, że pominięta zostanie wersja 4 ze względu na możliwe mylenie jej z działającą wtedy jeszcze w wielu miejscach wersją 4.8 starszego \emph{.NET Framework}.
 Dodatkowo celu unifikacji nazewnictwa oraz sprostowanie, że .NET Core nie jest okrojoną wersją ale pełnoprawną platformą, która jako jedyna będzie dalej rozwijana, zdecydowano się na pomięcie członu \emph{Core} i od wersji 5.0 platforma nazywa się po prostu \emph{.NET 5}.
@@ -97,6 +99,7 @@ Język programowania C\# jest jednym z najpopularniejszych języków programowan
 
 Jest to język obiektowy, który został zaprojektowany przez Microsoft w 2000 roku jako główny język platformy .NET.
 Od tego czasu jest stale rozwijany i wraz z nowymi wersjami platformy .NET pojawiają się nowe wersje języka C\#, z najnowszą na moment pisania niniejszej pracy wersją \emph{C\# 11} wypuszczoną razem z \emph{.NET 7} w 2022 roku.
+Rozwój języka przebiega wraz ze wkładem społeczności, która zgłasza propozycje nowych funkcjonalności i poprawek do istniejących przy użyciu oficjalnego repozytorium języka na portalu GitHub \cite{dotnet-csharplang-repo}, na którym dodatkowo znajduje się historia wszystkich proponowanych zmian oraz informacje na ich temat, a także notatki z wewnętrznych spotkań \emph{.NET Foundation} dotyczących dalszego projektu języka.
 
 Kilka cech języka:
 
@@ -157,6 +160,7 @@ Następnie bibliotekę tę wykorzystałem w głównym projekcie napisanym w jęz
 \section{Framework uczenia maszynowego ML.NET}
 
 \emph{ML.NET} to otwartoźródłowy i międzyplatformowy framework uczenia maszynowego dla platformy .NET.
+Repozytorium z jego kodem źródłowym jest publiczne i udostępnione na portalu GitHub z licencją MIT \cite{dotnet-machinelearning-repo}.
 Umożliwia programistom tworzenie modeli uczenia maszynowego w języku C\# lub F\# bez konieczności głębokiego zrozumienia matematyki lub statystyki.
 Jest to narzędzie skierowane do programistów platformy .NET chcących wykorzystać uczenie maszynowe w swoich projektach bez potrzeby nauki innych języków programowania lub korzystania z zewnętrznych narzędzi.
 
@@ -249,14 +253,56 @@ Do wyboru jest 7 scenariuszy z 3 większych kategorii dedykowanych pod różne z
 
 \end{itemize}
 
+W przypadku problemu badawczego tej pracy najlepiej sprawdzi się scenariusz \emph{Image classification}, ponieważ detekcja choroby Alzheimera i stopnia demencji dążyć będzie do zaklasyfikowania obrazów mózgu do jednej z kilku kategorii, w zależności od tego, czy dany obraz jest zdrowego mózgu lub z demencją w jednym z kilku określonych stopni zaawansowania.
+
+Po wybraniu scenariusza testowego Model Builder przekierowuje dalej do wyboru środowiska, na którym uczony będzie model.
+W przypadku scenariusza \emph{Image classification} dostępne są trzy opcje: uczenie lokalne na maszynie z użyciem procesora (\emph{Local (CPU)}), uczenie lokalne z użyciem procesora graficznego (\emph{Local (GPU)}) oraz uczenie z wykorzystaniem środowiska chmurowego \emph{Azure}.
+Te ostatnie możliwe jest do przeprowadzenia tylko dla scenariuszy klasyfikacji obrazów oraz wykrywania obiektów.
+Co ciekawe scenariusz wykrywania obiektów można przeprowadzić wyłacznie w chmurze, lokalne uczenie nie jest możliwe.
+Poza nim wszystkie pozostałe scenariusze pozwalają na uczenie przy użyciu lokalnego procesora CPU.
+Natomiast na uczenie z użyciem procesora graficznego GPU jest dostępne tylko dla scenariuszy klasyfikacji obrazów oraz klasyfikacji tekstu.
+Dodatkowo wymaganiem do jego przeprowadzenia jest zgodność procesora graficznego z technologią CUDA oraz zainstalowany zestaw narzędzi CUDA wersji $10.1$ oraz bibliotekę akceleracji sprzętowego \emph{CUDA Deep Neural Network} (\emph{cuDNN}) w wersji $7.6.4$.
+Ważne jest, aby zainstalowana wersja była dokładnie tą sugerowaną -- niższa, a także nawet wyższa poskutkuje brakiem możliwości przeprowadzeni uczenia z użyciem lokalnego procesora graficznego.
+
+W celu przeprowadzenia uczenia lokalnie w jak najkrótszym czasie najlepiej jest wybrać opcję \emph{Local (GPU)}.
+
+Po wybraniu środowiska Model Builder prosi o wybranie zbioru danych uczących.
+W przypadku scenariusza \emph{Image classification} Model Builder wymaga podania ścieżki do folderu, w którym znajdują się dane uczące.
+W folderze tym powinny znajdować się podfoldery, których nazwy będą odpowiadały klasom / kategoriom, do których należą obrazy w nich zawarte.
+W podfolderach tych powinny znajdować się obrazy w formacie \emph{.jpg}, \emph{.png} lub \emph{.bmp}.
+
+Przykład tego, jak wybór zbioru danych testowych wygląda znajduje się na zrzucie ekranu przedstawionym na \hyperref[fig:ml-net-model-builder-2-training-data]{rysunku \ref*{fig:ml-net-model-builder-2-training-data}}.
+
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{ml-net-model-builder-2-training-data}
   \caption{Zrzut ekranu ze środowiska Visual Studio pokazujący wybór danych uczących w \emph{ML.NET Model Builder}}
   \label{fig:ml-net-model-builder-2-training-data}
 \end{figure}
 
-\section{Biblioteka Tensorflow.NET}
+Model Builder po wczytaniu danych przedstawia też wykryte klasy / kategorie, ilość obrazów w każdej nich oraz zsumowanych razem.
+Wyświetla także przykładowe 8 z nich, tak, aby użytkownik mógł zweryfikować, czy dane zostały poprawnie wczytane oraz co się w nich znajduje.
+
+Z opcji konfiguracyjnych Model Builder pozwala jeszcze wyłącznie na wybór jednej z czterech metryk -- mikro-dokładność (ang. \emph{micro-accuracy}), makro-dokładność (ang. \emph{macro-accuracy}), strata logarytmiczna (ang. \emph{log-loss}) lub logarytmiczna redukcja strat (ang. \emph{log-loss reduction}).
+Więcej opcji konfiguracyjnych uczenie Model Builder nie posiada, użytkownik nie ma kontroli nad liczbą epok, wielkością paczki danych czy współczynnikiem uczenia -- te hiperparametry dobierane są automatycznie przez Model Builder.
+Podział danych na zbiór uczący, testowy oraz walidacyjny jest również dokonywany automatycznie.
+
+Bezpośrednio po wybraniu zbioru danych testowych rozpoczyna się uczenie faktyczne, którego postęp jest wyświetlany we wbudowanym terminalu środowiska Visual Studio oraz zapisywany jest również do pliku logów.
+
+Po zakończeniu uczenia Model Builder wyświetla podsumowanie, które zawiera informacje o dokładności wybranej metryki modelu na zbiorze testowym oraz czasie uczenia.
+Ekran podsumowujący pozwala też dodać do otwartej solucji przykładowy projekt z wykorzystaniem wytrenowanego modelu, który można wykorzystać do testów lub dalszego rozwoju.
+Wygenerowany projekt posiada plik o rozszerzeniu \emph{.mlnet}, który zawiera definicję modelu i sam wytrenowany model.
+Pozwala to na łatwe wykorzystanie modelu w innych projektach bez konieczności ponownego przeprowadzania uczenia.
+Dodatkowo wygenerowane zostały pliki \emph{.consumption.cs} oraz \emph{.training.cs}, które zawierają kod w języku C\# odpowiednio do konsumpcji modelu oraz do jego ponownego uczenia.
+Pozostałe wygenerowane pliki są zgodne z typem wybranej przykładowej aplikacji, na przykład projekt WebApi pozwalający na wykorzystanie modelu w aplikacji REST API lub projekt konsolowy pozwalający na wykorzystanie modelu z poziomu aplikacji konsolowej.
+
+\section{Biblioteka TensorFlow.NET}
 \label{sec:tensorflownet}
 
-Tensorflow.NET
+\emph{TensorFlow.NET} jest biblioteką do uczenia maszynowego i głębokiego uczenia maszynowego dla platformy .NET i języka C\#.
+Jest to port biblioteki TensorFlow, która jest jedną z najpopularniejszych bibliotek uczenia maszynowego i głębokiego uczenia maszynowego na świecie omówionej dokładniej w \hyperref[sec:tensorflow-and-keras]{sekcji \ref*{sec:tensorflow-and-keras}}.
 
+Ten port do platformy \emph{.NET} całkowicie omija najpopularniejszy sposób wykorzystywania biblioteki TensorFlow, czyli poprzez język Python.
+Niektóre bowiem biblioteki nakładkowe w .NET dające dostęp do TensorFlow wykorzystują Pythona jako warstwę pośrednią, co powoduje konieczność instalacji Pythona i biblioteki TensorFlow wraz z wszystkimi jej zależnościami.
+\emph{TensorFlow.NET} natomiast posiada powiązania bezpośrednio do kodu \emph{C} bibliotek TensorFlow, co pozwala na wykorzystanie ich w języku C\# bez konieczności instalacji Pythona oraz z maksymalną możliwą wydajność.
+
+Projekt jest rozwijany przez społeczność programistów i jest dostępny na licencji \emph{Apache 2.0} na portalu GitHub \cite{scisharp-tensorflownet-repo}.
