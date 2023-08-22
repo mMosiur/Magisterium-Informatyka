@@ -306,3 +306,18 @@ Niektóre bowiem biblioteki nakładkowe w .NET dające dostęp do TensorFlow wyk
 \emph{TensorFlow.NET} natomiast posiada powiązania bezpośrednio do kodu \emph{C} bibliotek TensorFlow, co pozwala na wykorzystanie ich w języku C\# bez konieczności instalacji Pythona oraz z maksymalną możliwą wydajność.
 
 Projekt jest rozwijany przez społeczność programistów i jest dostępny na licencji \emph{Apache 2.0} na portalu GitHub \cite{scisharp-tensorflownet-repo}.
+Jest on również częścią szerszego ekosystemu \emph{SciSharp}, który jest zbiorem bibliotek przeznaczonych do zadań z dziedziny Data Science i inżynierii danych dla platformy .NET.
+W jego skład wchodzą też porty innych, bardzo popularnych bibliotek języka Python, takie jak NumSharp (port NumPy), Pandas.NET (port Pandas) czy SharpCV (port OpenCV).
+
+W przeciwieństwie do \emph{ML.NET}, \emph{TensorFlow.NET} nie jest frameworkiem uczenia maszynowego, a biblioteką, która pozwala na wykorzystanie nie tylko gotowych modeli uczenia maszynowego i głębokiego uczenia maszynowego, ale także na tworzenie własnych modeli.
+Udostępnia ona prawie wszystkie możliwości biblioteki TensorFlow, a co za tym idzie także możliwość jawnego definiowania struktury modelu uczenia maszynowego, wraz jego warstwami i parametrami.
+Jest to szczególnie ważne w przypadkach, gdzie problem badawczy jest nietypowy lub nieco trudniejszy, gdzie modele oparte na uczeniu transferowym lub inne uniwersalne i tylko dostrajane rozwiązania mogą nie wystarczyć.
+
+\emph{TensorFlow.NET} stanowi więc bardzo dobry wybór dla programistów, którzy chcą wykorzystać uczenie maszynowe w swoich projektach, ale nie chcą ograniczać się do gotowych rozwiązań, a chcą mieć pełną kontrolę nad tworzonym modelem.
+Port oparty bezpośrednio na kodzie C jest bardzo wydajnym rozwiązaniem pozwalającym wykorzystać istniejące a także zbudować nowe modele uczenia maszynowego i głębokiego uczenia maszynowego działające w środowisku \emph{.NET}.
+Co więcej możliwe jest użycie tej biblioteki do wytrenowanie wysoce zoptymalizowanego modelu, zapisanie go w dowolnym formacie obsługiwanym także przez TensorFlow (przykładowo \emph{ONNX}, \emph{SavedModel} czy \emph{HDF5}) i wykorzystanie wczytanie go zarówno w innych językach oprogramowania, jak także chociażby przez projekt wykorzystujący ML.NET, który jest nieco lepiej przystosowany do wykorzystania w produkcyjnych aplikacjach.
+
+Spokrewniona biblioteka \emph{TensorFlow.Keras} jest rozszerzeniem biblioteki \emph{TensorFlow.NET}, które pozwala na tworzenie modeli uczenia maszynowego i głębokiego uczenia maszynowego w sposób bardziej wysokopoziomowy, wykorzystując do tego celu warstwy i modele z biblioteki \emph{Keras}.
+Podobnie jak \emph{TensorFlow.NET}, \emph{TensorFlow.Keras} jest portem biblioteki \emph{Keras}, która jest jedną z najpopularniejszych bibliotek uczenia maszynowego i głębokiego uczenia maszynowego na świecie omówionej dokładniej w \hyperref[sec:tensorflow-and-keras]{sekcji \ref*{sec:tensorflow-and-keras}}.
+Pozwala na prostsze tworzenie modeli, które są bardziej czytelne i łatwiejsze do zrozumienia, a także na wykorzystanie gotowych modeli z biblioteki \emph{Keras}.
+Z tego powodu też, podobnie jak \emph{Keras} jest najczęstszym sposobem wykorzystania biblioteki \emph{TensorFlow} w warunkach rzeczywistych, tak \emph{TensorFlow.Keras} jest najczęstszym sposobem wykorzystania biblioteki \emph{TensorFlow.NET}.
