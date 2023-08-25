@@ -75,17 +75,16 @@ Func<Model> build_model = () =>
 
     var layers = new List<ILayer>();
     layers.Add(keras.layers.InputLayer(input_shape: (IMAGE_SIZE.Item1, IMAGE_SIZE.Item2, 3)));
-    layers.Add(keras.layers.Conv2D(16, 3, activation: "relu", padding: "same"));
-    layers.Add(keras.layers.Conv2D(16, 3, activation: "relu", padding: "same"));
+    layers.Add(keras.layers.Conv2D(8, 3, activation: "relu", padding: "same"));
+    layers.Add(keras.layers.Conv2D(8, 3, activation: "relu", padding: "same"));
     layers.Add(keras.layers.MaxPooling2D());
-    layers.AddRange(ConvBlock(16));
     layers.AddRange(ConvBlock(32));
     layers.AddRange(ConvBlock(64));
     layers.Add(keras.layers.Dropout(0.2f));
     layers.AddRange(ConvBlock(128));
     layers.Add(keras.layers.Dropout(0.2f));
     layers.Add(keras.layers.Flatten());
-    layers.AddRange(DenseBlock(512, 0.7f));
+    layers.AddRange(DenseBlock(256, 0.7f));
     layers.AddRange(DenseBlock(128, 0.5f));
     layers.AddRange(DenseBlock(64, 0.3f));
     layers.Add(keras.layers.Dense(NUM_CLASSES, activation: "softmax"));
@@ -108,24 +107,16 @@ var history = model.fit(
     epochs: EPOCHS
 );
 
-var number = Directory
-    .EnumerateDirectories("results")
-    .Select(d => Path.GetFileName(d))
-    .Select(d => d.Replace("run", ""))
-    .Select(d => int.Parse(d) + 1)
-    .Prepend(0)
-    .Max();
+var resultsDirName = $"results";
 
-var dirName = $"results/run{number}";
+Directory.CreateDirectory(resultsDirName);
 
-Directory.CreateDirectory(dirName);
+model.save($"{resultsDirName}/trained-alzheimer-model");
+model.save_weights($"{resultsDirName}/trained-alzheimer-model/weights.h5");
 
-model.save($"{dirName}/trained-alzheimer-model");
-model.save_weights($"{dirName}/trained-alzheimer-model/weights.h5");
+File.WriteAllText($"{resultsDirName}/training-metrics.json", JsonSerializer.Serialize(history.history));
 
-File.WriteAllText($"{dirName}/training-metrics.json", JsonSerializer.Serialize(history.history));
-
-using (var stream = File.OpenWrite($"{dirName}/training-metrics.csv"))
+using (var stream = File.OpenWrite($"{resultsDirName}/training-metrics.csv"))
 {
     using var streamWriter = new StreamWriter(stream);
     using var csvWriter = new CsvWriter(streamWriter, new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -149,7 +140,7 @@ test_ds = test_ds.cache().prefetch(buffer_size: AUTOTUNE);
 
 var test_evaluation = model.evaluate(test_ds);
 
-File.WriteAllText($"{dirName}/test-evaluation.json", JsonSerializer.Serialize(test_evaluation));
+File.WriteAllText($"{resultsDirName}/test-evaluation.json", JsonSerializer.Serialize(test_evaluation));
 
 Console.WriteLine("Finished test evaluation");
 
