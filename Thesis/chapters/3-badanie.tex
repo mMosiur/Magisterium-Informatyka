@@ -42,19 +42,77 @@ Przykłady obrazów z poszczególnych kategorii przedstawione są na \hyperref[f
 
 \section{Uczenie modelu z użyciem narzędzia ML.NET}
 
+\subsection{Uczenie modelu z wykorzystaniem niestandardowego kodu biblioteki ML.NET}
 
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{plot-mlnet-custom-training-overview}
+  \caption[Wykresy statystyk modelu ML.NET Custom w trakcie uczenia]{Wykresy dokładności (\emph{accuracy}) oraz straty (\emph{loss}) dla danych testowych i walidacyjnych modelu ML.NET Custom w trakcie uczenia}
+  \label{fig:plot-mlnet-custom-training-overview}
+\end{figure}
 
 \subsection{Uczenie modelu z użyciem narzędzia ML.NET Model Builder}
 
-\subsection{Uczenie modelu z wykorzystaniem niestandardowego kodu biblioteki ML.NET}
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{plot-mlnet-model-builder-training-overview}
+  \caption[Wykresy statystyk modelu ML.NET Model Builder w trakcie uczenia]{Wykresy dokładności (\emph{accuracy}) oraz straty (\emph{loss}) dla danych testowych i walidacyjnych modelu ML.NET Model Builder w trakcie uczenia}
+  \label{fig:plot-mlnet-model-builder-training-overview}
+\end{figure}
 
 \section{Uczenie niestandardowego modelu z użyciem biblioteki TenserFlow.NET}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{plot-tensorflownet-training-overview}
+  \caption[Wykresy statystyk modelu Tensorflow.NET w trakcie uczenia]{Wykresy dokładności (\emph{accuracy}) oraz straty (\emph{loss}) dla danych testowych i walidacyjnych modelu Tensorflow.NET w trakcie uczenia}
+  \label{fig:plot-tensorflownet-training-overview}
+\end{figure}
 
 Opis procesu uczenia modelu z użyciem biblioteki TenserFlow.NET
 
 \section{Porównanie wyników}
 
-Przedstawienie wyników uzyskanych z użyciem wszystkich narzędzi narzędzi
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{plot-mlnet-custom-vs-mlnet-model-builder}
+  \caption[Porównanie dokładności oraz straty modeli ML.NET Custom oraz ML.NET Model Builder]{Porównanie dokładności (\emph{accuracy}) oraz straty (\emph{loss}) na zbiorze treningowym i walidacyjnym modeli z projektów ML.NET Custom oraz ML.NET Model Builder}
+  \label{fig:plot-mlnet-custom-vs-mlnet-model-builder}
+\end{figure}
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{plot-mlnet-model-builder-vs-tensorflownet}
+  \caption[Porównanie dokładności oraz straty modeli ML.NET Model Builder oraz Tensorflow.NET]{Porównanie dokładności (\emph{accuracy}) oraz straty (\emph{loss}) na zbiorze treningowym i walidacyjnym modeli z projektów ML.NET Model Builder oraz Tenserflow.NET}
+  \label{fig:plot-mlnet-model-builder-vs-tensorflownet}
+\end{figure}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|r|r|r|}
+    \hline
+                         & \multicolumn{2}{c|}{Zbiór treningowy}                                          & \multicolumn{2}{c|}{Zbiór walidacyjny}                      \\
+    \cline{2-5}
+                         & \multicolumn{1}{|c|}{Accuracy}        & \multicolumn{1}{|c|}{Loss}             & \multicolumn{1}{|c|}{Accuracy} & \multicolumn{1}{|c|}{Loss} \\
+    \hline
+    ML.NET Custom        & 0.7373874                             & 0.6378530                              & 0.7359702                      & 0.6511808                  \\
+    ML.NET Model Builder & 0.7401715                             & 0.6036751                              & 0.6793103                      & 0.7503802                  \\
+    Tensorflow.NET       & 0.9118868                             & 0.8311445                              & 0.8935547                      & 0.8501284                  \\
+    \hline
+  \end{tabular}
+  \caption[Porównanie dokładności oraz straty modeli na zbiorze treningowym i walidacyjnym]{Porównanie dokładności (\emph{accuracy}) oraz straty (\emph{loss}) modeli na zbiorze treningowym i walidacyjnym w epokach szkolenia najlepszych względem na dokładności walidacyjnej}
+  \label{tab:train_validation_metric_comparison}
+\end{table}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+                         & \multicolumn{1}{|c|}{Accuracy} \\
+    \hline
+    ML.NET Custom        & 0.45269742                     \\
+    ML.NET Model Builder & 0.70602033                     \\
+    Tensorflow.NET       & 0.85926505                     \\
+    \hline
+  \end{tabular}
+  \caption[Porównanie dokładności modeli na tym samym zbiorze testowym]{Porównanie dokładności (\emph{accuracy}) modeli na tym samym zbiorze testowym}
+  \label{tab:test_accuracy_comparison}
+\end{table}
 
 \section{Wykorzystanie modelu w aplikacji z użyciem biblioteki ML.NET}
 
