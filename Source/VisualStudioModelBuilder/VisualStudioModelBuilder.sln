@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleConsoleApp", "SampleConsoleApp\SampleConsoleApp.csproj", "{9DF064D5-291C-4C2D-A0EA-5C0992B81F16}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLModel_ConsoleApp", "MLModel_ConsoleApp\MLModel_ConsoleApp.csproj", "{514B671D-97FC-4603-BFAF-BEEEDD7566A0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLModel_WebApi", "MLModel_WebApi\MLModel_WebApi.csproj", "{8EE223E2-A023-4757-BB7D-F0105E9B82E9}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9DF064D5-291C-4C2D-A0EA-5C0992B81F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DF064D5-291C-4C2D-A0EA-5C0992B81F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DF064D5-291C-4C2D-A0EA-5C0992B81F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DF064D5-291C-4C2D-A0EA-5C0992B81F16}.Release|Any CPU.Build.0 = Release|Any CPU
 		{514B671D-97FC-4603-BFAF-BEEEDD7566A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{514B671D-97FC-4603-BFAF-BEEEDD7566A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{514B671D-97FC-4603-BFAF-BEEEDD7566A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
