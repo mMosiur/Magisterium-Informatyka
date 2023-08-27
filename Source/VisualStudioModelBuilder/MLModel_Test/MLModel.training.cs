@@ -8,7 +8,7 @@ using Microsoft.ML.Data;
 using Microsoft.ML.Vision;
 using Microsoft.ML;
 
-namespace SampleConsoleApp
+namespace MLModel_Test
 {
     public partial class MLModel
     {

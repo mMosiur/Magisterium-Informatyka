@@ -45,7 +45,7 @@
     },
     "Schema": "e0 * e1 * e2",
     "MetricName": "MicroAccuracy",
-    "ModelFilePath": "C:\\Users\\mmorus\\Source\\UMCS\\VisualStudioModelBuilder\\SampleConsoleApp\\MLModel.mlnet"
+    "ModelFilePath": "C:\\Users\\mmorus\\Source\\UMCS\\VisualStudioModelBuilder\\MLModel_Test\\MLModel.mlnet"
   },
   "Type": "TrainingConfig",
   "Version": 4,
