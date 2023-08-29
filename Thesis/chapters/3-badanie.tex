@@ -160,10 +160,10 @@ Uruchomiony program rozpoczynał proces uczenia modelu, przebieg którego zosta�
 \end{figure}
 
 Przedstawione dane pokazują, że model prawidłowo zaczął się uczyć w rosnącą dokładnością zarówno w zbiorze treningowym, jak i walidacyjnym oraz podobnie malejącą stratą.
-Najwyższa wartość dokładności na zbiorze treningowym wyniosła $0.7373874$, a na zbiorze walidacyjnym $0.7359702$.
+Najwyższa wartość dokładności na zbiorze treningowym wyniosła $73.7\%$, a na zbiorze walidacyjnym $73.6\%$.
 
 Tak nauczona sieć została natomiast później przetestowana na zbiorze testowym, który nie został użyty w procesie uczenia a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
-Uzyskała ona wynik dokładności $0.45269742$ -- czyli lepszy niż losowy (który dla 4 kategorii wynosiłby $0.25$), ale zdecydowanie niezadowalający, gdzie ponad połowa obrazów została źle sklasyfikowana.
+Uzyskała ona wynik dokładności $45.3\%$ -- czyli lepszy niż losowy (który dla 4 kategorii wynosiłby $0.25$), ale zdecydowanie niezadowalający, gdzie ponad połowa obrazów została źle sklasyfikowana.
 Potencjalny wzrost dokładności modelu przy podniesieniu już wysokiej ilości epok byłby mało prawdopodobny, gdyż wzrost był w końcowym etapie już znikomy i prawdopodobnie zbliżał się moment przeuczenia sieci, a co za tym idzie dokładność na zbiorze walidacyjnym oraz testowa zaczęłyby spadać.
 
 \subsection{Uczenie modelu z użyciem narzędzia ML.NET Model Builder}
@@ -189,8 +189,8 @@ Z pliku logów wyekstrahowane zostały dane numeryczne dotyczące przebiegu ucze
 \end{figure}
 
 Przedstawione dane pokazują, że model prawidłowo zaczął się uczyć w rosnącą dokładnością zarówno w zbiorze treningowym, jak i walidacyjnym oraz podobnie malejącą stratą.
-Najwyższa wartość dokładności na zbiorze treningowym wyniosła $0.7401715$, a na zbiorze walidacyjnym $0.6793103$.
-W wyniku przetestowania działania modelu na zbiorze testowym uzyskano dokładność $0.70602033$, która jest zdecydowanie lepsza niż w przypadku własnoręcznie napisanego kodu, ale nadal niezadowalająca do zastosowań praktycznych, gdzie prawie co trzeci obraz został źle sklasyfikowany.
+Najwyższa wartość dokładności na zbiorze treningowym wyniosła $74.0\%$, a na zbiorze walidacyjnym $67.9\%$.
+W wyniku przetestowania działania modelu na zbiorze testowym uzyskano dokładność $70.6\%$, która jest zdecydowanie lepsza niż w przypadku własnoręcznie napisanego kodu, ale nadal niezadowalająca do zastosowań praktycznych, gdzie prawie co trzeci obraz został źle sklasyfikowany.
 
 Zauważyć natomiast warto, że uczenie trwało $95$ epok, po czym zostało automatycznie przerwane, gdyż dalsze uczenie nie przynosiło już żadnych widocznych korzyści -- dokładność przestała rosnąć, a strata maleć -- co wskazuje na to, że model został nauczony optymalnie i dalsze uczenie mogłoby doprowadzić do przeuczenia sieci i pogorszenia jej dokładności na zbiorze testowym.
 
@@ -285,8 +285,8 @@ Mimo wszyskto zarówno na zbiorze treningowym, jak i walidacyjnym dokładność 
 
 Tak wytrenowany model (który znajduje się wraz z kodem źródłowym i wynikami w repozytorium) został następnie przetestowany na zbiorze testowym, który nie został użyty w procesie uczenia a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
 
-Maksymalna dokładność modelu na zbiorze testowym wyniosła $0.9118868$, a na zbiorze walidacyjnym $0.8935547$, co jest wynikiem pozwalającym na rozważenie wykorzystania modelu w praktyce, choć nadal nie idealnym.
-Jest to wynik tym bardziej pozytywny biorąc pod uwagę, że wyszkolona sieć uzyskała dokładność na zbiorze testowym $0.85926505$, a więc stosunkowo wysoką.
+Maksymalna dokładność modelu na zbiorze testowym wyniosła $91.2\%$, a na zbiorze walidacyjnym $89.4\%$, co jest wynikiem pozwalającym na rozważenie wykorzystania modelu w praktyce, choć nadal nie idealnym.
+Jest to wynik tym bardziej pozytywny biorąc pod uwagę, że wyszkolona sieć uzyskała dokładność na zbiorze testowym $85.9\%$, a więc stosunkowo wysoką.
 
 \section{Porównanie wyników}
 
@@ -306,7 +306,7 @@ Sytuacja ma się jednak nieco odwrotnie i komplikuje wyciągnięcie jednoznaczny
 Na tym wykresie bowiem \emph{MLCustom} od samego początku miał wyższą skuteczność niż \emph{MLBuilder} i utrzymywał tę przewagę do końca procesu uczenia tego drugiego, później nawet ją podwyższając.
 Kształt krzywej dokładności na zbiorze walidacyjnym w przypadku obu projektów wygląda bardzo podobnie, gdzie uczenie zwalniało po osiągnięciu dokładności mniej więcej $0.62$ z późniejszym powolnym wzrostem.
 
-Należy do porównania dodać także dokładność modeli na zbiorze testowym, który nie został użyty w procesie uczenia, w którym MLCustom osiągnął zaledwie $0.45269742$, a MLBuilder $0.70602033$ znacznie bardziej zbliżone do dokładności na zbiorze walidacyjnym.
+Należy do porównania dodać także dokładność modeli na zbiorze testowym, który nie został użyty w procesie uczenia, w którym MLCustom osiągnął zaledwie $45.3\%$, a MLBuilder $70.6\%$ znacznie bardziej zbliżone do dokładności na zbiorze walidacyjnym.
 Sugerować to może, że dokładność na zbiorze walidacyjnym projektu \emph{MLCustom} wynikała z czynników losowych lub błędnie dobranych parametrów uczenia, przez co nie współgrała z dokładnością na zbiorze treningowymi ani nie odpowiadała w rzeczywistości dokładności na zbiorze testowym.
 
 Można więc wnioskować, że automatyczne dobieranie parametrów uczenia przez \emph{MLBuilder} pozwoliło na uzyskanie lepszych wyników niż własnoręczne dobieranie parametrów przez \emph{MLCustom}.
@@ -333,8 +333,8 @@ Różnica ta wynika przede wszystkim z faktu, że w przypadku \emph{MLBuilder} w
 W przypadku \emph{Tensorflow.NET} natomiast sieć jest bardzo duża jest budowana od podstaw i musi nauczyć się własną ogromna ilość parametrów od zera, co znacznie wydłuża czas uczenia.
 
 Nie zmienia to faktu, że kluczowym czynnikiem porównania jest finalna skuteczność powstałych sieci neuronowych.
-W tym przypadku model \emph{Tensorflow.NET} uzyskał dokładność na zbiorze treningowym $0.9118868$, a na zbiorze walidacyjnym $0.8935547$, co w porównaniu z rezultatem \emph{MLBuilder} $0.7401715$ na zbiorze treningowym i $0.6793103$ na zbiorze walidacyjnym jest znacznie lepszym o około $0.2$, co przy takich wartościach jest znaczącą różnicą.
-Dodatkowo ten pierwszy model uzyskał dokładność na zbiorze testowym $0.85926505$, a ten drugi $0.70602033$, co jest wynikiem znacznie lepszym.
+W tym przypadku model \emph{Tensorflow.NET} uzyskał dokładność na zbiorze treningowym $91.2\%$, a na zbiorze walidacyjnym $89.4\%$, co w porównaniu z rezultatem \emph{MLBuilder} $74.0\%$ na zbiorze treningowym i $67.9\%$ na zbiorze walidacyjnym jest znacznie lepszym o około $0.2$, co przy takich wartościach jest znaczącą różnicą.
+Dodatkowo ten pierwszy model uzyskał dokładność na zbiorze testowym $85.9\%$, a ten drugi $70.6\%$, co jest wynikiem znacznie lepszym.
 
 \begin{table}[ht]
   \centering
@@ -375,7 +375,7 @@ Wyniki te zostały przedstawione w \hyperref[tab:test_accuracy_comparison]{tabel
 \end{table}
 
 Jak widać, model \emph{Tensorflow.NET} uzyskał najwyższą dokładność na zbiorze testowym.
-Poprawne wykrycie poziomu demencji oraz choroby Alzheimera z obrazu rezonansu magnetycznego mózgu na poziomie $0.85926505$ jest wynikiem, który pozwala na rozważenie wykorzystania modelu w praktyce.
+Poprawne wykrycie poziomu demencji oraz choroby Alzheimera z obrazu rezonansu magnetycznego mózgu na poziomie $85.9\%$ jest wynikiem, który pozwala na rozważenie wykorzystania modelu w praktyce.
 Do celów diagnostycznych więc utworzenie niestandardowego modelu głębokiej sieci neuronowej z wykorzystaniem biblioteki \emph{Tensorflow.NET} dostosowanego do wykorzystania w analizie obrazów jest najlepszym dostępnym rozwiązaniem z tych przeanalizowanych w tej pracy.
 
 \section{Wykorzystanie modelu w aplikacji z użyciem biblioteki ML.NET}
@@ -393,3 +393,4 @@ Co więcej, wczytać można model wyszkolony z użyciem dowolnego narzędzia, ch
 Tak wyszkolony model ma wszystkie zalety szkolenia z użyciem \emph{TensorFlow} i identyczną skuteczność, ale dzięki wczytaniu i użyciu biblioteki \emph{ML.NET} znacznie lepiej komponuje się z rzeczywistymi projektami środowiska \emph{.NET} i języka \emph{C\#}, między innymi w oprogramowaniach szpitalnych czy szerzej w medycynie.
 
 Takie wykorzystanie wczytanego modelu przedstawione zostało w projekcie \lstinline{MLModel_ConsoleApp} oraz \lstinline{MLModel_WebApi} w solucji \lstinline{VisualStudioModelBuilder.sln} w repozytorium opisanym w \hyperref[sec:source-code]{sekcji \ref*{sec:source-code}}.
+W nim wczytywany jest model wygenerowany przez \emph{ML.NET} we własnym formacie, jednak nic nie stoi na przeszkodzie zamiast niego wczytać model wyszkolony z zewnątrz przez \emph{TensorFlow} lub inne narzędzie, co można osiągnąć wywołaniem metody \lstinline{ApplyOnnxModel} wczytującej model formatu ONNX.

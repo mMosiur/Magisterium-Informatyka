@@ -165,7 +165,7 @@ Co więcej, funkcjonalny rezonans magnetyczny (\emph{fMRI}) czy pozytonowa tomog
   \label{mri-images-of-normal-mci-and-ad-brains}
 \end{figure}
 
-Przykładowe obrazowanie mózgów przy użyciu rezonansu magnetycznego przedstawia rysunek \hyperref[mri-images-of-normal-mci-and-ad-brains]{rysunek \ref*{mri-images-of-normal-mci-and-ad-brains}}, gdzie przedstawione są kolejno od lewej: obraz mózgu osoby zdrowem obraz osoby z lżejszą jednostką chorobową łagodnego zaburzenia poznawczego (ang. \emph{Mild Cognitive Impairment}, lub \emph{MCI}) oraz obraz mózgu osoby z chorobą Alzheimera \emph{AD}.
+Przykładowe obrazowanie mózgów przy użyciu rezonansu magnetycznego przedstawia rysunek \hyperref[mri-images-of-normal-mci-and-ad-brains]{rysunek \ref*{mri-images-of-normal-mci-and-ad-brains}}, gdzie przedstawione są kolejno od lewej: obraz mózgu osoby zdrowej obraz osoby z lżejszą jednostką chorobową łagodnego zaburzenia poznawczego (ang. \emph{Mild Cognitive Impairment}, lub \emph{MCI}) oraz obraz mózgu osoby z chorobą Alzheimera \emph{AD}.
 Jak widać, mózg osoby z chorobą Alzheimera jest znacznie bardziej zdegenerowany, a także posiada charakterystyczne zmiany w kształcie i strukturze.
 
 Bardzo świeże prace z 2022 roku opisują, że obecnie neuroobrazowanie znajduje się w ścisłej czołówce metod pomocnych w diagnozowaniu choroby Alzheimera (\emph{AD}), a także innych wszelkich innych rodzajów demencji, takich jak otępienie czołowo-skroniowe, otępienie naczyniowe i otępienie z ciałami Lewy'ego (\emph{DLB}) \cite{scheltens2022imaging}.
@@ -173,6 +173,7 @@ Niedawno sformułowane przez Dubois i współpracowników kryteria badawcze dla 
 Autorzy sugerują, że wkrótce neuroobrazowanie zostanie włączone do kryteriów diagnostycznych dla różnych rodzajów demencji.
 
 \subsection{Nowoczesne metody detekcji choroby Alzheimera z użyciem uczenia maszynowego}
+\label{modern-detection-methods-for-alzheimers-using-machine-learning}
 
 Diagnostyka choroby Alzheimera miała duże skoki rozwojowe wraz z powstawaniem nowych technologii i metod badawczych.
 Już w połowie lat 90 XX wieku pojawiły się pierwsze prace naukowe próbujące wykorzystać rozwijającą się dziedzinę uczenia maszynowego przy detekcji demencji.
@@ -197,6 +198,9 @@ Najbardziej obiecująca jednak była technika uczenia głębokiego, dzięki któ
 W tę właśnie stronę poszli autorzy późniejszej pracy, którzy używając obrazów rezonansu magnetycznego MRI wyszkolili głęboki model dla detekcji choroby Alzheimera \cite{ebrahimi2021deep}.
 Wykorzystali oni konwolucyjne głębokie sieci neuronowe i różne rodzaje sieci rekurencyjnych bazowanych na wstępnie wytrenowanym modelu ResNet-18.
 Otrzymali bardzo obiecujące wyniki i model, który osiągnął maksymalną wydajność klasyfikacji z dokładnością, czułością i swoistością na poziomie około 92\%.
+
+Innym bardzo ciekawym podejściem do detekcji choroby Alzheimera przy użyciu uczenia maszynowego była próba wykorzystania cech spektrogramu wyodrębnionych z danych mowy pacjentów zamiast trudnych do zdobycia obrazów medycznych \cite{liu2020new}.
+Autorom tej pracy udało się osiągnąć dokładność poziomu $86.1\%$ w klasyfikacji osób zdrowych i z chorobą Alzheimera, co jest dodatkowo obiecujące biorąc pod uwagę dostępność wykorzystanych danych.
 
 \section{Uczenie maszynowe i techniki klasyfikacji}
 
