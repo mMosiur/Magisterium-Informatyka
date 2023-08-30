@@ -1,30 +1,30 @@
 \chapter*{Wstęp}
 \addcontentsline{toc}{chapter}{Wstęp}
 
-Wśród wyzwań współczesnej medycyny i informatyki, niezmiernie istotnym tematem stała się detekcja chorób neurodegeneracyjnych, zwłaszcza takiej jak choroba Alzheimera czy szerzej pojęta demencja.
-Rozwój technologii i zdolność do analizy ogromnych ilości danych stworzyły nowe możliwości w dziedzinie diagnostyki i przewidywania tych złożonych schorzeń.
-Przy jednoczesnym użyciu potencjału narzędzi uczenia maszynowego oraz środowiska \emph{.NET}, otwierają się przed nami perspektywy badawcze, które mogą doprowadzić do istotnych postępów w zrozumieniu oraz wczesnym wykrywaniu choroby Alzheimera.
+Wśród wyzwań współczesnej medycyny i~informatyki, niezmiernie istotnym tematem stała się detekcja chorób neurodegeneracyjnych, zwłaszcza takiej jak choroba Alzheimera czy szerzej pojęta demencja.
+Rozwój technologii i~zdolność do analizy ogromnych ilości danych stworzyły nowe możliwości w~dziedzinie diagnostyki i~przewidywania tych złożonych schorzeń.
+Przy jednoczesnym użyciu potencjału narzędzi uczenia maszynowego oraz środowiska \emph{.NET}, otwierają się przed nami perspektywy badawcze, które mogą doprowadzić do istotnych postępów w~zrozumieniu oraz wczesnym wykrywaniu choroby Alzheimera.
 
 Choroba Alzheimera, stanowiąca formę demencji, jest poważnym wyzwaniem dla opieki zdrowotnej na całym świecie.
-Jej postępujący charakter i wpływ na jakość życia pacjentów oraz ich bliskich stanowią bodziec do poszukiwania nowych narzędzi diagnostycznych.
-Jest ona też najczęstszą przyczyną demencji, stanowiąc około 60-80\% wszystkich stwierdzonych przypadków \cite{what-is-alzheimers:2023}.
-Przeszłość medycyny skupiła się na metodach klinicznych i obrazowaniu mózgu, jednak ostatnie lata przyniosły rewolucję w zastosowaniu uczenia maszynowego do analizy medycznych danych.
+Jej postępujący charakter i~wpływ na jakość życia pacjentów oraz ich bliskich stanowią bodziec do poszukiwania nowych narzędzi diagnostycznych.
+Jest ona też najczęstszą przyczyną demencji, stanowiąc około $60$-$80$\% wszystkich stwierdzonych przypadków \cite{what-is-alzheimers:2023}.
+Przeszłość medycyny skupiła się na metodach klinicznych i~obrazowaniu mózgu, jednak ostatnie lata przyniosły rewolucję w~zastosowaniu uczenia maszynowego do analizy medycznych danych.
 W szczególności, techniki głębokiego uczenia maszynowego, które wykorzystują sieci neuronowe, stały się obiecującym narzędziem do diagnozowania chorób neurodegeneracyjnych.
 W ostatnich latach, wiele badań skupiło się na wykorzystaniu obrazowania mózgu do detekcji choroby Alzheimera.
 
-Z oczywistych względów najczęściej wykorzystywane środowiska i narzędzia programistyczne używane w celu uczenia modeli przeznaczonych do diagnostyki to te same, które cieszą się największą popularnością uniwersalnie w dziedzinie inżynierii danych i uczenia maszynowego -- w głównej mierze języki Python i R.
+Z oczywistych względów najczęściej wykorzystywane środowiska i~narzędzia programistyczne używane w~celu uczenia modeli przeznaczonych do diagnostyki to te same, które cieszą się największą popularnością uniwersalnie w~dziedzinie inżynierii danych i~uczenia maszynowego -- w~głównej mierze języki Python i~R.
 
-Jednakże w samych zastosowaniach i oprogramowaniach w medycynie najczęściej spotyka się inne języki inne platformy, w dominującej części jest to Java oraz na drugiej pozycji \emph{.NET} i język C\#.
-Java jest popularna zarówno w środowiskach akademickich jak i medycznych, a co za tym idzie podejmowanych jest wiele prób prowadzenia rozwojowych badań i testów wykorzystania uczenia maszynowego w celach predykcyjnych i diagnostycznych \cite{soman2005classification, nithya2017predictive, gobbel2014development, godara2016evaluation}.
-.NET natomiast jest raczej negatywnie odbierany w środowisku akademickim a popularność natomiast osiągnął głównie w sferze rozwiązań komercyjnych -- w tym również w wielu systemat medycznych i szpitalnych.
-Więc mimo potencjału integracji rozwiązań uczenia maszynowego z systemami medycznymi, wciąż uczenie maszynowe w \emph{.NET} nie jest tematem często spotykanym.
-Dlatego też postanowiłem sprawdzić, jakie możliwości daje nam platforma .NET w kontekście uczenia maszynowego w zastosowaniu do diagnostyki choroby Alzheimera.
+Jednakże w~samych zastosowaniach i~oprogramowaniach w~medycynie najczęściej spotyka się inne języki inne platformy, w~dominującej części jest to Java oraz na drugiej pozycji \emph{.NET} i~język C\#.
+Java jest popularna zarówno w środowiskach akademickich jak i~medycznych, a~co za tym idzie podejmowanych jest wiele prób prowadzenia rozwojowych badań i~testów wykorzystania uczenia maszynowego w~celach predykcyjnych i~diagnostycznych \cite{soman2005classification, nithya2017predictive, gobbel2014development, godara2016evaluation}.
+.NET natomiast jest raczej negatywnie odbierany w~środowisku akademickim a~popularność natomiast osiągnął głównie w~sferze rozwiązań komercyjnych -- w~tym również w~wielu systemat medycznych i~szpitalnych.
+Więc mimo potencjału integracji rozwiązań uczenia maszynowego z~systemami medycznymi, wciąż uczenie maszynowe w~\emph{.NET} nie jest tematem często spotykanym.
+Dlatego też postanowiłem sprawdzić, jakie możliwości daje nam platforma .NET w~kontekście uczenia maszynowego w~zastosowaniu do diagnostyki choroby Alzheimera.
 
-Przyjrzenie się technologii głębokiego uczenia maszynowego oraz ich implementacji w środowisku .NET jawi się jako kluczowe.
-Platforma \emph{.NET}, z jej wszechstronnymi językami programowania oraz narzędziami, stanowi wyjątkowe miejsce gdzie, w różnorodnych rozwiązaniach wdrożyć można dodatkowe atuty płynące z uczenia maszynowego.
-Skoncentrowanie się na narzędziu \emph{ML.NET} oraz bibliotece \emph{TensorFlow.NET} umożliwia nam zbadanie najpopularniejszych i najbardziej rozwiniętych podejść do uczenia modeli diagnostycznych w kontekście choroby Alzheimera.
+Przyjrzenie się technologii głębokiego uczenia maszynowego oraz ich implementacji w~środowisku .NET jawi się jako kluczowe.
+Platforma \emph{.NET}, z~jej wszechstronnymi językami programowania oraz narzędziami, stanowi wyjątkowe miejsce gdzie, w~różnorodnych rozwiązaniach wdrożyć można dodatkowe atuty płynące z~uczenia maszynowego.
+Skoncentrowanie się na narzędziu \emph{ML.NET} oraz bibliotece \emph{TensorFlow.NET} umożliwia nam zbadanie najpopularniejszych i~najbardziej rozwiniętych podejść do uczenia modeli diagnostycznych w~kontekście choroby Alzheimera.
 
-Celem niniejszej pracy jest nie tylko zgłębienie wiedzy na temat choroby Alzheimera oraz jej objawów, ale przede wszystkim wykorzystanie osiągnięć dziedziny uczenia maszynowego w celu opracowania skutecznych modeli diagnostycznych.
-Skonfrontowanie różnych podejść i narzędzi pozwoli na lepsze zrozumienie procesu detekcji tej choroby oraz wydobycie potencjalnych strategii poprawy skuteczności i efektywności diagnozowania.
+Celem niniejszej pracy jest nie tylko zgłębienie wiedzy na temat choroby Alzheimera oraz jej objawów, ale przede wszystkim wykorzystanie osiągnięć dziedziny uczenia maszynowego w~celu opracowania skutecznych modeli diagnostycznych.
+Skonfrontowanie różnych podejść i~narzędzi pozwoli na lepsze zrozumienie procesu detekcji tej choroby oraz wydobycie potencjalnych strategii poprawy skuteczności i~efektywności diagnozowania.
 
-W dalszych sekcjach pracy, zagłębimy się w przeszłość i teraźniejszość choroby Alzheimera, omówimy kluczowe metody diagnostyki oraz zaprezentujemy narzędzia i technologie, które wykorzystamy do naszych badań porównawczych a także ich wyniki i wnioski.
+W dalszych sekcjach pracy, zagłębimy się w~przeszłość i~teraźniejszość choroby Alzheimera, omówimy kluczowe metody diagnostyki oraz zaprezentujemy narzędzia i~technologie, które wykorzystamy do naszych badań porównawczych a~także ich wyniki i~wnioski.

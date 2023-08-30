@@ -1,49 +1,49 @@
 \chapter{Dyskusja}
 
-Wykorzystanie uczenia maszynowego w celach diagnostyki chorób nie jest nowym pomysłem.
-Tego typu zastosowania pojawiały się już także w kontekście chorób neurodegeneracyjnych, w tym choroby Alzheimera.
+Wykorzystanie uczenia maszynowego w~celach diagnostyki chorób nie jest nowym pomysłem.
+Tego typu zastosowania pojawiały się już także w~kontekście chorób neurodegeneracyjnych, w~tym choroby Alzheimera.
 
-Autorzy jednej z prac wykorzystali technikę uczenia maszynowego nazywaną maszyną wektorów nośnych (ang. \emph{Support Vector Machine}, SVM), czyli tej najczęściej pojawiającej się w literaturze, jak zostało opisane w \hyperref[modern-detection-methods-for-alzheimers-using-machine-learning]{sekcji \ref*{modern-detection-methods-for-alzheimers-using-machine-learning}} \cite{trambaiolli2011improving}.
-W badaniu tym wykorzystano dane encefalograficzne (EEG) i zastosowano metodę analizy ilościowej EEG (qEEG) do automatycznego rozróżniania pacjentów z chorobą Alzheimera od osób zdrowych, jako uzupełnienie diagnozy prawdopodobnej demencji.
+Autorzy jednej z~prac wykorzystali technikę uczenia maszynowego nazywaną maszyną wektorów nośnych (ang. \emph{Support Vector Machine}, SVM), czyli tej najczęściej pojawiającej się w~literaturze, jak zostało opisane w~\hyperref[modern-detection-methods-for-alzheimers-using-machine-learning]{sekcji \ref*{modern-detection-methods-for-alzheimers-using-machine-learning}} \cite{trambaiolli2011improving}.
+W badaniu tym wykorzystano dane encefalograficzne (EEG) i~zastosowano metodę analizy ilościowej EEG (qEEG) do automatycznego rozróżniania pacjentów z~chorobą Alzheimera od osób zdrowych, jako uzupełnienie diagnozy prawdopodobnej demencji.
 Autorom udało się przy tym podejściu uzyskać dokładność na poziomie $79.9\%$ bazując wyłącznie na danych EEG oraz $87.0\%$ przy uwzględnieniu diagnozy każdego indywidualnego pacjenta.
-Porównując moje rezultaty z tymi opisywanymi, modele uczenia maszynowego powstałe w ramach tej pracy osiągnęły wyższą dokładność klasyfikacji bazując wyłącznie na obrazach medycznych.
-Jednakże warto mieć tutaj na uwadze, że autorzy przeprowadzili te badania w roku 2011, kiedy technologie uczenia głębokiego nie były jeszcze tak rozwinięte jak obecnie.
+Porównując moje rezultaty z~tymi opisywanymi, modele uczenia maszynowego powstałe w~ramach tej pracy osiągnęły wyższą dokładność klasyfikacji bazując wyłącznie na obrazach medycznych.
+Jednakże warto mieć tutaj na uwadze, że autorzy przeprowadzili te badania w~roku 2011, kiedy technologie uczenia głębokiego nie były jeszcze tak rozwinięte jak obecnie.
 
-Nowsze prace wykorzystujące uczenie głębokie w celu diagnozy choroby Alzheimera osiągają znacznie lepsze wyniki.
-W szczególności sprawdzają się rozwiązania w postaci głębokich konwolucyjnych sieci neuronowych.
-Autorzy jednej z takich prac z roku 2018 osiągnęli dokładność na poziomie $88.24\%$ \cite{shahbaz2019classification}, a więc bardzo zbliżoną do najlepszego wyniku osiągniętego przeze mnie.
-W innej pracy z roku 2021 autorom udało się osiągnąć dokładność na poziomie $92.0\%$ \cite{ebrahimi2021deep}, a więc wyższą niż najlepszy osiągnięty przeze mnie wynik o około 6 punktów procentowych.
+Nowsze prace wykorzystujące uczenie głębokie w~celu diagnozy choroby Alzheimera osiągają znacznie lepsze wyniki.
+W szczególności sprawdzają się rozwiązania w~postaci głębokich konwolucyjnych sieci neuronowych.
+Autorzy jednej z~takich prac z~roku 2018 osiągnęli dokładność na poziomie $88.24\%$ \cite{shahbaz2019classification}, a~więc bardzo zbliżoną do najlepszego wyniku osiągniętego przeze mnie.
+W innej pracy z~roku 2021 autorom udało się osiągnąć dokładność na poziomie $92.0\%$ \cite{ebrahimi2021deep}, a~więc wyższą niż najlepszy osiągnięty przeze mnie wynik o~około 6~punktów procentowych.
 
-Co ciekawe, autorzy drugiej z tych prac przeanalizowali także użycie uczenia transferowanego do rozwiązania tego samego problemu.
-Według ich podsumowania 3 modele detekcji choroby Alzheimera, które pokryły się z tymi dostępnymi w \emph{ML.NET}, a więc \lstinline{InceptionV3}, \lstinline{ResnetV2101} oraz \lstinline{ResnetV250} osiągnęły dokładność klasyfikacji odpowiednio $78\%$, $79\%$ oraz $81\%$.
+Co ciekawe, autorzy drugiej z~tych prac przeanalizowali także użycie uczenia transferowanego do rozwiązania tego samego problemu.
+Według ich podsumowania 3~modele detekcji choroby Alzheimera, które pokryły się z~tymi dostępnymi w~\emph{ML.NET}, a~więc \lstinline{InceptionV3}, \lstinline{ResnetV2101} oraz \lstinline{ResnetV250} osiągnęły dokładność klasyfikacji odpowiednio $78\%$, $79\%$ oraz $81\%$.
 Są to wszystko wartości wyższe niż najlepszy wynik modelu bazującego na uczeniu transferowanym \emph{ML.NET Model Builder}, który osiągnął dokładność na poziomie $71\%$.
 Może to sugerować, iż biblioteka \emph{ML.NET} nie pozwala na optymalne wykorzystanie wstępnie wytrenowanych modeli.
 
-Jedne z najnowszych prac badawczych nad wykorzystaniem uczenia maszynowego w celach diagnostyki choroby Alzheimera osiągają wyniki jeszcze lepsze.
-Autorzy pracy z roku 2022 przeanalizowali kilka metod uczenia maszynowego w celu rozpoznania choroby Alzheimera na podstawie obrazów MRI, w tym niestandardową głęboką konwolucyjną sieć neuronową oraz uczenie transferowe bazowane na wstępnie wytrenowanym modelu \lstinline{ResNet101} \cite{mamun2022deep}.
-Ich praca więc jest bardzo zbliżona do mojego podejścia z wyłączeniem używanych technologii.
+Jedne z~najnowszych prac badawczych nad wykorzystaniem uczenia maszynowego w~celach diagnostyki choroby Alzheimera osiągają wyniki jeszcze lepsze.
+Autorzy pracy z~roku 2022 przeanalizowali kilka metod uczenia maszynowego w~celu rozpoznania choroby Alzheimera na podstawie obrazów MRI, w~tym niestandardową głęboką konwolucyjną sieć neuronową oraz uczenie transferowe bazowane na wstępnie wytrenowanym modelu \lstinline{ResNet101} \cite{mamun2022deep}.
+Ich praca więc jest bardzo zbliżona do mojego podejścia z~wyłączeniem używanych technologii.
 Dla sieci konwolucyjnej udało się osiągnąć dokładność aż $97.6\%$, znacznie wyższą niż najlepszy wynik osiągnięty przeze mnie.
 Był to najlepszy wynik osiągnięty także przez autorów, którzy otrzymali wynik podobny do mojego, gdzie niestandardowa implementacja głębokiej konwolucyjnej sieci neuronowej radziła sobie lepiej niż uczenie transferowe.
 
-Ważnym do zauważenia szczegółem jest fakt, że wymienione badania skupiały się na binarnej detekcji choroby Alzheimera, gdzie w mojej pracy modele były trenowane także do stopniowania demencji na trzy dodatkowe kategorie przewlekłości, co utrudnia przestrzeń problemową.
+Ważnym do zauważenia szczegółem jest fakt, że wymienione badania skupiały się na binarnej detekcji choroby Alzheimera, gdzie w~mojej pracy modele były trenowane także do stopniowania demencji na trzy dodatkowe kategorie przewlekłości, co utrudnia przestrzeń problemową.
 
 Istotnym szczegółem wartym są użyte technologie.
-Celem mojej pracy było wykorzystanie uczenia maszynowego do detekcji choroby Alzheimera oraz stopnia demencji z użyciem narzędzi uczenia maszynowego dostępnych w środowisku \emph{.NET}.
-Nie udało mi się znaleźć \emph{żadnej} pracy, która próbowałaby rozwiązać ten problem z wykorzystaniem technologii \emph{.NET}, co ze wzgląd na brak popularności tego środowiska nie jest zaskakujące.
-Co więcej dostępne narzędzia uczenia maszynowego są gorsze i często bazują na odpowiednikach z innych technologii, jednak przez brak wsparcia społeczności ich rozwój jest ograniczony.
+Celem mojej pracy było wykorzystanie uczenia maszynowego do detekcji choroby Alzheimera oraz stopnia demencji z~użyciem narzędzi uczenia maszynowego dostępnych w~środowisku \emph{.NET}.
+Nie udało mi się znaleźć \emph{żadnej} pracy, która próbowałaby rozwiązać ten problem z~wykorzystaniem technologii \emph{.NET}, co ze wzgląd na brak popularności tego środowiska nie jest zaskakujące.
+Co więcej dostępne narzędzia uczenia maszynowego są gorsze i~często bazują na odpowiednikach z~innych technologii, jednak przez brak wsparcia społeczności ich rozwój jest ograniczony.
 
-Ograniczony rozwój i niedojrzałe narzędzia były odczuwalne szczególnie w próbie uczenia sieci neuronowej z użyciem \emph{TensorFlow.NET}, gdzie brakowało dostępnych istotnych funkcjonalności.
-Przede wszystkim chodzi o brak dostępnych metryk poza standardową metryką dokładności (\lstinline{acc}), która dla dostępnych danych nie była optymalnym wyborem.
-Zbiór danych bowiem był niezbalansowany i różne klasy posiadały znacznie różną liczbę przykładów.
-Dla tego typu danych najlepszym rozwiązaniem jest metryka ROC AUC (\lstinline{auc}), która jest dostępna w \emph{TensorFlow}, ale nie w \emph{TensorFlow.NET}.
-Należy zaznaczyć, że mimo aktualnej niedojrzałości narzędzi są one aktywnie rozwijane, czego przykładem mógł być brak funkcji straty \lstinline{CategoricalCrossentropy} w momencie rozpoczynania pisania kodu projektów, która w jego trakcie została dodana i umożliwiła jego wykorzystanie.
+Ograniczony rozwój i~niedojrzałe narzędzia były odczuwalne szczególnie w~próbie uczenia sieci neuronowej z~użyciem \emph{TensorFlow.NET}, gdzie brakowało dostępnych istotnych funkcjonalności.
+Przede wszystkim chodzi o~brak dostępnych metryk poza standardową metryką dokładności (\lstinline{acc}), która dla dostępnych danych nie była optymalnym wyborem.
+Zbiór danych bowiem był niezbalansowany i~różne klasy posiadały znacznie różną liczbę przykładów.
+Dla tego typu danych najlepszym rozwiązaniem jest metryka ROC AUC (\lstinline{auc}), która jest dostępna w~\emph{TensorFlow}, ale nie w~\emph{TensorFlow.NET}.
+Należy zaznaczyć, że mimo aktualnej niedojrzałości narzędzi są one aktywnie rozwijane, czego przykładem mógł być brak funkcji straty \lstinline{CategoricalCrossentropy} w~momencie rozpoczynania pisania kodu projektów, która w~jego trakcie została dodana i~umożliwiła jego wykorzystanie.
 
-Ta praca przeanalizowała największe i najbardziej popularne narzędzia uczenia maszynowego dostępne w środowisku \emph{.NET}, jednak nie są one wszystkimi.
+Ta praca przeanalizowała największe i~najbardziej popularne narzędzia uczenia maszynowego dostępne w~środowisku \emph{.NET}, jednak nie są one wszystkimi.
 Potencjalnym kierunkiem dalszych prac mogłoby być przeanalizowanie dodatkowych bibliotek takich jak \emph{Accord.NET Machine Learning Framework} lub \emph{TorchSharp}, które mogą potencjalnie uzyskiwać lepsze wyniki.
-Warto równie powrócić do tematu bibliotek już przeze mnie opisanych w tej pracy z czasem, gdyż ich rozwój może przynieść nowe funkcjonalności i poprawić wyniki.
-\emph{ML.NET} może potencjalnie uzyskać możliwość wykorzystania uczenia transferowego z użyciem jeszcze nowszych, większych i skuteczniejszych modeli, takich jak \emph{VGG-19}, które w niektórych pracach osiąga bardzo wysokie wyniki
+Warto równie powrócić do tematu bibliotek już przeze mnie opisanych w~tej pracy z~czasem, gdyż ich rozwój może przynieść nowe funkcjonalności i~poprawić wyniki.
+\emph{ML.NET} może potencjalnie uzyskać możliwość wykorzystania uczenia transferowego z~użyciem jeszcze nowszych, większych i~skuteczniejszych modeli, takich jak \emph{VGG-19}, które w~niektórych pracach osiąga bardzo wysokie wyniki
 rzędu $83.72\%$ dla klasyfikacji stopnia demencji oraz aż $98.73\%$ przy samej binarnej detekcji choroby Alzheimera \cite{mehmood2021transfer}.
 Podobnie rozwój \emph{TensorFlow.NET} może przynieść brakujące funkcjonalności, które pozwolą na uzyskanie lepszych wyników.
 
-Mimo potencjału rozwoju środowisko \emph{.NET} nie jest optymalne w kwestii przeprowadzania uczenia maszynowego.
-Istnieją natomiast narzędzia, które pozwolą na wykorzystanie modelu wytrenowanego z pomocą innych narzędzi i środowisk w rozwiązaniach \emph{.NET}, co umożliwia kompromis między skutecznością uczenia oraz możliwościami jego wykorzystania w praktyce.
+Mimo potencjału rozwoju środowisko \emph{.NET} nie jest optymalne w~kwestii przeprowadzania uczenia maszynowego.
+Istnieją natomiast narzędzia, które pozwolą na wykorzystanie modelu wytrenowanego z~pomocą innych narzędzi i~środowisk w~rozwiązaniach \emph{.NET}, co umożliwia kompromis między skutecznością uczenia oraz możliwościami jego wykorzystania w~praktyce.
