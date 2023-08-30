@@ -40,7 +40,7 @@ Możliwe jest również analizowanie w czasie rzeczywistym działania modelu i a
 Bardzo istotną cechą AML Studio jest fakt, że platforma integruje się z innymi usługami chmurowymi dostarczanymi przez Microsoft Azure, co umożliwia tworzenie spójnych rozwiązań opartych na chmurze.
 Pozwala na dynamiczne wczytywanie danych z innych źródeł znajdujących się w chmurze, a także na wdrażanie modeli uczenia maszynowego w postaci usług sieci Web, które mogą być wykorzystywane przez inne aplikacje.
 
-Wykorzystanie Azure Machine Learning Studio dzięki swoim cechom pozwala na szybki trening modelu uczenia maszynowego oraz jego wdrożenie bez konieczności pisania kodu czy głębszej znajomości tematyki uczenia maszynowego \cite{mukunthu2019practical}, w szczególności gdy z założenia wdrożony model ma działać w chmurze i integrować się z innymi systemami w niej obecnymi.
+Wykorzystanie Azure Machine Learning Studio dzięki swoim cechom pozwala na szybki trening modelu uczenia maszynowego oraz jego wdrożenie bez konieczności pisania kodu czy głębszej znajomości tematyki uczenia maszynowego \cite{mukunthu2019practical}, w szczególności, gdy z założenia wdrożony model ma działać w chmurze i integrować się z innymi systemami w niej obecnymi.
 Jednak w zastosowaniach, które nie czerpią korzyści z połączenia z chmurą i dają swobodę czasową na własnoręczne zaimplementowanie modelu, wykorzystanie AML Studio może być nieopłacalne ze względu na koszty związane z jego wykorzystaniem w większych ilościach.
 Warto wtedy rozważyć inne rozwiązania, które dają swobodę konstruowania i trenowania modelu od podstawi i dostrojenie go do bardziej złożonych zadań, maksymalizując tym samym osiągane możliwości i dokładność -- a są to zazwyczaj biblioteki uczenia maszynowego w językach programowania.
 
@@ -51,7 +51,7 @@ Jedną z najpopularniejszych bibliotek uczenia maszynowego, która jest wykorzys
 Jest to otwartoźródłowa platforma do obliczeń numerycznych i implementacji modeli uczenia maszynowego.
 Jego fundamentem jest reprezentacja danych w postaci tensorów, co umożliwia wykonywanie skomplikowanych operacji matematycznych na dużych zbiorach danych \cite{shukla2018machine}.
 
-TensorFlow jest bilbioteką niskopoziomową napisaną głównie w języku C++ i implementującą często używane algorytmy uczenia maszynowego i sieci neuronowych i wystawiającą je jako interfejs programistyczny w językach wyższego poziomu takich jak Python czy JavaScript.
+TensorFlow jest biblioteką niskopoziomową napisaną głównie w języku C++ i implementującą często używane algorytmy uczenia maszynowego i sieci neuronowych i wystawiającą je jako interfejs programistyczny w językach wyższego poziomu takich jak Python czy JavaScript.
 Napisany został pierwotnie przez zespół badawczy Google Brain.
 
 Jednak ze względu swoje dążenie do umożliwienia jak największej elastyczności i kontroli nad procesem uczenia sieci neuronowych, TensorFlow w swojej czystej postaci wymaga od programisty dużo pracy i wiedzy, aby zaimplementować nawet najprostszy model sieci neuronowej.
@@ -64,13 +64,13 @@ Dla uproszczenia wystawia API sekwencyjne (ang. Sequential API), które przez wy
 Operacje takie jak \emph{skompilowanie} (czyli utworzenie z definicji warstw sieci zoptymalizowanego do uruchomienia i uczenia wstępnego modelu) definicji modelu używając odpowiednich parametrów czy uruchomienie trenowania (ang. \emph{fit}) w odpowiedniej konfiguracji wykonuje się wywołaniem tylko  jednej metody.
 
 Mimo swojej prostoty, Keras pozwala na również na podejścia bardziej eksperckie.
-W nich oprócz definiowania sekwencyjnego struktury sieci można również tworzyć własne klasy reprezentujące niestandardowe warstwy lub całe bloki odpowiednio ustrukturyzowane i zparametryzowane.
+W nich oprócz definiowania sekwencyjnego struktury sieci można również tworzyć własne klasy reprezentujące niestandardowe warstwy lub całe bloki odpowiednio ustrukturyzowane i sparametryzowane.
 
 Uczenie sieci neuronowej w Keras zachowuje również zbiór metryk, które pozwalają na prześledzenie postępów w procesie uczenia i wykorzystanie ich do analizy lub optymalizacji modelu albo całego schematu programu.
 
-Sukces TensorFlow oraz Keras wynika głównie z połączenia ich wydajności, elastyczności i prostoty użycia, które w dużej mierze są zasługą również wykorzystanego języka programowania Python, najpopularniejszego do zastosowań w uczeniu maszynownym.
+Sukces TensorFlow oraz Keras wynika głównie z połączenia ich wydajności, elastyczności i prostoty użycia, które w dużej mierze są zasługą również wykorzystanego języka programowania Python, najpopularniejszego do zastosowań w uczeniu maszynowym.
 Jednak ze względu na to, że obie te biblioteki mają swoje źródła dostępne na bazie licencji Apache 2.0 w publicznie dostępnym repozytorium serwisu GitHub \cite{tensorflow}.
-Pozwala to społeczności na własne próby rozszerzenia zasięgu platformy do innych języków programowania, na przykład jak zostanie opisane w rozdziale \hyperref[sec:tensorflownet]{rozdziale \ref*{sec:tensorflownet}} -- do języka C\#.
+Pozwala to społeczności na własne próby rozszerzenia zasięgu platformy do innych języków programowania, na przykład jak zostanie opisane w \hyperref[sec:tensorflownet]{rozdziale \ref*{sec:tensorflownet}} -- do języka C\#.
 
 \section{Platforma .NET}
 
@@ -91,7 +91,7 @@ Oznacza to, że jest ona dostępna na systemach operacyjnych Windows, Linux i ma
 Cały kod źródłowy jest dostępny już na portalu GitHub, upubliczniony z bardzo liberalną licencją MIT \cite{dotnet-sdk-repo, dotnet-runtime-repo}, wraz ze wszystkimi bibliotekami wbudowanymi służącymi do tworzenia różnych rodzajów oprogramowania, a nawet repozytorium służące do rozwijania składni języka wraz z wkładem od społeczności.
 Od tamtego czasu nowa wersja platformy poza jednym wyjątkiem była wypuszczana co roku.
 W 2020 roku, po poprzednim wydaniu .NET Core 3.1 ogłoszono, że pominięta zostanie wersja 4 ze względu na możliwe mylenie jej z działającą wtedy jeszcze w wielu miejscach wersją 4.8 starszego \emph{.NET Framework}.
-Dodatkowo celu unifikacji nazewnictwa oraz sprostowanie, że .NET Core nie jest okrojoną wersją ale pełnoprawną platformą, która jako jedyna będzie dalej rozwijana, zdecydowano się na pomięcie członu \emph{Core} i od wersji 5.0 platforma nazywa się po prostu \emph{.NET 5}.
+Dodatkowo celu unifikacji nazewnictwa oraz sprostowanie, że .NET Core nie jest okrojoną wersją, ale pełnoprawną platformą, która jako jedyna będzie dalej rozwijana, zdecydowano się na pomięcie członu \emph{Core} i od wersji 5.0 platforma nazywa się po prostu \emph{.NET 5}.
 
 \subsection{Język C\#}
 \label{sec:csharp}
@@ -108,7 +108,7 @@ Kilka cech języka:
 
   \item Bezpieczeństwo typów: C\# jest językiem silnie typowanym, co oznacza, że typy zmiennych są sprawdzane podczas kompilacji, co pomaga uniknąć wielu błędów w czasie działania programu.
 
-  \item Automatyczne zarządzanie pamięcią:Automatyczne zarządzanie pamięcią: Dzięki mechanizmom takim jak Garbage Collection (zbieranie nieużywanej pamięci) C\# pozwala programistom uniknąć wielu problemów związanych z wyciekami pamięci.
+  \item Automatyczne zarządzanie pamięcią: Automatyczne zarządzanie pamięcią: Dzięki mechanizmom takim jak Garbage Collection (zbieranie nieużywanej pamięci) C\# pozwala programistom uniknąć wielu problemów związanych z wyciekami pamięci.
 
   \item Asynchroniczność: C\# oferuje obszerną obsługę operacji asynchronicznych, co jest szczególnie ważne w aplikacjach wielowątkowych i sieciowych.
 
@@ -176,10 +176,10 @@ Ważne spostrzeżenie tutaj to fakt, że ten zestaw daje odgórny podział na ka
 Nie pozwala na przykład zbudować warstwa po warstwie modelu głębokiej sieci neuronowej.
 Zamiast tego wystawia klasy takie jak \lstinline{MulticlassClassification} dającą dostęp do zbioru już zaimplementowanych narzędzi i algorytmów klasyfikacji wieloklasowej, lub \lstinline{ImageClassificationTrainer} pozwalający na trenowanie modelu klasyfikacji obrazów.
 Konfiguracja tego drugiego opiera się wyłącznie na zdefiniowaniu informacji dotyczących danych i hiperparametrów uczenia, takich jak wielkość paczki danych (ang. batch size), liczba epok (ang. epochs), czy współczynnik uczenia (ang. learning rate).
-Dodatkowo można ustawić w jaki sposób współczynnik uczenia ma się zmieniać z czasem (ang. learning rate scheduler lub learning rate decay), czy testowanie powinno odbywać się także na zbiorze uczącym, kryteria zatrzymania uczenia (ang. early stopping criteria) czy metodę callbackową (ang. callback method), która zostanie wywołana po każdej epoce uczenia.
+Dodatkowo można ustawić w jaki sposób współczynnik uczenia ma się zmieniać z czasem (ang. learning rate scheduler lub learning rate decay), czy testowanie powinno odbywać się także na zbiorze uczącym, kryteria zatrzymania uczenia (ang. early stopping criteria) czy metodę zwrotną (ang. callback method), która zostanie wywołana po każdej epoce uczenia.
 
 Jedna z istotniejszych opcji konfiguracji obiektu \lstinline{ImageClassificationTrainer} to wybór architektury, na której bazie będzie przeprowadzane uczenie.
-Jest tak dlatego, ponieważ klasyfikacja obrazów ML.NET działa na podstawie uczenia transferowego omówionego od strony teoretycznej w sekcji \hyperref[sec:transfer-learning]{sekcji \ref*{sec:transfer-learning}}.
+Jest tak dlatego, ponieważ klasyfikacja obrazów ML.NET działa na podstawie uczenia transferowego omówionego od strony teoretycznej w \hyperref[sec:transfer-learning]{sekcji \ref*{sec:transfer-learning}}.
 Dostępne do wybrania architektury to \emph{InceptionV3}, \emph{MobilenetV2}, \emph{ResnetV250} oraz domyślna \emph{ResnetV2101}.
 Takie podejście pozwala na szybkie zbudowanie modelu uczenia maszynowego bez konieczności głębokiego zrozumienia jego działania, skupiając się wyłącznie na oczekiwanym celu.
 
@@ -194,7 +194,7 @@ Jest całkowicie oparte na wizualnym, okienkowym wybraniu odpowiednich opcji, da
 
 Używając instalatora Visual Studio użytkownik może zmodyfikować instalację wybierając dodatkowo komponent o nazwie \emph{ML.NET Model Builder}.
 Pozwoli on da dodanie do projektu nowego elementu \emph{Machine Learning Model (ML.NET)}.
-Element taki jest plikiem o rozszerzeniu \emph{.mbconfig} i pozwala na zdefiniowanie konfiguracji uczenia maszynowegodo przeprowadzenia.
+Element taki jest plikiem o rozszerzeniu \emph{.mbconfig} i pozwala na zdefiniowanie konfiguracji uczenia maszynowego do przeprowadzenia.
 
 Następnie tak stworzony plik otworzony w karcie programu Visual Studio wyświetla wizualną reprezentację konfiguracji uczenia maszynowego i pozwala na wybieranie jej opcji krok po kroku.
 
@@ -261,7 +261,7 @@ W przypadku problemu badawczego tej pracy najlepiej sprawdzi się scenariusz \em
 Po wybraniu scenariusza testowego Model Builder przekierowuje dalej do wyboru środowiska, na którym uczony będzie model.
 W przypadku scenariusza \emph{Image classification} dostępne są trzy opcje: uczenie lokalne na maszynie z użyciem procesora (\emph{Local (CPU)}), uczenie lokalne z użyciem procesora graficznego (\emph{Local (GPU)}) oraz uczenie z wykorzystaniem środowiska chmurowego \emph{Azure}.
 Te ostatnie możliwe jest do przeprowadzenia tylko dla scenariuszy klasyfikacji obrazów oraz wykrywania obiektów.
-Co ciekawe scenariusz wykrywania obiektów można przeprowadzić wyłacznie w chmurze, lokalne uczenie nie jest możliwe.
+Co ciekawe scenariusz wykrywania obiektów można przeprowadzić wyłącznie w chmurze, lokalne uczenie nie jest możliwe.
 Poza nim wszystkie pozostałe scenariusze pozwalają na uczenie przy użyciu lokalnego procesora CPU.
 Natomiast na uczenie z użyciem procesora graficznego GPU jest dostępne tylko dla scenariuszy klasyfikacji obrazów oraz klasyfikacji tekstu.
 Dodatkowo wymaganiem do jego przeprowadzenia jest zgodność procesora graficznego z technologią CUDA oraz zainstalowany zestaw narzędzi CUDA wersji $10.1$ oraz bibliotekę akceleracji sprzętowego \emph{CUDA Deep Neural Network} (\emph{cuDNN}) w wersji $7.6.4$.

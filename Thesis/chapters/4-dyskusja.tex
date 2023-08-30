@@ -3,11 +3,11 @@
 Wykorzystanie uczenia maszynowego w celach diagnostyki chorób nie jest nowym pomysłem.
 Tego typu zastosowania pojawiały się już także w kontekście chorób neurodegeneracyjnych, w tym choroby Alzheimera.
 
-Autorzy jednej z prac wykorzystali technikę uczenia maszynowego nazywaną maszyną wektorów nośnych (ang. \emph{Support Vector Machine}, SVM), czyli tej najczęściej pojawiajacej się w literaturze, jak zostało opisane w \hyperref[modern-detection-methods-for-alzheimers-using-machine-learning]{sekcji \ref*{modern-detection-methods-for-alzheimers-using-machine-learning}} \cite{trambaiolli2011improving}.
+Autorzy jednej z prac wykorzystali technikę uczenia maszynowego nazywaną maszyną wektorów nośnych (ang. \emph{Support Vector Machine}, SVM), czyli tej najczęściej pojawiającej się w literaturze, jak zostało opisane w \hyperref[modern-detection-methods-for-alzheimers-using-machine-learning]{sekcji \ref*{modern-detection-methods-for-alzheimers-using-machine-learning}} \cite{trambaiolli2011improving}.
 W badaniu tym wykorzystano dane encefalograficzne (EEG) i zastosowano metodę analizy ilościowej EEG (qEEG) do automatycznego rozróżniania pacjentów z chorobą Alzheimera od osób zdrowych, jako uzupełnienie diagnozy prawdopodobnej demencji.
-Autorom udało się przy tym podejściu uzyskać dokładność na poziomie $79.9\%$ bazując wyłącznie na danych EEG, oraz $87.0\%$ przy uwzględnieniu diagnozy każdego indywidualnego pacjenta.
+Autorom udało się przy tym podejściu uzyskać dokładność na poziomie $79.9\%$ bazując wyłącznie na danych EEG oraz $87.0\%$ przy uwzględnieniu diagnozy każdego indywidualnego pacjenta.
 Porównując moje rezultaty z tymi opisywanymi, modele uczenia maszynowego powstałe w ramach tej pracy osiągnęły wyższą dokładność klasyfikacji bazując wyłącznie na obrazach medycznych.
-Jednakże warto mieć tutaj na uwadze, że autorzy przeprowadzili te badania w roku 2011 kiedy technologie uczenia głębokiego nie były jeszcze tak rozwinięte jak obecnie.
+Jednakże warto mieć tutaj na uwadze, że autorzy przeprowadzili te badania w roku 2011, kiedy technologie uczenia głębokiego nie były jeszcze tak rozwinięte jak obecnie.
 
 Nowsze prace wykorzystujące uczenie głębokie w celu diagnozy choroby Alzheimera osiągają znacznie lepsze wyniki.
 W szczególności sprawdzają się rozwiązania w postaci głębokich konwolucyjnych sieci neuronowych.
@@ -36,7 +36,7 @@ Ograniczony rozwój i niedojrzałe narzędzia były odczuwalne szczególnie w pr
 Przede wszystkim chodzi o brak dostępnych metryk poza standardową metryką dokładności (\lstinline{acc}), która dla dostępnych danych nie była optymalnym wyborem.
 Zbiór danych bowiem był niezbalansowany i różne klasy posiadały znacznie różną liczbę przykładów.
 Dla tego typu danych najlepszym rozwiązaniem jest metryka ROC AUC (\lstinline{auc}), która jest dostępna w \emph{TensorFlow}, ale nie w \emph{TensorFlow.NET}.
-Należy zaznaczyć że mimo aktualnej niedojrzałości narzędzi są one aktywnie rozwijane, czego przykładem mógł być brak funkcji straty \lstinline{CategoricalCrossentropy} w momencie rozpoczynania pisania kodu projektów, która w jego trakcie została dodana i umożliwiła jego wykorzystanie.
+Należy zaznaczyć, że mimo aktualnej niedojrzałości narzędzi są one aktywnie rozwijane, czego przykładem mógł być brak funkcji straty \lstinline{CategoricalCrossentropy} w momencie rozpoczynania pisania kodu projektów, która w jego trakcie została dodana i umożliwiła jego wykorzystanie.
 
 Ta praca przeanalizowała największe i najbardziej popularne narzędzia uczenia maszynowego dostępne w środowisku \emph{.NET}, jednak nie są one wszystkimi.
 Potencjalnym kierunkiem dalszych prac mogłoby być przeanalizowanie dodatkowych bibliotek takich jak \emph{Accord.NET Machine Learning Framework} lub \emph{TorchSharp}, które mogą potencjalnie uzyskiwać lepsze wyniki.

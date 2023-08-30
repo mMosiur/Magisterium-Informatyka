@@ -16,7 +16,7 @@ Wykorzystany zbiór pochodzi z platformy Kaggle (udostępniony jest pod adresem 
 Jest wstępnie podzielony na zbiór treningowy oraz testowy w celu zapewnienia powtarzalności i porównywalności wyników uzyskanych z użyciem różnych narzędzi i z różnych źródeł.
 Zawiera on zestaw obrazów uzyskanych z badań rezonansem magnetycznym (MRI), których celem jest analiza i diagnoza otępienia spowodowanego chorobą Alzheimera.
 Obrazy te są dwuwymiarowym wycinkiem trójwymiarowego skanu rezonansu magnetycznego mózgu, który najlepiej obrazuje strukturę mózgu i potencjalne zmiany chorobowe.
-Mają wymiary $208 \times 176$ pikseli -- wystarczająco duże, aby widoczne były nawet drobne detale ale na tyle małe, aby były możliwe do przetworzenia przez mniejsze sieci neuronowe a także umożliwiły ich znacznie szybsze szkolenie.
+Mają wymiary $208 \times 176$ pikseli -- wystarczająco duże, aby widoczne były nawet drobne detale, ale na tyle małe, aby były możliwe do przetworzenia przez mniejsze sieci neuronowe a także umożliwiły ich znacznie szybsze szkolenie.
 
 Zbiór danych składa się z czterech kategorii obrazów, zarówno w zbiorze treningowym, jak i testowym:
 
@@ -62,7 +62,7 @@ Napisany przeze mnie projekt znajdujący się w repozytorium opisanym w \hyperre
 Wygląda on tak, ponieważ wykorzystałem możliwości języka C\# oraz podejście, przy którym bardzo dobrze się sprowadza i wprowadziłem ustrukturyzowane podejście obiektowe.
 Generuje ono nieco więcej kodu niż podejście imperatywne, jednak jest ono bardziej czytelne i łatwiejsze do zrozumienia przy rosnącej złożoności systemu, a także pozwala na łatwiejsze wprowadzanie zmian i rozwijanie projektu czy wprowadzenie utworzonego rozwiązania do innego, już istniejącego systemu.
 
-Solucja \lstinline{MLNetCustom.sln} zawiera trzy projekty: główny projekt \lstinline{MLNetCustom.csproj} napisany w języku C\# i zawierający faktycznie szkolenie i wykorzystanie biblioteki \emph{ML.NET}, projekt \lstinline{Plot.fsproj} napisany w języku F\# zawierający kod funkcji wykorzystujacych bibliotekę \emph{Plotly.NET} do wygenerowania wykresów na bazie przekazanych metryk, oraz projekt \lstinline{PlotGenerator.csproj} wystawiający API w postaci klas opakowujacych funkcje generowania wykresów z projektu F\# \lstinline{Plot.fsproj}.
+Solucja \lstinline{MLNetCustom.sln} zawiera trzy projekty: główny projekt \lstinline{MLNetCustom.csproj} napisany w języku C\# i zawierający faktycznie szkolenie i wykorzystanie biblioteki \emph{ML.NET}, projekt \lstinline{Plot.fsproj} napisany w języku F\# zawierający kod funkcji wykorzystujących bibliotekę \emph{Plotly.NET} do wygenerowania wykresów na bazie przekazanych metryk, oraz projekt \lstinline{PlotGenerator.csproj} wystawiający API w postaci klas opakowujących funkcje generowania wykresów z projektu F\# \lstinline{Plot.fsproj}.
 
 Przedstawia to też dobrze siłę i możliwości platformy \emph{.NET}, gdzie jedna solucja jest modularnym tworem składającym się z wielu bytów mogących być napisanymi w różnych językach programowania, a także wykorzystującymi różne biblioteki i narzędzia w celu jak najbardziej przejrzystego ustrukturyzowania kodu i jego łatwiejszej rozbudowy i utrzymania.
 
@@ -151,7 +151,7 @@ engine.Train(new()
 Na tym fragmencie widać, że do uczenia sieci wykorzystałem architekturę opartą na \emph{ResNet V2 101} i z uczeniem o czasie $200$ epok.
 Wartości parametrów \lstinline{LearningRate} (współczynniku uczenia) czy \lstinline{BatchSize} (rozmiaru paczki danych) nie zostały zmienione i ustalone są domyślnie na wartości odpowiednio $0.01$ i $10$.
 
-Uruchomiony program rozpoczynał proces uczenia modelu, przebieg którego został przedstawiony na \hyperref[fig:plot-mlnet-custom-training-overview]{rysunku \ref*{fig:plot-mlnet-custom-training-overview}} z wykresem dokładności (\emph{accuracy}) oraz straty (\emph{loss}) dla danych testowych i walidacyjnych w trakcie uczenia.
+Uruchomiony program rozpoczynał proces uczenia modelu, z którego dane przebiegu zostały przedstawione na \hyperref[fig:plot-mlnet-custom-training-overview]{rysunku \ref*{fig:plot-mlnet-custom-training-overview}} z wykresem dokładności (\emph{accuracy}) oraz straty (\emph{loss}) dla danych testowych i walidacyjnych w trakcie uczenia.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{plot-mlnet-custom-training-overview}
@@ -162,7 +162,7 @@ Uruchomiony program rozpoczynał proces uczenia modelu, przebieg którego zosta�
 Przedstawione dane pokazują, że model prawidłowo zaczął się uczyć w rosnącą dokładnością zarówno w zbiorze treningowym, jak i walidacyjnym oraz podobnie malejącą stratą.
 Najwyższa wartość dokładności na zbiorze treningowym wyniosła $73.7\%$, a na zbiorze walidacyjnym $73.6\%$.
 
-Tak nauczona sieć została natomiast później przetestowana na zbiorze testowym, który nie został użyty w procesie uczenia a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
+Tak nauczona sieć została natomiast później przetestowana na zbiorze testowym, który nie został użyty w procesie uczenia, a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
 Uzyskała ona wynik dokładności $45.3\%$ -- czyli lepszy niż losowy (który dla 4 kategorii wynosiłby $0.25$), ale zdecydowanie niezadowalający, gdzie ponad połowa obrazów została źle sklasyfikowana.
 Potencjalny wzrost dokładności modelu przy podniesieniu już wysokiej ilości epok byłby mało prawdopodobny, gdyż wzrost był w końcowym etapie już znikomy i prawdopodobnie zbliżał się moment przeuczenia sieci, a co za tym idzie dokładność na zbiorze walidacyjnym oraz testowa zaczęłyby spadać.
 
@@ -225,7 +225,7 @@ var train_ds = keras.preprocessing.image_dataset_from_directory(
 );
 \end{lstlisting}
 
-Jako, że biblioteka ta jest nakładką na \emph{Keras}, pozwala na bardzo dużą dozę swobody konfiguracji a także tworzenia struktury sieci neuronowej, wliczając to kolejność, ilość oraz rodzaj warstw.
+Jako że biblioteka ta jest nakładką na \emph{Keras}, pozwala na bardzo dużą dozę swobody konfiguracji a także tworzenia struktury sieci neuronowej, wliczając to kolejność, ilość oraz rodzaj warstw.
 Dla celów detekcji choroby Alzheimera zdecydowałem się na utworzenie dużego modelu głębokiej sieci konwolucyjnej w sposób przedstawiony poniżej:
 
 \begin{lstlisting}[language={[Sharp]C}]
@@ -267,7 +267,7 @@ Func<Model> build_model = () =>
 
 Jak widać w kodzie powyżej, wykorzystałem szereg warstw, z których wszystkie w sposób bardziej szczegółowy zostały opisane w \hyperref[sec:deep-learning-layers]{sekcji \ref*{sec:deep-learning-layers}}.
 Zacząłem od kilku rosnących w rozmiary bloków konwolucyjnych mających za zadanie wykrywać coraz bardziej złożone wzorce w obrazach.
-Następujące po sobie wartswy konwolucyjne w blokach przełożone są jeszcze dodatkowo warstwami normalizacji partii (\emph{Batch Normalization}) oraz warstwami \emph{Max Pooling} zmniejszającymi rozmiar obrazu.
+Następujące po sobie warstwy konwolucyjne w blokach przełożone są jeszcze dodatkowo warstwami normalizacji partii (\emph{Batch Normalization}) oraz warstwami \emph{Max Pooling} zmniejszającymi rozmiar obrazu.
 
 Po kilku blokach konwolucyjnych pojawia się kilka stopniowo malejących warstw gęstych, które mają za zadanie stopniowo przetwarzać informacje wyjściowe z warstw konwolucyjnych w wektor o rozmiarze odpowiadającym ilości klas, których model ma się nauczyć.
 
@@ -281,9 +281,9 @@ Zebrane w trakcie uczenia metryki zostały przedstawione na \hyperref[fig:plot-t
 \end{figure}
 
 Jak widać na wykresie, dokładność oraz strata walidacyjna są bardzo chaotyczne i mają wiele dużych skoków i spadków w trakcie uczenia, gdzie z kolei dokładność oraz strata treningowa są znacznie bardziej stabilne mimo jednego większego skoku w środkowej fazie uczenia.
-Mimo wszyskto zarówno na zbiorze treningowym, jak i walidacyjnym dokładność rośnie, a strata maleje, co wskazuje na to, że model się poprawnie uczy.
+Mimo wszystko zarówno na zbiorze treningowym, jak i walidacyjnym dokładność rośnie, a strata maleje, co wskazuje na to, że model się poprawnie uczy.
 
-Tak wytrenowany model (który znajduje się wraz z kodem źródłowym i wynikami w repozytorium) został następnie przetestowany na zbiorze testowym, który nie został użyty w procesie uczenia a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
+Tak wytrenowany model (który znajduje się wraz z kodem źródłowym i wynikami w repozytorium) został następnie przetestowany na zbiorze testowym, który nie został użyty w procesie uczenia, a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
 
 Maksymalna dokładność modelu na zbiorze testowym wyniosła $91.2\%$, a na zbiorze walidacyjnym $89.4\%$, co jest wynikiem pozwalającym na rozważenie wykorzystania modelu w praktyce, choć nadal nie idealnym.
 Jest to wynik tym bardziej pozytywny biorąc pod uwagę, że wyszkolona sieć uzyskała dokładność na zbiorze testowym $85.9\%$, a więc stosunkowo wysoką.
@@ -323,13 +323,13 @@ Wykres zestawienia zmiany dokładności modelu w trakcie uczenia dla zbioru tren
 
 Na wykresie wyraźnie widać, że model \emph{Tensorflow.NET} osiągnął znacznie wyższą dokładność zarówno na zbiorze treningowym, jak i w zbiorze walidacyjnym.
 Proces uczenia był zdecydowanie mniej stabilny, gdzie krzywa dokładności \emph{MLBuilder} jest bardzo gładka z niewielkimi zmianami prawdopodobnie wynikającymi z niskiej wartości współczynnika uczenia, gdzie krzywa dokładności drugiego projektu jest chaotyczna i ma wiele dużych skoków i spadków w trakcie uczenia.
-Do epoki mniej więcej $30$ lub $40$ modele radziły sobie porównywalnie, jednak gdzie \emph{MLBuilder} zaczął zwalniać, tam \emph{Tensorflow.NET} nadal wyraźnie poprawiał swoje działanie.
+Do epoki mniej więcej $30$ lub $40$ modele radziły sobie porównywalnie, jednak, gdzie \emph{MLBuilder} zaczął zwalniać, tam \emph{Tensorflow.NET} nadal wyraźnie poprawiał swoje działanie.
 
 Warto zauważyć, że czas mimo zbliżonej ilości epok uczenia, rzeczywisty czas ich przeprowadzenia był diametralnie różny.
 Oba modele szkolone były na tym samym sprzęcie, wykorzystując do niego ten sam procesor graficzny \emph{NVIDIA GeForce GTX 1060 Max-Q}.
 Jak pokazują logi z uczenia w przypadku \emph{MLBuilder} (które również zawarte są w repozytorium), całość szkolenia modelu zajęła nieco ponad $270$ sekund, to jest $4.5$ minuty.
 Natomiast jednokrotne przeszkolenie modelu \emph{Tensorflow.NET} zajęło ponad 3 godziny, czyli prawie 3 rzędy wielkości więcej czasu.
-Różnica ta wynika przede wszystkim z faktu, że w przypadku \emph{MLBuilder} wykorzystywane jest ucznie transferowane, gdzie już duży, wyszkolony model sieci neuronowej jest tylko ``dostrajany'' za pomocą danych treningowych do rozwiązania konkretnego problemu, co znacznie zmniejsza ilość parametrów sieci do wyszkolenia.
+Różnica ta wynika przede wszystkim z faktu, że w przypadku \emph{MLBuilder} wykorzystywane jest uczenie transferowane, gdzie już duży, wyszkolony model sieci neuronowej jest tylko ``dostrajany'' za pomocą danych treningowych do rozwiązania konkretnego problemu, co znacznie zmniejsza ilość parametrów sieci do wyszkolenia.
 W przypadku \emph{Tensorflow.NET} natomiast sieć jest bardzo duża jest budowana od podstaw i musi nauczyć się własną ogromna ilość parametrów od zera, co znacznie wydłuża czas uczenia.
 
 Nie zmienia to faktu, że kluczowym czynnikiem porównania jest finalna skuteczność powstałych sieci neuronowych.
@@ -355,7 +355,7 @@ Dodatkowo ten pierwszy model uzyskał dokładność na zbiorze testowym $85.9\%$
 
 Wszystkie wyniki dotyczące dokładności i straty modeli w trakcie uczenia na zbiorze testowym oraz walidacyjnym zostały przedstawione w \hyperref[tab:train_validation_metric_comparison]{tabeli \ref*{tab:train_validation_metric_comparison}}.
 
-Najistotniejszą statystyką jednak jest dokładność modeli na zbiorze testowym, który nie został użyty w procesie uczenia a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
+Najistotniejszą statystyką jednak jest dokładność modeli na zbiorze testowym, który nie został użyty w procesie uczenia, a więc sieć widziała pojawiające się tam obrazy po raz pierwszy.
 Ona dopiero sugeruje, jak model może sprawować się w praktyce na rzeczywistych, nowych obrazach.
 Wyniki te zostały przedstawione w \hyperref[tab:test_accuracy_comparison]{tabeli \ref*{tab:test_accuracy_comparison}}.
 
