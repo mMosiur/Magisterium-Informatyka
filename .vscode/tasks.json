@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build PDF",
+      "label": "Build PDF (twosided)",
       "type": "shell",
       "options": {
         "cwd": "${workspaceFolder}/Thesis"
@@ -14,13 +14,40 @@
         "isDefault": true
       },
       "windows": {
-        "command": "${workspaceFolder}/Scripts/build.ps1"
+        "command": "${workspaceFolder}/Scripts/build.ps1",
+        "args": ["twosided"]
       },
       "linux": {
-        "command": "${workspaceFolder}/Scripts/build.sh"
+        "command": "${workspaceFolder}/Scripts/build.sh",
+        "args": ["twosided"]
       },
       "osx": {
-        "command": "${workspaceFolder}/Scripts/build.sh"
+        "command": "${workspaceFolder}/Scripts/build.sh",
+        "args": ["twosided"]
+      },
+      "promptOnClose": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Build PDF (onesided)",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/Thesis"
+      },
+      "group": {
+        "kind": "build"
+      },
+      "windows": {
+        "command": "${workspaceFolder}/Scripts/build.ps1",
+        "args": ["onesided"]
+      },
+      "linux": {
+        "command": "${workspaceFolder}/Scripts/build.sh",
+        "args": ["onesided"]
+      },
+      "osx": {
+        "command": "${workspaceFolder}/Scripts/build.sh",
+        "args": ["onesided"]
       },
       "promptOnClose": true,
       "problemMatcher": []
