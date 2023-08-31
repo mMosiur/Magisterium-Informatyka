@@ -1,14 +1,29 @@
 #!/bin/bash
 
+# Use argument to check whether to use onesided or twosided document
+documentType="$1"
+
+if [ "$documentType" = "onesided" ]; then
+    documentName="thesis-onesided"
+elif [ "$documentType" = "twosided" ]; then
+    documentName="thesis-twosided"
+elif [ -z "$documentType" ]; then
+    documentName="thesis-twosided"
+else
+    echo "Unknown argument '$documentType'" >&2
+    cd "$originalLocation" || exit 1
+    exit 1
+fi
+
 title='Detekcja choroby Alzheimera i stadium demencji z użyciem narzędzi uczenia maszynowego w środowisku .NET'
 pdfFilename="$title.pdf"
-generatedPdfPath="./out/thesis.pdf"
+generatedPdfPath="./out/$documentName.pdf"
 destinationPdfPath="../$pdfFilename"
 detexifyScriptPath="../Scripts/detexify.py"
 
 originalLocation=$(pwd)
 
-if [ ! -f "thesis.tex" ]; then
+if [ ! -f "$documentName.tex" ]; then
     if [ -d "./Thesis" ]; then
         cd "./Thesis"
     elif [ -d "../Thesis" ]; then
@@ -27,7 +42,7 @@ if ! command -v latexmk &> /dev/null; then
     exit 1
 fi
 
-latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=out thesis.tex
+latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=out "$documentName.tex"
 
 if [ "$?" -ne 0 ]; then
     echo "Error: Document build using 'latexmk' has failed." >&2

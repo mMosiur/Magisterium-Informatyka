@@ -1,13 +1,28 @@
+# Use argument to check whether to use onesided or twosieded document
+$documentType = $args[0]
+
+if($documentType -eq 'onesided') {
+    $documentName = 'thesis-onesided'
+} elseif ($documentType -eq 'twosided') {
+    $documentName = 'thesis-twosided'
+} elseif (-not $documentType) {
+    $documentName = 'thesis-twosided'
+} else {
+    Write-Error "Unknown argument '$documentType'" -CategoryActivity "Error"
+    Set-Location $originalLocation
+    Exit 1
+}
+
 $title = 'Detekcja choroby Alzheimera i stadium demencji z użyciem narzędzi uczenia maszynowego w środowisku .NET'
 $pdfFilename = "$title.pdf"
 # Paths are relative to the Thesis directory since that is where the `latex` command should be executed
-$generatedPdfPath = "./out/thesis.pdf"
+$generatedPdfPath = "./out/$documentName.pdf"
 $destinationPdfPath = "../$pdfFilename"
 $detexifyScriptPath = "../Scripts/detexify.py"
 
 $originalLocation = Get-Location
 
-if (-not (Test-Path "thesis.tex")) {
+if (-not (Test-Path "$documentName.tex")) {
     if (Test-Path "./Thesis" -PathType Container) {
         Set-Location "./Thesis"
     }
@@ -28,7 +43,7 @@ if (-not (Get-Command latexmk -ErrorAction SilentlyContinue)) {
     Exit 1
 }
 
-latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=out thesis.tex
+latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=out "$documentName.tex"
 
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Document build using 'latexmk' has failed." -CategoryActivity "Error"

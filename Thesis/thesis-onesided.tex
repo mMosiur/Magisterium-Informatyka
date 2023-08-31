@@ -1,0 +1,89 @@
+% One-sided document
+\documentclass[12pt, oneside]{ociamthesis}
+\usepackage{helvet}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{polski}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[leftbars]{changebar}
+\usepackage{caption}
+\hypersetup{
+	pdftitle={Detekcja choroby Alzheimera i~stadium demencji z~użyciem narzędzi uczenia maszynowego w środowisku .NET},
+	pdfsubject={Praca magisterska},
+	pdfauthor={Mateusz Piotr Moruś},
+	pdfkeywords={Choroba Alzheimera, demencja, uczenie maszynowe, uczenie transferowe, głębokie sieci neuronowe, sieci konwolucyjne, .NET, dotnet, CSharp, ML.NET, TensorFlow.NET}
+}
+\usepackage{graphicx}
+\input{code_format_setup}
+
+\setlength{\changebarsep}{-5em}
+
+\graphicspath{ {./Images/} }
+
+\captionsetup[figure]{font=small}
+
+% Make the numbering of figures continuous
+\counterwithout{figure}{chapter}
+% Make the numbering of tables continuous
+\counterwithout{table}{chapter}
+
+\title{Detekcja choroby Alzheimera i~stadium demencji z~użyciem narzędzi uczenia maszynowego w~środowisku .NET}
+\engtitle{Detection of Alzheimer's disease and the stage of dementia using machine learning tools in the .NET environment}
+\author{Mateusz Piotr Moruś}
+\albumnumber{292540}
+\university{UNIWERSYTET MARII CURIE-SKŁODOWSKIEJ W~LUBLINIE}
+\college{Wydział Matematyki, Fizyki i~Informatyki}
+\field{Informatyka}
+\speciality{Deweloperska (programistyczna)}
+\submittedtext{Praca magisterska}
+\department{Katedrze Neuroinformatyki i~Inżynierii Biomedycznej}
+\promoter{dr. hab. Grzegorza Marcina Wójcika, prof. UMCS}
+\degreedate{Lublin rok 2023}
+
+\begin{document}
+
+% This baselineskip gives sufficient line spacing for an examiner to easily markup the thesis with comments
+\baselineskip=18pt plus1pt
+
+% Set the number of sectioning levels that get number and appear in the contents
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Add a title page
+\maketitle
+
+
+\include{chapters/streszczenie-pl}
+\include{chapters/streszczenie-en}
+
+% Start roman page numbering
+\begin{romanpages}
+	% Generate and include a table of contents
+	\tableofcontents
+	% Create a group for list of figures and list of tables to fit both on one page
+	\begingroup
+	\let\clearpage\relax
+	% Generate and include a list of figures
+	\listoffigures
+	% Generate and include a list of tables
+	\listoftables
+	\endgroup
+% End roman page numbering
+\end{romanpages}
+
+\include{chapters/0-wstęp}
+\include{chapters/1-teoria}
+\include{chapters/2-metodologia}
+\include{chapters/3-badanie}
+\include{chapters/4-dyskusja}
+
+% Add the Bibliography to the contents page
+\addcontentsline{toc}{chapter}{Bibliografia}
+% Use a bibtex bibliography file refs.bib
+\bibliography{refs}
+% Use the plain bibliography style ordered by citation
+\bibliographystyle{unsrt}
+
+\end{document}
